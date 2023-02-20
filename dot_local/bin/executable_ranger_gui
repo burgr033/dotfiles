@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+i3-sensible-terminal -name ranger -e ranger 

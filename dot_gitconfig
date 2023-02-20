@@ -1,0 +1,17 @@
+[user]
+        name = SB
+	email = mail@cigh.de
+	signingkey = 996ED0900094F1A1146904B9A453B5E1F1DCA166
+[filter "lfs"]
+        process = git-lfs filter-process
+        required = true
+        clean = git-lfs clean -- %f
+        smudge = git-lfs smudge -- %f
+[credential]
+        helper = cache
+[commit]
+	gpgsign = true
+[gpg]
+        program = gpg2
+[init]
+        defaultBranch = main
