@@ -1,0 +1,75 @@
+{{- if lookPath "fzf" }}
+Register-ArgumentCompleter -CommandName ssh,scp,sftp -Native -ScriptBlock {
+  param($wordToComplete, $commandAst, $cursorPosition)
+  
+  function Get-SSHConfigHosts {
+    param($sshConfigFilePath)
+    Get-Content -Path $sshConfigFilePath -ErrorAction SilentlyContinue |
+      Select-String -Pattern '^Host ' |
+      ForEach-Object { $_ -replace 'Host ', '' } |
+      ForEach-Object { $_ -split ' ' } |
+      Sort-Object -Unique |
+      Where-Object { $_ -notmatch '[*!?]' }
+  }
+  
+  function Get-SSHConfigFileList {
+    param($sshConfigFilePath)
+    $sshConfigDir = Split-Path -Path $sshConfigFilePath -Resolve -Parent
+    $sshConfigFiles = @($sshConfigFilePath)
+    Get-Content -Path $sshConfigFilePath -ErrorAction SilentlyContinue |
+      Select-String -Pattern '^Include ' |
+      ForEach-Object { $_ -replace 'Include ', '' } |
+      ForEach-Object { $_ -replace '~', $Env:USERPROFILE } |
+      ForEach-Object { $_ -replace '\$Env:(USERPROFILE|HOMEPATH)', $Env:USERPROFILE } |
+      ForEach-Object { 
+        $sshConfigFiles += Get-ChildItem -Path "$sshConfigDir\$_" -File -ErrorAction SilentlyContinue -Force |
+          ForEach-Object { $_.FullName }
+      }
+    return $sshConfigFiles | Sort-Object -Unique
+  }
+  
+  $sshPath = "$Env:USERPROFILE\.ssh"
+  $hosts = Get-SSHConfigFileList "$sshPath\config" | ForEach-Object { Get-SSHConfigHosts $_ }
+  
+  if ($hosts.Count -eq 0) { 
+    return @() 
+  }
+  
+  $initialQuery = $wordToComplete
+  
+  $selectedHost = $hosts | fzf --style full --height 40% --layout=reverse --prompt="SSH Host> " --query="$initialQuery"
+  
+  if ($selectedHost) {
+    return [System.Management.Automation.CompletionResult]::new($selectedHost, $selectedHost, 'ParameterValue', $selectedHost)
+  }
+}
+{{- end}}
+# =============================================================================
+
+function activate_venv()
+{
+  if(!(Test-Path "venv\Scripts\activate"))
+  {
+    Write-Output "Virtual env missing, creating..."
+    virtualenv.exe venv
+  }
+  .\venv\scripts\activate
+}
+
+{{- if lookPath "eza" }}
+if (Get-Command eza -ErrorAction SilentlyContinue)
+{
+  Set-Alias -Name "ls" -Value "eza"
+}
+{{- end}}
+
+{{- if lookPath "nvim" }}
+function Scratch
+{
+  nvim -c Scratch
+}
+{{- end}}
+
+{{- if lookPath "starship" }}
+Invoke-Expression (&starship init powershell)
+{{- end}}

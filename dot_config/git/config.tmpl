@@ -1,0 +1,70 @@
+[user]
+name = {{ .name | quote }}
+email = {{ .email | quote }}
+{{- if eq .isWorkMachine "false"}}
+signingkey = BDE652404B6095EB4FE11A1A1707363660BFF7D7
+{{- end}}
+{{- if eq .isWorkMachine "true"}}
+signingkey = 83297FC845136CEC5D204EAB2FC883E6A65782EC
+{{- end}}
+
+[filter "lfs"]
+process = git-lfs filter-process
+required = true
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+
+[credential]
+{{- if eq .chezmoi.os "windows" }}
+helper = manager-core
+{{- end }}
+{{- if ne .chezmoi.os "windows" }}
+helper = cache
+{{- end}}
+
+[commit]
+gpgsign = true
+
+[core]
+excludesfile = ~/.config/git/ignore
+commitGraph = true
+editor = nvim
+{{- if lookPath "delta" }}
+pager = delta
+{{- end}}
+
+[gpg]
+{{- if ne .chezmoi.os "windows"}}
+program = gpg2
+{{- end}}
+{{- if eq .chezmoi.os "windows"}}
+program = {{ lookPath "gpg.exe" | replace "\\" "\\\\" }}
+{{- end}}
+
+[interactive]
+{{- if lookPath "delta" }}
+diffFilter = delta --color-only
+
+[delta]
+navigate = true
+side-by-side = true
+light = false
+line-numbers = true
+
+[merge]
+conflictstyle = diff3
+
+[diff]
+colorMoved = default
+{{- end}}
+
+[Include]
+path = includes/static
+
+[Include]
+path = includes/machine
+
+[IncludeIf "gitdir:~/Study/**"]
+path = ~/Study/.gitconfig
+
+; ################################################################ 

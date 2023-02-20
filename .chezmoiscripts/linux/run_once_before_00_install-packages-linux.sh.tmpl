@@ -1,0 +1,69 @@
+#!/bin/bash
+echo ""
+set -eufo pipefail
+{{- if eq .manualSetup "false" }}
+{{- if eq .chezmoi.os "linux" }}
+{{ $sudo := "sudo " -}}
+{{ if eq .chezmoi.username "root" -}}
+{{   $sudo = "" -}}
+{{ end -}}
+
+{{ if eq .chezmoi.osRelease.id "ubuntu" -}}
+#UBUNTU
+
+#lazygit
+{{ if eq .chezmoi.arch "amd64"}}
+if ! command -v lazygit &> /dev/null
+  then
+    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+    tar xf lazygit.tar.gz lazygit
+    install lazygit ~/.local/bin
+    rm lazygit.tar.gz lazygit
+  fi
+
+#delta
+if ! command -v delta &> /dev/null
+  then
+    DELTA_VERSION=$(curl -s "https://api.github.com/repos/dandavison/delta/releases/latest" | grep -Po '"tag_name": "\K[^"]*')
+    curl -Lo git-delta.deb "https://github.com/dandavison/delta/releases/latest/download/git-delta_${DELTA_VERSION}_amd64.deb"
+    sudo dpkg -i git-delta.deb
+    rm git-delta.deb
+  fi
+#zellij
+if ! command -v zellij &> /dev/null
+  then
+    curl -Lo zellij.tar.gz "https://github.com/zellij-org/zellij/releases/latest/download/zellij-x86_64-unknown-linux-musl.tar.gz"
+    tar xf zellij.tar.gz zellij
+    install zellij ~/.local/bin
+    rm zellij.tar.gz zellij
+  fi
+{{else}}
+printf "this is no amd64 arch. Lazygit and delta missing! Install manually"
+{{end}}
+
+{{ $sudo }}apt-get update
+{{ $sudo }}apt-get install -y {{ .packages.linux.ubuntu.apt | join " " }}
+
+{{ if lookPath "snap" }}
+{{ $sudo }}snap install --classic {{ .packages.linux.ubuntu.snap | join " " }}
+{{ end }}
+
+{{ end -}}
+
+#####################################################################
+
+{{- if or (eq .chezmoi.osRelease.id "arch") (eq .chezmoi.osRelease.id "athena")}}
+#ARCH
+
+{{ $sudo }}sudo pacman --needed --noconfirm -Sy {{ .packages.linux.arch.common | join " " }}
+
+{{ end -}}
+
+#####################################################################
+
+{{ if eq .chezmoi.osRelease.id "rhel" -}}
+#CENTOS
+{{ end -}}
+{{ end -}}
+{{ end -}}

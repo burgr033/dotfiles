@@ -1,0 +1,7 @@
+{{- if eq .chezmoi.os "windows" }}
+{{- if eq .manualSetup "false" }}
+
+[System.Environment]::SetEnvironmentVariable("Path", $env:Path + ";$ENV:USERPROFILE\.local\bin", [System.EnvironmentVariableTarget]::User)
+
+{{- end }}
+{{- end }}

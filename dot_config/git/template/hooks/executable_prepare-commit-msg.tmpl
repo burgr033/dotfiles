@@ -1,0 +1,8 @@
+#!/bin/sh
+COMMIT_MSG_FILE=$1
+{{- if eq .chezmoi.os "windows" }}
+autoCommit.exe $COMMIT_MSG_FILE "# This is an auto generated commit message"
+{{- end }}
+{{- if ne .chezmoi.os "windows" }}
+autoCommit $COMMIT_MSG_FILE "# This is an auto generated commit message"
+{{- end}}

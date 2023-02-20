@@ -1,0 +1,54 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """╭─[$username$hostname](green) $directory([❮](yellow)$git_branch$git_status$git_state[❯](yellow))$rust$docker_context$terraform$golang$python
+╰─$character"""
+
+scan_timeout = 10
+
+[hostname]
+ssh_only = false
+ssh_symbol = ' 🌐'
+format = '@$hostname$ssh_symbol'
+
+[username]
+format = '$user'
+show_always = true
+
+[directory]
+truncation_length = 0
+truncate_to_repo = false
+style = 'bold blue'
+
+[git_branch]
+format = '[$branch](yellow)'
+
+[git_status]
+format = '[$all_status](red)'
+
+[character]
+success_symbol = '\$'
+error_symbol = '[\$](red)'
+vimcmd_symbol = "[N](bold blue)"
+vimcmd_visual_symbol = "[V](bold purple)"
+vimcmd_replace_symbol = "[R](bold red)"
+vimcmd_replace_one_symbol = "[r](bold red)"
+
+[golang]
+symbol = '  '
+format = '[$symbol](cyan)$version'
+
+[rust]
+symbol = '  '
+format = '[$symbol](red)$version'
+
+[python]
+symbol = '  '
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )](yellow)'
+
+[docker_context]
+symbol = '  '
+format = '[$symbol](blue)'
+
+[terraform]
+symbol = '  '
+format = '[$symbol](red)$version'

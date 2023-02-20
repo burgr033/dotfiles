@@ -1,0 +1,44 @@
+# -*-mode:conf-toml-*- vim:ft=toml
+{{- if eq .chezmoi.os "windows"}}
+
+["Appdata/Local/nvim"]
+type = "git-repo"
+url = "https://github.com/burgr033/nvim-config"
+exact = true
+stripComponents = 1
+refreshPeriod = "168h"
+
+[".local/bin/autoCommit.exe"]
+type = "archive-file"
+url = "https://github.com/burgr033/autoCommit/releases/latest/download/autoCommit_Windows_x86_64.zip"
+refreshPeriod = "168h"
+executable = true
+path = "autoCommit.exe"
+{{- end}}
+
+{{- if ne .chezmoi.os "windows"}}
+
+[".config/nvim"]
+type = "git-repo"
+url = "https://github.com/burgr033/nvim-config"
+exact = true
+stripComponents = 1
+refreshPeriod = "168h"
+
+[".local/bin/autoCommit"]
+type = "archive-file"
+url = "https://github.com/burgr033/autoCommit/releases/download/v1.0.3/autoCommit_Linux_x86_64.tar.gz"
+refreshPeriod = "168h"
+executable = true
+path = "autoCommit"
+{{- if eq .isServer "false" }}
+
+[".local/share/backgrounds"]
+type = "archive"
+url = "https://github.com/burgr033/wallpapers/archive/main.tar.gz"
+exact = true
+stripComponents = 1
+refreshPeriod = "168h"
+
+{{- end}}
+{{- end}}

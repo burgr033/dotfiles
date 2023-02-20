@@ -1,0 +1,18 @@
+#!/bin/bash
+echo ""
+set -eufo pipefail
+SHELL_PATH=""
+{{if eq .shell "fish"}}
+if ! grep --quiet "$(which fish)" /etc/shells; then
+    sudo "$(which bash)" -c 'echo "$(which fish)" >> /etc/shells'
+fi
+SHELL_PATH="$(which fish)"
+{{end}}
+
+if [ "$SHELL" != "$SHELL_PATH" ]; then
+    # change default shell
+    sudo chsh -s "$SHELL_PATH" "$(whoami)"
+    echo "${USER}'s shell has been changed to ${SHELL_PATH}"
+else
+    echo "${USER}'s shell is already changed."
+fi

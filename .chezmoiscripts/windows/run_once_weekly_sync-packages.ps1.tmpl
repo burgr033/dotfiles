@@ -1,0 +1,29 @@
+# {{ div now.YearDay 7 }}
+
+{{- if eq .chezmoi.os "windows" }}
+{{- if eq .manualSetup "false" }}
+$ErrorActionPreference = "Stop"
+
+# Get the list of installed packages
+$installedPackages = (scoop export | ConvertFrom-Json).apps
+# Define the list of wanted packages from the template
+$wantedPackages = @(
+  {{- range .packages.windows.scoop.packages }}
+  "{{ . }}"
+  {{- end }}
+)
+
+# Find packages that are not installed
+$missingPackages = $wantedPackages | Where-Object { $_ -notin $installedPackages.Name }
+if ($missingPackages)
+{
+  Write-Output "Installing missing packages:"
+    
+  scoop install $missingPackages
+} else
+{
+  Write-Output "All packages are already installed."
+}
+
+{{- end }}
+{{- end }}

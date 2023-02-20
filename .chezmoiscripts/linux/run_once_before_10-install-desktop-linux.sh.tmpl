@@ -1,0 +1,57 @@
+#!/bin/bash
+echo ""
+set -eufo pipefail
+{{- if eq .manualSetup "false" }}
+{{- if eq .isServer "false" }}
+{{- if eq .chezmoi.osRelease.id "arch"}}
+
+{{ $sudo := "sudo " -}}
+{{ if eq .chezmoi.username "root" -}}
+{{  $sudo = "" -}}
+{{ end -}}
+
+if ! command -v yay &> /dev/null
+  then
+    echo ""
+    {{- if eq .chezmoi.osRelease.id "arch" }}
+        pushd .
+        git clone https://aur.archlinux.org/yay-bin.git /tmp/yay-bin
+        cd /tmp/yay-bin
+        makepkg -si --noconfirm
+        popd
+        rm -rf /tmp/yay-bin/
+    {{- end}}
+  fi
+
+printf '\nInstalling graphical common packages. Root privileges needed.\n'
+yay --noconfirm -S --needed {{ .packages.linux.arch.graphical.common | join " " }}
+printf '\nInstalling gnome packages. Root privileges needed.\n'
+yay --noconfirm -S --needed {{ .packages.linux.arch.graphical.desktop | join " " }}
+
+gnome-extensions-cli install {{ .packages.linux.arch.graphical.gnome_extensions | join " " }}
+
+{{- if eq .chezmoi.hostname "apophis" }}
+    printf '\n installing pentesting packages\n'
+    if ! grep -Fxq "Include = /etc/pacman.d/athena.conf" /etc/pacman.conf; then
+        echo "Include = /etc/pacman.d/athena.conf" | {{ $sudo }} tee -a /etc/pacman.conf
+        echo "[athena]" | {{ $sudo }} tee /etc/pacman.d/athena.conf
+        echo "Include = /etc/pacman.d/athena-mirrorlist" | {{ $sudo }} tee -a /etc/pacman.d/athena.conf
+        echo "SigLevel = Optional TrustedOnly" | {{ $sudo }} tee -a /etc/pacman.d/athena.conf
+        {{ $sudo }} curl https://raw.githubusercontent.com/Athena-OS/athena/main/packages/os-specific/athena-mirrorlist/athena-mirrorlist -o /etc/pacman.d/athena-mirrorlist
+        {{ $sudo }} pacman-key --recv-keys A3F78B994C2171D5 --keyserver keys.openpgp.org
+        {{ $sudo }} pacman-key --lsign A3F78B994C2171D5
+    fi
+    yay --noconfirm -S --needed {{ .packages.linux.arch.pentesting | join " " }}
+{{- end}}
+
+
+printf '\n installing gdm as service\n'
+sudo systemctl enable gdm.service
+
+{{ else -}}
+
+printf '\nPackage installation is not implemented yet on `' {{ .chezmoi.osRelease.id }} '`.\n'
+
+{{ end -}}
+{{ end -}}
+{{ end -}}

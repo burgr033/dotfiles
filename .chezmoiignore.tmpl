@@ -1,0 +1,26 @@
+# -*-mode:conf-toml-*- vim:ft=gitignore
+# repo related stuff
+README.md
+.github
+
+{{if eq .chezmoi.os "windows"}}
+# if OS is windows ignore...
+.config/*
+.local/*
+# allow explicit
+!.config/bat
+!.config/git
+!.config/lazygit
+!.config/starship.toml
+{{- end}}
+{{if ne .chezmoi.os "windows"}}
+# if OS is NOT windows ignore:
+Documents/*
+AppData/*
+AppData
+{{- end}}
+
+# script related stuff
+.chezmoiscripts/*/**
+!.chezmoiscripts/{{ .chezmoi.os }}/**
+.keyfiles
