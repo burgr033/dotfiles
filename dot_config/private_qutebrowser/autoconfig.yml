@@ -38,6 +38,8 @@ settings:
   confirm_quit:
     global:
     - downloads
+  content.media.audio_capture:
+    https://teams.live.com: true
   content.notifications.enabled:
     https://www.youtube.com: false
   content.user_stylesheets:

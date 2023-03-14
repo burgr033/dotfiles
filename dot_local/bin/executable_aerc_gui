@@ -1,2 +1,2 @@
 #!/bin/zsh
-i3-sensible-terminal -name aerc -e aerc
+i3-sensible-terminal --class aerc -e aerc
