@@ -53,7 +53,7 @@ settings:
   fonts.web.family.standard:
     global: Fira Code
   input.insert_mode.auto_load:
-    global: true
+    global: false
   statusbar.position:
     global: bottom
   statusbar.widgets:
