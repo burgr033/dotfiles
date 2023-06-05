@@ -1,7 +1,7 @@
-{{- $email := promptString "Email?" }}
-{{- $name := promptString "Name?" }}
-{{- $isServer := promptBool "isServer?" }}
-{{- $isWorkMachine := promptBool "isWorkMachine?" }}
+{{- $email := promptString "Email" }}
+{{- $name := promptString "Name" }}
+{{- $isServer := promptBool "isServer (headless)" }}
+{{- $isWorkMachine := promptBool "isWorkMachine" }}
 
 [data]
         name =  "{{ $name }}"
