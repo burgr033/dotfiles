@@ -1,41 +1,41 @@
 [".config/nvim"]
-    type = "git-repo"
-    url = "https://github.com/cigh033/nvim-config"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
+type = "git-repo"
+url = "https://github.com/cigh033/nvim-config"
+exact = true
+stripComponents = 1
+refreshPeriod = "168h"
 
 [".oh-my-zsh"]
-    type = "archive"
-    url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
+type = "archive"
+url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
+exact = true
+stripComponents = 1
+refreshPeriod = "168h"
 
-[".oh-my-zsh/custon/plugins/fast-syntax-highlighting"]
-    type = "archive"
-    url = "https://github.com/zdharma-continuum/fast-syntax-highlighting/archive/master.tar.gz"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
+[".oh-my-zsh/custom/plugins/fast-syntax-highlighting"]
+type = "archive"
+url = "https://github.com/zdharma-continuum/fast-syntax-highlighting/archive/master.tar.gz"
+exact = true
+stripComponents = 1
+refreshPeriod = "168h"
 
-[".oh-my-zsh/custon/plugins/zsh-autosuggestions"]
-    type = "archive"
-    url = "https://github.com/zsh-users/zsh-autosuggestions/archive/master.tar.gz"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
+[".oh-my-zsh/custom/plugins/zsh-autosuggestions"]
+type = "archive"
+url = "https://github.com/zsh-users/zsh-autosuggestions/archive/master.tar.gz"
+exact = true
+stripComponents = 1
+refreshPeriod = "168h"
 
-[".oh-my-zsh/custon/plugins/cd-ls"]
-    type = "archive"
-    url = "https://github.com/zshzoo/cd-ls/archive/master.tar.gz"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
+[".oh-my-zsh/custom/plugins/cd-ls"]
+type = "archive"
+url = "https://github.com/zshzoo/cd-ls/archive/master.tar.gz"
+exact = true
+stripComponents = 1
+refreshPeriod = "168h"
 
-[".oh-my-zsh/custon/plugins/fzf-tab"]
-    type = "archive"
-    url = "https://github.com/Aloxaf/fzf-tab/archive/master.tar.gz"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
+[".oh-my-zsh/custom/plugins/fzf-tab"]
+type = "archive"
+url = "https://github.com/Aloxaf/fzf-tab/archive/master.tar.gz"
+exact = true
+stripComponents = 1
+refreshPeriod = "168h"
