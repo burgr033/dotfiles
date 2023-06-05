@@ -7,9 +7,15 @@ source $ZSH/oh-my-zsh.sh
 export GPG_TTY=$(tty)
 export EDITOR=nvim
 export VISUAL=nvim
+{{- if not .isServer}}
 export TERM=alacritty
+{{- end}}
 alias vi="nvim"
 alias vim="nvim"
+{{ if eq .chezmoi.osRelease.idLike "debian" -}}
+alias cat="batcat"
+{{else -}}
 alias cat="bat"
+{{ end -}}
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
