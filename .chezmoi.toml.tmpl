@@ -1,0 +1,10 @@
+{{- $email := promptString "Email?" }}
+{{- $name := promptString "Name?" }}
+{{- $isServer := promptBool "isServer?" }}
+{{- $isWorkMachine := promptBool "isWorkMachine?" }}
+
+[data]
+        name =  "{{ $name }}"
+        email = "{{ $email }}"
+        isServer = "{{ $isServer }}"
+        isWorkMachine = "{{ $isWorkMachine }}"

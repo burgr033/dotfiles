@@ -1,7 +1,9 @@
 [user]
-        name = SB
-	email = mail@cigh.de
-	signingkey = 996ED0900094F1A1146904B9A453B5E1F1DCA166
+        name = {{ .name | quote }}
+        email = {{ .email | quote }}
+        {{- if not .isWorkMachine }}
+        signingkey = 996ED0900094F1A1146904B9A453B5E1F1DCA166
+        {{- end}}
 [filter "lfs"]
         process = git-lfs filter-process
         required = true
@@ -10,7 +12,7 @@
 [credential]
         helper = cache
 [commit]
-	gpgsign = true
+        gpgsign = true
 [gpg]
         program = gpg2
 [init]

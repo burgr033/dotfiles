@@ -1,0 +1,15 @@
+README.MD
+LICENSE
+
+{{- if not .isServer }}
+        .local/bin/*_gui
+        .Xresources
+        .config/alacritty
+        .config/dunst
+        .config/i3
+        .config/polybar
+        .config/qutebrowser
+        .config/ranger
+        .config/rofi
+        .config/picom.conf
+{{- end}}
