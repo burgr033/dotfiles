@@ -1,0 +1,49 @@
+{{ if (and (eq .chezmoi.osRelease.id "manjaro") (if not .isServer)) }}
+
+{{ $pacman_packages := list
+    "i3-wm"
+	"feh"
+	"xfce4-power-manager"
+	"picom"
+	"xss-lock"
+	"alacritty"
+	"dunst"
+	"rofi"
+	"ranger"
+	"qutebrowser"
+	"polybar"
+	"zathura"
+	"aerc"
+	"mpv"
+	"khal"
+	"obsidian"
+    "yay" -}}
+
+{{ $yay_packages := list
+    "autotiling"
+    "unclutter"
+    "betterlockscreen" -}}
+
+{{ $sudo := "sudo " -}}
+{{ if eq .chezmoi.username "root" -}}
+{{  $sudo = "" -}}
+{{ end -}}
+
+#!/bin/sh
+
+set -e # Exit on error
+
+printf '\nUpdating pacman packages. Root privileges needed.\n'
+{{ $sudo }} pacman -Syu --needed {{ $pacman_packages | join " " }}
+
+printf '\nUpdating yay packages. Root privileges needed.\n'
+yay --noconfirm -Syu --needed {{ $yay_packages | join " " }}
+
+printf '\n Packages are up to date!\n'
+
+{{ else -}}
+
+printf '\nPackage installation is not implemented yet on `' {{ .chemoi.osRelease.id }} '`.\n'
+printf 'You can add it in `run_onchange_install-packages.sh`.\n'
+
+{{ end -}}
