@@ -1,4 +1,4 @@
-{{ if (and (eq .chezmoi.osRelease.id "manjaro") (if not .isServer)) }}
+{{ if (and (eq .chezmoi.osRelease.id "manjaro") (not .isServer)) }}
 
 {{ $pacman_packages := list
     "i3-wm"
