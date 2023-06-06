@@ -21,8 +21,7 @@ pip install thefuck --user
 #ARCH
 
 {{ if eq .chezmoi.osRelease.idLike "arch" -}}
-sudo pacman -Sy zsh fzf bat neovim gdu bottom lazygit tree htop
-python -m ensurepip --upgrade
+sudo pacman -Sy zsh fzf bat neovim gdu bottom lazygit tree htop python-pip
 sudo pip install ansible
 pip install thefuck --user
 pip install virtualenvwrapper --user
