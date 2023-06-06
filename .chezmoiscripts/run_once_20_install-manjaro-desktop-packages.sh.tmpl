@@ -1,26 +1,22 @@
-{{ if (and (eq .chezmoi.osRelease.id "manjaro") (not .isServer)) }}
+{{- if (and (eq .chezmoi.osRelease.id "manjaro") (.isServer))}}
 
 {{ $pacman_packages := list
     "i3-wm"
-	"feh"
-	"i3lock"
-	"xorg-server"
-	"xorg-xinit"
-	"i3exit"
-	"xfce4-power-manager"
-	"picom"
-	"xss-lock"
-	"alacritty"
-	"dunst"
-	"rofi"
-	"ranger"
-	"qutebrowser"
-	"polybar"
-	"zathura"
-	"aerc"
-	"mpv"
-	"khal"
-	"obsidian"
+        "feh"
+        "xfce4-power-manager"
+        "picom"
+        "xss-lock"
+        "alacritty"
+        "dunst"
+        "rofi"
+        "ranger"
+        "qutebrowser"
+        "polybar"
+        "zathura"
+        "aerc"
+        "mpv"
+        "khal"
+        "obsidian"
     "yay" -}}
 
 {{ $yay_packages := list
@@ -47,7 +43,7 @@ printf '\n Packages are up to date!\n'
 
 {{ else -}}
 
-printf '\nPackage installation is not implemented yet on `' {{ .chemoi.osRelease.id }} '`.\n'
+printf '\nPackage installation is not implemented yet on `' {{ .chezmoi.osRelease.id }} '`.\n'
 printf 'You can add it in `run_onchange_install-packages.sh`.\n'
 
 {{ end -}}
