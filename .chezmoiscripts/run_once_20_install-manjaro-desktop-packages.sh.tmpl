@@ -1,3 +1,5 @@
+#!/bin/bash
+set -e # Exit on error
 {{- if (and (eq .chezmoi.osRelease.id "manjaro") (.isServer))}}
 
 {{ $pacman_packages := list
@@ -29,9 +31,6 @@
 {{  $sudo = "" -}}
 {{ end -}}
 
-#!/bin/sh
-
-set -e # Exit on error
 
 printf '\nUpdating pacman packages. Root privileges needed.\n'
 {{ $sudo }} pacman -Syu --needed {{ $pacman_packages | join " " }}
