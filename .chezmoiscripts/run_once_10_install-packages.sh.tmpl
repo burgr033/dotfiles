@@ -1,7 +1,14 @@
 #!/bin/bash
 
-{{ if eq .chezmoi.osRelease.idLike "debian" -}}
-#DEBIAN
+{{ $sudo := "sudo " -}}
+{{ if eq .chezmoi.username "root" -}}
+{{   $sudo = "" -}}
+{{ end -}}
+
+set -eufo pipefail
+
+{{ if eq .chezmoi.osRelease.id "ubuntu" -}}
+#UBUNTU
 
 #lazygit
 if ! command -v lazygit &> /dev/null
@@ -13,27 +20,81 @@ if ! command -v lazygit &> /dev/null
     rm lazygit.tar.gz lazygit
   fi
 
-sudo apt update
-sudo apt install python3-dev python3-pip python3-setuptools htop fzf bat gdu python3-pynvim zsh tree -y
+{{ $packages_ubuntu := list
+     "bat"
+     "curl"
+     "direnv"
+     "fd-find"
+     "thefuck"
+     "ansible"
+     "git-lfs"
+     "jq"
+     "ripgrep"
+     "fzf"
+     "htop"
+     "python3-dev"
+     "python3-pip"
+     "python3-setuptools"
+     "bat"
+     "virtualenvwrapper"
+     "python3-pynvim"
+     "gdu"
+     "tree"
+     "units"
+     "zsh" -}}
+	 
+{{ $classicSnaps := list
+	"neovim" -}}
 
-{{ if eq .chezmoi.osRelease.id "ubuntu" -}}
-printf "installing neovim via snap, because ubuntu... please type password"
-sudo snap install neovim --classic
+{{ $sudo }}apt-get update
+{{ $sudo }}apt-get install -y {{ $packages_ubuntu | join " " }}
+
+{{ if lookPath "snap" }}
+{{   range $classicSnaps }}
+{{ $sudo }}snap install --classic {{ . }}
+{{   end }}
+{{ end }}
+
 {{ end -}}
 
-{{ end -}}
+#####################################################################
 
 {{ if eq .chezmoi.osRelease.idLike "arch" -}}
+
 #ARCH
-sudo pacman --needed --noconfirm -Sy zsh fzf bat neovim gdu bottom lazygit tree htop python python-pip tree
+
+{{ $packages_arch := list
+     "bat"
+     "curl"
+     "direnv"
+     "fd"
+     "git-lfs"
+     "jq"
+     "neovim"
+     "ripgrep"
+     "fzf"
+     "htop"
+     "python"
+     "ansible-core"
+     "python-pip"
+     "python-virtualenvwrapper"
+     "thefuck"
+     "python-setuptools"
+     "bat"
+     "python-pynvim"
+     "gdu"
+     "tree"
+     "lazygit"
+     "bottom"
+     "zsh" -}}
+
+
+{{ $sudo }}sudo pacman --needed --noconfirm -Sy {{ $packages_arch | join " " }}
+
 {{ end -}}
+
+#####################################################################
 
 {{ if eq .chezmoi.osRelease.idLike "rhel" -}}
 #CENTOS
 {{ end -}}
-
-#COMMON
-printf "Password for sudo pip install ansible"
-sudo pip install ansible
-pip install virtualenvwrapper --user
-pip install thefuck --user
