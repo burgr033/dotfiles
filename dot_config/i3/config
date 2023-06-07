@@ -203,18 +203,17 @@ mode "resize" {
 }
 
 # Lock screen
-bindsym $mod+l exec betterlockscreen -l dimblur
+bindsym $mod+l exec i3lock
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id eval $(gnome-keyring-daemon --start)
-exec --no-startup-id export SSH_AUTH_SOCK
 exec --no-startup-id setxkbmap de
 exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/* -z
-exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l dimblur
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock
 exec --no-startup-id picom -b --config $HOME/.config/picom.conf
 exec --no-startup-id xfce4-power-manager --daemon
-exec --no-startup-id autotiling-rs
+exec --no-startup-id autotiling
 exec --no-startup-id unclutter
 exec --no-startup-id $HOME/.config/polybar/launch.sh 
 exec --no-startup-id python ~/.config/i3/autoname_workspaces.py
