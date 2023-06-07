@@ -1,8 +1,7 @@
 #!/bin/bash
 
-#DEBIAN
-
 {{ if eq .chezmoi.osRelease.idLike "debian" -}}
+#DEBIAN
 
 #lazygit
 if ! command -v lazygit &> /dev/null
@@ -13,18 +12,19 @@ if ! command -v lazygit &> /dev/null
     install lazygit ~/.local/bin
     rm lazygit.tar.gz lazygit
   fi
-  
+
 sudo apt update
 sudo apt install python3-dev python3-pip python3-setuptools htop fzf bat gdu python3-pynvim zsh tree -y
 
-if eq .chezmoi.osRelease.id "ubuntu" -}}
-snap install neovim --classic
+{{ if eq .chezmoi.osRelease.id "ubuntu" -}}
+printf "installing neovim via snap, because ubuntu... please type password"
+sudo snap install neovim --classic
 {{ end -}}
 
 {{ end -}}
-#ARCH
 
 {{ if eq .chezmoi.osRelease.idLike "arch" -}}
+#ARCH
 sudo pacman --needed --noconfirm -Sy zsh fzf bat neovim gdu bottom lazygit tree htop python python-pip tree
 {{ end -}}
 
@@ -32,7 +32,7 @@ sudo pacman --needed --noconfirm -Sy zsh fzf bat neovim gdu bottom lazygit tree 
 #CENTOS
 {{ end -}}
 
-#ALLGEMEIN
+#COMMON
 printf "Password for sudo pip install ansible"
 sudo pip install ansible
 pip install virtualenvwrapper --user
