@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e # Exit on error
-{{- if (and (eq .chezmoi.osRelease.id "manjaro") (.isServer))}}
+{{- if (and (eq .chezmoi.osRelease.id "manjaro") (eq .isServer "false"))}}
 
 {{ $pacman_packages := list
     "i3-wm"
