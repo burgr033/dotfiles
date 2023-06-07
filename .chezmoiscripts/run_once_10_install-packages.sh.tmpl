@@ -3,6 +3,7 @@
 #DEBIAN
 
 {{ if eq .chezmoi.osRelease.idLike "debian" -}}
+
 #lazygit
 if ! command -v lazygit &> /dev/null
   then
@@ -12,21 +13,22 @@ if ! command -v lazygit &> /dev/null
     install lazygit ~/.local/bin
     rm lazygit.tar.gz lazygit
   fi
+  
 sudo apt update
 sudo apt install python3-dev python3-pip python3-setuptools htop fzf bat gdu python3-pynvim neovim zsh tree -y
-
 {{ end -}}
 #ARCH
 
 {{ if eq .chezmoi.osRelease.idLike "arch" -}}
-sudo pacman -Sy zsh fzf bat neovim gdu bottom lazygit tree htop python python-pip tree
-
+sudo pacman --needed --noconfirm -Sy zsh fzf bat neovim gdu bottom lazygit tree htop python python-pip tree
 {{ end -}}
+
+{{ if eq .chezmoi.osRelease.idLike "rhel" -}}
 #CENTOS
+{{ end -}}
 
 #ALLGEMEIN
+printf "Password for sudo pip install ansible"
 sudo pip install ansible
 pip install virtualenvwrapper --user
 pip install thefuck --user
-
-chsh -s /bin/zsh
