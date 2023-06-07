@@ -7,6 +7,7 @@ set -e # Exit on error
         "feh"
         "xfce4-power-manager"
         "picom"
+        "ly"
         "xss-lock"
         "alacritty"
         "dunst"
@@ -15,17 +16,19 @@ set -e # Exit on error
         "qutebrowser"
         "polybar"
         "zathura"
+        "i3exit"
         "aerc"
+        "ttf-firacode-nerd"
         "xorg-server"
         "unclutter"
         "mpv"
-        "autotiling-rs"
         "khal"
         "obsidian"
     "yay" -}}
 
 {{ $yay_packages := list
-    "betterlockscreen" -}}
+    "autotiling"
+    "ttf-material-design-icons-extended" -}}
 
 {{ $sudo := "sudo " -}}
 {{ if eq .chezmoi.username "root" -}}
