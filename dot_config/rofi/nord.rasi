@@ -15,7 +15,7 @@
     nord13: #ebcb8b;
     nord14: #a3be8c;
     nord15: #b48ead;
-    font: "FiraCode Retina 12";
+    font: "Fira Code Nerd Font 9";
     background-color: @nord1;
     border: 0px;
     margin: 0px;
