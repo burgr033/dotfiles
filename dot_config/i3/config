@@ -214,7 +214,7 @@ exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/* -z
 exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l dimblur
 exec --no-startup-id picom -b --config $HOME/.config/picom.conf
 exec --no-startup-id xfce4-power-manager --daemon
-exec --no-startup-id autotiling
+exec --no-startup-id autotiling-rs
 exec --no-startup-id unclutter
 exec --no-startup-id $HOME/.config/polybar/launch.sh 
 exec --no-startup-id python ~/.config/i3/autoname_workspaces.py
