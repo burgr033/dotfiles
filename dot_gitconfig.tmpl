@@ -1,7 +1,7 @@
 [user]
         name = {{ .name | quote }}
         email = {{ .email | quote }}
-        {{- if not .isWorkMachine }}
+        {{- if .isWorkMachine eq "false"}}
         signingkey = 996ED0900094F1A1146904B9A453B5E1F1DCA166
         {{- end}}
 [filter "lfs"]
