@@ -1,7 +1,7 @@
 README.md
 LICENSE
 
-{{- if .isServer }}
+{{- if eq .isServer "true" }}
 .local/bin/*_gui
 .Xresources
 .config/alacritty
