@@ -31,9 +31,9 @@ font-1 = "Material Design Icons:size=10;3"
 modules-left = i3
 #modules-center = title
 {{- if eq .isMobile "true"}}
-modules-right = updates sep memory sep cpu sep wired-network-speed sep alsa sep date
-{{else}}
 modules-right = updates sep memory sep cpu sep battery sep bluetooth sep wireless-network-info sep wireless-network-speed sep alsa sep date
+{{else}}
+modules-right = updates sep memory sep cpu sep wired-network-speed sep alsa sep date
 {{- end}}
 dim-value = 1.0
 wm-name = i3
