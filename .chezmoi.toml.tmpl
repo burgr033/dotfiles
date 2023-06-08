@@ -1,10 +1,12 @@
 {{- $email := promptString "Email" }}
 {{- $name := promptString "Name" }}
-{{- $isServer := promptBool "isServer (headless)" }}
-{{- $isWorkMachine := promptBool "isWorkMachine" }}
+{{- $isServer := promptBool "is this machine headless (y/n)" }}
+{{- $isVirtual := promptBool "is this a virtual machine (y/n)" }}
+{{- $isWorkMachine := promptBool "is this a work machine (y/n)" }}
 
 [data]
         name =  "{{ $name }}"
         email = "{{ $email }}"
         isServer = "{{ $isServer }}"
         isWorkMachine = "{{ $isWorkMachine }}"
+        isVirtual = "{{ $isVirtual }}"
