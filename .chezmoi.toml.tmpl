@@ -2,6 +2,7 @@
 {{- $name := promptString "Name" "sb" }}
 {{- $isServer := promptBool "is this machine headless (y/n)" }}
 {{- $isVirtual := promptBool "is this a virtual machine (y/n)" }}
+{{- $isMobile := promptBool "is this a a laptop with wifi? (y/n)" }}
 {{- $isWorkMachine := promptBool "is this a work machine (y/n)" }}
 
 [data]
@@ -10,3 +11,4 @@
         isServer = "{{ $isServer }}"
         isWorkMachine = "{{ $isWorkMachine }}"
         isVirtual = "{{ $isVirtual }}"
+        isMobile = "{{ $isMobile }}"

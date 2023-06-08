@@ -30,7 +30,11 @@ font-0 = "Fira Code Nerd Font:size=8;3"
 font-1 = "Material Design Icons:size=10;3"
 modules-left = i3
 #modules-center = title
-modules-right = updates sep memory sep cpu sep battery sep bluetooth sep network sep network-speed sep alsa sep date
+{{- if eq .isMobile "true"}}
+modules-right = updates sep memory sep cpu sep wired-network-speed sep alsa sep date
+{{else}}
+modules-right = updates sep memory sep cpu sep battery sep bluetooth sep wireless-network-info sep wireless-network-speed sep alsa sep date
+{{- end}}
 dim-value = 1.0
 wm-name = i3
 locale = en_US.UTF-8
@@ -198,9 +202,9 @@ label-urgent-padding = 1
 
 ########################################################
 
-[module/network-speed]
+[module/wired-network-speed]
 type = internal/network
-interface = wlp2s0
+interface-type = wired
 interval = 1.0
 accumulate-stats = true
 unknown-as-up = true
@@ -211,9 +215,22 @@ label-connected = "󰄠 %downspeed%"
 
 ########################################################
 
-[module/network]
+[module/wireless-network-speed]
 type = internal/network
-interface = wlp2s0
+interface-type = wireless
+interval = 1.0
+accumulate-stats = true
+unknown-as-up = true
+format-connected-background = ${color.background}
+format-connected-foreground = ${color.foreground}
+format-connected-padding = 1
+label-connected = "󰄠 %downspeed%"
+
+########################################################
+
+[module/wireless-network-info]
+type = internal/network
+interface-type = wireless
 interval = 1.0
 accumulate-stats = true
 unknown-as-up = true
