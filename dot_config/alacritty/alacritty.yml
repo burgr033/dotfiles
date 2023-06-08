@@ -72,16 +72,16 @@ scrolling:
 font:
   # Normal (roman) font face
   normal:
-    family: FiraCode Nerd Font Mono
+    family: Fira Code Nerd Font
     style: Regular
   bold:
-    family: FiraCode Nerd Font Mono
+    family: Fira Code Nerd Font
     style: Bold
   italic:
-    family: FiraCode Nerd Font Mono
+    family: Fira Code Nerd Font
     style: Italic
 
-  size: 10.0
+  size: 9.0
 
   offset:
     x: 0
