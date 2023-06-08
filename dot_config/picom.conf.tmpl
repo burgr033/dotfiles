@@ -9,8 +9,11 @@
 
 # Backend to use: "xrender" or "glx".
 # GLX backend is typically much faster but depends on a sane driver.
+{{- if eq .isVirtual "true" }}
+backend = "xrender";
+{{- else }}
 backend = "glx";
-
+{{- end}}
 #################################
 #
 # GLX backend
