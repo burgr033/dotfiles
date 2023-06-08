@@ -1,5 +1,5 @@
-{{- $email := promptString "Email" }}
-{{- $name := promptString "Name" }}
+{{- $email := promptString "Email" "simon@burgr.io" }}
+{{- $name := promptString "Name" "sb" }}
 {{- $isServer := promptBool "is this machine headless (y/n)" }}
 {{- $isVirtual := promptBool "is this a virtual machine (y/n)" }}
 {{- $isWorkMachine := promptBool "is this a work machine (y/n)" }}
