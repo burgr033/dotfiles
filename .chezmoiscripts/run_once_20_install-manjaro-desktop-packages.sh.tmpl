@@ -46,6 +46,8 @@ printf '\nUpdating pacman packages. Root privileges needed.\n'
 printf '\nUpdating yay packages. Root privileges needed.\n'
 yay --noconfirm -Syu --needed {{ $yay_packages | join " " }}
 
+printf '\n installing ly as service\n'
+sudo systemctl enable ly.service
 printf '\n Packages are up to date!\n'
 
 {{ else -}}
