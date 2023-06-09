@@ -41,7 +41,7 @@ set -e # Exit on error
 
 
 printf '\nUpdating pacman packages. Root privileges needed.\n'
-{{ $sudo }} pacman -Syu --needed {{ $pacman_packages | join " " }}
+{{ $sudo }} pacman -Syu --noconfirm --needed {{ $pacman_packages | join " " }}
 
 printf '\nUpdating yay packages. Root privileges needed.\n'
 yay --noconfirm -Syu --needed {{ $yay_packages | join " " }}
