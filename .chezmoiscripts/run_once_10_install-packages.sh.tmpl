@@ -44,7 +44,7 @@ if ! command -v lazygit &> /dev/null
      "zsh" -}}
 	 
 {{ $classicSnaps := list
-	"neovim" -}}
+	"nvim" -}}
 
 {{ $sudo }}apt-get update
 {{ $sudo }}apt-get install -y {{ $packages_ubuntu | join " " }}
