@@ -8,7 +8,7 @@
 + **Shell**: [zsh with oh-my-zsh and bira theme](https://github.com/robbyrussell/oh-my-zsh)
 + **Bar**: [Polybar](https://github.com/jaagr/polybar)
 + **Editor**: [Neovim with AstroNvim config](https://github.com/AstroNvim/AstroNvim)
-+ + **EditorConfig**: [nvim-config](https://github.com/cigh033/nvim-config)
++ **EditorConfig**: [nvim-config](https://github.com/cigh033/nvim-config)
 + **Greeter**: [ly](https://github.com/fairyglade/ly)
 + **Dotfiles**: [DotFiles](https://github.com/cigh033/dotfiles)
 
