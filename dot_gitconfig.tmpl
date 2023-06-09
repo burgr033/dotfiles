@@ -13,7 +13,24 @@
         helper = cache
 [commit]
         gpgsign = true
+[core]
+{{ if lookPath "delta" }}
+        pager = delta
+{{end}}
 [gpg]
         program = gpg2
 [init]
         defaultBranch = main
+[interactive]
+{{ if lookPath "delta" }}
+        diffFilter = delta --color-only
+[delta]
+        navigate = true
+        side-by-side = true
+        light = false
+        line-numbers = true
+[merge]
+        conflictstyle = diff3
+[diff]
+        colorMoved = default
+{{end}}

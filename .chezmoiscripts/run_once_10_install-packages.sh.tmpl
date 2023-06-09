@@ -11,6 +11,7 @@ set -eufo pipefail
 #UBUNTU
 
 #lazygit
+{{ if .arch eq "amd64"}}
 if ! command -v lazygit &> /dev/null
   then
     LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
@@ -20,6 +21,17 @@ if ! command -v lazygit &> /dev/null
     rm lazygit.tar.gz lazygit
   fi
 
+#delta
+if ! command -v delta &> /dev/null
+  then
+    DELTA_VERSION=$(curl -s "https://api.github.com/repos/dandavison/delta/releases/latest" | grep -Po '"tag_name": "\K[^"]*')
+    curl -Lo git-delta.deb "https://github.com/dandavison/delta/releases/latest/download/git-delta_${DELTA_VERSION}_amd64.deb"
+    sudo dpkg -i git-delta.deb
+    rm git-delta.deb
+  fi
+{{else}}
+printf "this is no amd64 arch. Lazygit and delta missing! Install manually"
+{{end}}
 {{ $packages_ubuntu := list
      "bat"
      "curl"
@@ -69,6 +81,7 @@ if ! command -v lazygit &> /dev/null
      "direnv"
      "fd"
      "git-lfs"
+     "git-delta"
      "jq"
      "neovim"
      "ripgrep"
