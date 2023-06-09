@@ -1,5 +1,5 @@
-dotfiles generated with [chezmoi](https://github.com/twpayne/chezmoi)
-
+**dotfiles generated with [chezmoi](https://github.com/twpayne/chezmoi)**
+### info
 + **OS**: [Manjaro](https://manjaro.org/)
 + **WM**: [i3-gaps](https://github.com/Airblader/i3)
 + **Lock Screen**: [i3lock](https://github.com/i3/i3lock)
@@ -9,3 +9,8 @@ dotfiles generated with [chezmoi](https://github.com/twpayne/chezmoi)
 + **Bar**: [Polybar](https://github.com/jaagr/polybar)
 + **Dotfiles**: [DotFiles](https://github.com/cigh033/dotfiles)
 + **Greeter**: [ly](https://github.com/fairyglade/ly)
+
+### apply dotfiles
+```shell
+sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply cigh033
+```
