@@ -11,7 +11,7 @@ set -eufo pipefail
 #UBUNTU
 
 #lazygit
-{{ if .arch eq "amd64"}}
+{{ if eq .chezmoi.arch "amd64"}}
 if ! command -v lazygit &> /dev/null
   then
     LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
