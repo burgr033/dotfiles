@@ -15,7 +15,7 @@ plugins=(
         archlinux
 {{ end -}}
     )
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_STRATEGY=(completion history)
 autoload -U compinit && compinit
 source $ZSH/oh-my-zsh.sh
 export GPG_TTY=$(tty)
@@ -29,13 +29,13 @@ alias vi="nvim"
 alias vim="nvim"
 {{ if (eq .chezmoi.osRelease.id "ubuntu") -}}
 alias cat="batcat"
-PATH="$HOME/.local/bin/:$PATH"
+
 {{else -}}
 alias cat="bat"
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 {{ end -}}
-
+PATH="$HOME/.local/bin/:$PATH"
 if [[ -z "$DISPLAY" ]]; then
 
     if [[ -z "$ZELLIJ" ]]; then
