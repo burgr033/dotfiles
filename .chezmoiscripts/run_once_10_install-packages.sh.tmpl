@@ -79,7 +79,7 @@ printf "this is no amd64 arch. Lazygit and delta missing! Install manually"
 
 #####################################################################
 
-{{ if eq .chezmoi.osRelease.idLike "arch" -}}
+{{ if or (eq .chezmoi.osRelease.id "arch") (eq .chezmoi.osRelease.id "manjaro") -}}
 
 #ARCH
 
@@ -90,6 +90,7 @@ printf "this is no amd64 arch. Lazygit and delta missing! Install manually"
      "fd"
      "git-lfs"
      "zellij"
+     "git"
      "git-delta"
      "jq"
      "neovim"
