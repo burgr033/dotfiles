@@ -11,7 +11,7 @@ plugins=(
 {{ if eq .chezmoi.osRelease.idLike "debian" -}}
         ubuntu
 {{ end -}}
-{{ if eq .chezmoi.osRelease.idLike "debian" -}}
+{{ if eq .chezmoi.osRelease.idLike "arch" -}}
         archlinux
 {{ end -}}
     )
