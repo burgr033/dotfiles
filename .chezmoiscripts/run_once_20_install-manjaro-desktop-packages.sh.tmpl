@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e # Exit on error
 {{- if eq .isServer "false" }}
-{{- if eq .chezmoi.osRelease.id "manjaro"}}
+{{- if or (eq .chezmoi.osRelease.id "manjaro") (eq .chezmoi.osRelease.id "arch")}}
 
 {{ $pacman_packages := list
     "i3-wm"
@@ -50,11 +50,12 @@ if ! command -v yay &> /dev/null
     {{- $pacman_packages = mustAppend $pacman_packages "yay" }}
     {{- end}}
     {{- if eq .chezmoi.osRelease.id "arch" }}
-        git clone https://aur.archlinux.org/yay-bin.git
-        cd yay-bin
+        pushd
+        git clone https://aur.archlinux.org/yay-bin.git /tmp/yay-bin
+        cd /tmp/yay-bin
         makepkg -si --noconfirm
-        cd ..
-        rm -rf yay-bin/
+        popd
+        rm -rf /tmp/yay-bin/
     {{- end}}
   fi
 
