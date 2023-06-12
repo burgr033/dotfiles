@@ -8,10 +8,10 @@ plugins=(
         zsh-autosuggestions
         fzf-tab
         cd-ls
-{{ if eq .chezmoi.osRelease.idLike "debian" -}}
+{{ if (eq .chezmoi.osRelease.id "ubuntu") -}}
         ubuntu
 {{ end -}}
-{{ if eq .chezmoi.osRelease.idLike "arch" -}}
+{{ if or (eq .chezmoi.osRelease.id "arch") (eq .chezmoi.osRelease.id "manjaro") -}}
         archlinux
 {{ end -}}
     )
@@ -27,7 +27,7 @@ export TERM=alacritty
 
 alias vi="nvim"
 alias vim="nvim"
-{{ if eq .chezmoi.osRelease.idLike "debian" -}}
+{{ if (eq .chezmoi.osRelease.id "ubuntu") -}}
 alias cat="batcat"
 PATH="$HOME/.local/bin/:$PATH"
 {{else -}}
