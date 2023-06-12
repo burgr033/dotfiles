@@ -13,6 +13,7 @@ set -e # Exit on error
         "make"
         "xorg-xauth"
         "gcc"
+        "base-devel"
         "gnome-keyring"
         "polkit-gnome"
         "xss-lock"
@@ -31,7 +32,6 @@ set -e # Exit on error
         "mpv"
         "khal"
         "obsidian"
-        "yay"
 -}}
 
 {{ $yay_packages := list
@@ -44,8 +44,24 @@ set -e # Exit on error
 {{ end -}}
 
 
+if ! command -v yay &> /dev/null
+  then
+    {{- if eq .chezmoi.osRelease.id "manjaro" }}
+    {{- $pacman_packages = mustAppend $pacman_packages "yay" }}
+    {{- end}}
+    {{- if eq .chezmoi.osRelease.id "arch" }}
+        git clone https://aur.archlinux.org/yay-bin.git
+        cd yay-bin
+        makepkg -si --noconfirm
+        cd ..
+        rm -rf yay-bin/
+    {{- end}}
+  fi
+
+
 printf '\nUpdating pacman packages. Root privileges needed.\n'
 {{ $sudo }} pacman -Syu --noconfirm --needed {{ $pacman_packages | join " " }}
+
 
 printf '\nUpdating yay packages. Root privileges needed.\n'
 yay --noconfirm -Syu --needed {{ $yay_packages | join " " }}
