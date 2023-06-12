@@ -22,7 +22,7 @@ source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 {{ end -}}
 
-if [[ -n "$SSH_TTY" && -z "$DISPLAY" ]]; then
+if [[ -z "$SSH_TTY" && -z "$DISPLAY" ]]; then
 
     if [[ -z "$ZELLIJ" ]]; then
         if [[ "$ZELLIJ_AUTO_ATTACH" == "true" ]]; then
