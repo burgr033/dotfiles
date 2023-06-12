@@ -10,12 +10,27 @@ export VISUAL=nvim
 {{- if eq .isServer "false"}}
 export TERM=alacritty
 {{- end}}
+
 alias vi="nvim"
 alias vim="nvim"
 {{ if eq .chezmoi.osRelease.idLike "debian" -}}
 alias cat="batcat"
+PATH="$HOME/.local/bin/:$PATH"
 {{else -}}
 alias cat="bat"
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 {{ end -}}
+{{- if eq .isServer "true"}}
+if [[ -z "$ZELLIJ" ]]; then
+    if [[ "$ZELLIJ_AUTO_ATTACH" == "true" ]]; then
+        zellij attach -c
+    else
+        zellij
+    fi
+
+    if [[ "$ZELLIJ_AUTO_EXIT" == "true" ]]; then
+        exit
+    fi
+fi
+{{- end}}

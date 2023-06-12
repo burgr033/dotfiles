@@ -29,6 +29,14 @@ if ! command -v delta &> /dev/null
     sudo dpkg -i git-delta.deb
     rm git-delta.deb
   fi
+#delta
+if ! command -v zellij &> /dev/null
+  then
+    curl -Lo zellij.tar.gz "https://github.com/zellij-org/zellij/releases/latest/download/zellij-x86_64-unknown-linux-musl.tar.gz"
+    tar xf zellij.tar.gz zellij
+    install zellij ~/.local/bin
+    rm zellij.tar.gz
+  fi
 {{else}}
 printf "this is no amd64 arch. Lazygit and delta missing! Install manually"
 {{end}}
@@ -81,6 +89,7 @@ printf "this is no amd64 arch. Lazygit and delta missing! Install manually"
      "direnv"
      "fd"
      "git-lfs"
+     "zellij"
      "git-delta"
      "jq"
      "neovim"
