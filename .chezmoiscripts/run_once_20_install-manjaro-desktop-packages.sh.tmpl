@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e # Exit on error
-{{- if (and (or (eq .chezmoi.osRelease.id "manjaro")(eq chezmoi.osRelease.id "arch")) (eq .isServer "false"))}}
+{{- if eq .isServer "false" }}
+{{- if and (eq .chezmoi.osRelease.id "manjaro") (eq .chezmoi.osRelease.id "arch") }}
 
 {{ $pacman_packages := list
     "i3-wm"
@@ -59,3 +60,5 @@ printf '\nPackage installation is not implemented yet on `' {{ .chezmoi.osReleas
 printf 'You can add it in `run_onchange_install-packages.sh`.\n'
 
 {{ end -}}
+{{ end -}}
+
