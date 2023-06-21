@@ -1,5 +1,7 @@
 README.md
 LICENSE
+{{if ne .chezmoi.os "windows" -}}
+Documents/
 {{- if eq .isServer "true" }}
 .local/bin/*_gui
 .local/bin/i3exit
@@ -13,3 +15,12 @@ LICENSE
 .config/rofi
 .config/picom.conf
 {{- end}}
+{{- end}}
+{{if ne .chezmoi.os "linux" -}}
+*
+!Documents/
+!.gitconfig
+{{- end}}
+
+.chezmoiscripts/*/**
+!.chezmoiscripts/{{ .chezmoi.os }}/**

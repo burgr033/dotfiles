@@ -1,5 +1,5 @@
 #!/bin/bash
-
+{{- if eq .chezmoi.os "linux" }}
 {{ $sudo := "sudo " -}}
 {{ if eq .chezmoi.username "root" -}}
 {{   $sudo = "" -}}
@@ -122,4 +122,5 @@ printf "this is no amd64 arch. Lazygit and delta missing! Install manually"
 
 {{ if eq .chezmoi.osRelease.id "rhel" -}}
 #CENTOS
+{{ end -}}
 {{ end -}}

@@ -12,7 +12,9 @@
 [credential]
         helper = cache
 [commit]
+        {{- if eq .isWorkMachine "false"}}
         gpgsign = true
+        {{- end}}
 [core]
 {{ if lookPath "delta" }}
         pager = delta
