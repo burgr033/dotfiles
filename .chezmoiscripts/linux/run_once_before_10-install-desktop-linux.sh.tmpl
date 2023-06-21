@@ -1,0 +1,81 @@
+#!/bin/bash
+set -e # Exit on error
+{{- if eq .isServer "false" }}
+{{- if or (eq .chezmoi.osRelease.id "manjaro") (eq .chezmoi.osRelease.id "arch")}}
+
+{{ $pacman_packages := list
+    "i3-wm"
+        "feh"
+        "xfce4-power-manager"
+        "picom"
+        "ly"
+        "i3lock"
+        "make"
+        "xorg-xauth"
+        "gcc"
+        "base-devel"
+        "gnome-keyring"
+        "polkit-gnome"
+        "xss-lock"
+        "alacritty"
+        "dunst"
+        "rofi"
+        "xorg-xrdb"
+        "ranger"
+        "qutebrowser"
+        "polybar"
+        "zathura"
+        "aerc"
+        "ttf-firacode-nerd"
+        "xorg-server"
+        "unclutter"
+        "mpv"
+        "khal"
+        "obsidian"
+-}}
+
+{{ $yay_packages := list
+    "autotiling"
+    "ttf-material-design-icons-extended" -}}
+
+{{ $sudo := "sudo " -}}
+{{ if eq .chezmoi.username "root" -}}
+{{  $sudo = "" -}}
+{{ end -}}
+
+
+if ! command -v yay &> /dev/null
+  then
+    {{- if eq .chezmoi.osRelease.id "manjaro" }}
+    {{- $pacman_packages = mustAppend $pacman_packages "yay" }}
+    {{- end}}
+    {{- if eq .chezmoi.osRelease.id "arch" }}
+        pushd
+        git clone https://aur.archlinux.org/yay-bin.git /tmp/yay-bin
+        cd /tmp/yay-bin
+        makepkg -si --noconfirm
+        popd
+        rm -rf /tmp/yay-bin/
+    {{- end}}
+  fi
+
+
+printf '\nUpdating pacman packages. Root privileges needed.\n'
+{{ $sudo }} pacman -Syu --noconfirm --needed {{ $pacman_packages | join " " }}
+
+
+printf '\nUpdating yay packages. Root privileges needed.\n'
+yay --noconfirm -Syu --needed {{ $yay_packages | join " " }}
+
+printf '\n installing ly as service\n'
+sudo systemctl enable ly.service
+printf '\n Packages are up to date!\n'
+
+{{ else -}}
+
+printf '\nPackage installation is not implemented yet on `' {{ .chezmoi.osRelease.id }} '`.\n'
+printf 'You can add it in `run_onchange_install-packages.sh`.\n'
+
+{{ end -}}
+{{ end -}}
+
