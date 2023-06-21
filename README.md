@@ -37,11 +37,7 @@ Configs included:
     ```shell
     scoop install chezmoi
     ```
-3. init dotfiles
+3. init & apply dotfiles
     ```shell
-    chezmoi init https://github.com/cigh033/dotfiles
-    ```
-4. apply dotfiles
-    ```shell
-    chezmoi apply
+    chezmoi init https://github.com/cigh033/dotfiles --apply
     ```
