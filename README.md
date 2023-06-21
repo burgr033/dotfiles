@@ -39,5 +39,5 @@ Configs included:
     ```
 3. init & apply dotfiles
     ```shell
-    chezmoi init https://github.com/cigh033/dotfiles --apply
+    chezmoi init cigh033 --apply
     ```
