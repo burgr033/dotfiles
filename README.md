@@ -17,6 +17,7 @@ Configs included:
   * X
 * Windows
   * Windows PowerShell
+  * Windows Terminal
 * both
   * Neovim
   * Git
