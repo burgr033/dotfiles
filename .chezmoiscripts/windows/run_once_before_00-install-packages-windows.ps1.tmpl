@@ -3,13 +3,15 @@ $ErrorActionPreference = "Stop"
 
 winget install 9N0DX20HK701 --accept-package-agreements --accept-source-agreements
 
+scoop install git
+
 scoop bucket add scoopBucket https://github.com/cigh033/scoopBucket
 scoop bucket add java
 scoop bucket add nerd-fonts
 
 # Install essentials
-scoop install 7zip bat bottom cacert chezmoi code2rtf curl dark delta fd ffmpeg fzf gdu gzip heidisql imhex innounp jdtls julia keepass lazygit less make maven miktex mingw neovim nodejs obsidian openjdk paint.net pandoc perl powertoys pwsh pydfmerger ripgrep ruby rufus rustup screentogif sumatrapdf sysinternals todotxtui tree-sitter unzip wget windirstat winmerge yarn zig zotero
-scoop install nerd-fonts/FiraCode-NF-Mono
+$scoop_packages = @("7zip","bat","bottom","cacert","chezmoi","code2rtf","curl","dark","delta","fd","ffmpeg","fzf","gdu","gzip","heidisql","imhex","innounp","jdtls","julia","keepass","lazygit","less","make","maven","miktex","mingw","neovim","nodejs","obsidian","openjdk","paint.net","pandoc","perl","powertoys","pwsh","pydfmerger","ripgrep","ruby","rufus","rustup","screentogif","sumatrapdf","sysinternals","todotxtui","tree-sitter","unzip","wget","windirstat","winmerge","yarn","zig","zotero","nerd-fonts/FiraCode-NF-Mono")
+foreach($package in $scoop_packages){scoop install $package}
 
 # Delete chezmoi binary from bootstrap
 Remove-Item ~/bin/chezmoi.exe -ErrorAction SilentlyContinue
