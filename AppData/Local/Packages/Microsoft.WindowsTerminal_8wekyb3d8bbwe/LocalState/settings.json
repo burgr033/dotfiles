@@ -39,7 +39,7 @@
       "adjustIndistinguishableColors": "indexed",
       "colorScheme": "One Half Dark",
       "font": {
-        "face": "FiraCode NFM",
+        "face": "FiraCode Nerd Font Mono",
         "size": 11.0,
         "weight": "medium"
       }
@@ -61,12 +61,11 @@
         "altGrAliasing": true,
         "antialiasingMode": "grayscale",
         "closeOnExit": "automatic",
-        "commandline": "%SCOOP%\\apps\\pwsh\\current\\pwsh.exe /nologo",
+        "commandline": "pwsh.exe /nologo",
         "cursorShape": "bar",
         "guid": "{6d3eb2d2-4469-4543-999b-ceec8189d3b9}",
         "hidden": false,
         "historySize": 9001,
-        "icon": "%SCOOP%\\apps\\pwsh\\current\\assets\\Square44x44Logo.png",
         "name": "PowerShell Core",
         "padding": "8, 8, 8, 8",
         "snapOnInput": true,
