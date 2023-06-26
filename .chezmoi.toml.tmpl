@@ -4,11 +4,13 @@
 {{- $isVirtual := promptBool "is this a virtual machine (y/n)" }}
 {{- $isMobile := promptBool "is this a a laptop with wifi? (y/n)" }}
 {{- $isWorkMachine := promptBool "is this a work machine (y/n)" }}
+{{- $manualSetup := promptBool "Do you want to setup this machine manually (y/n)" }}
 
 [data]
         name =  "{{ $name }}"
         email = "{{ $email }}"
         isServer = "{{ $isServer }}"
         isWorkMachine = "{{ $isWorkMachine }}"
+        manualSetup = "{{ $manualSetup }}"
         isVirtual = "{{ $isVirtual }}"
         isMobile = "{{ $isMobile }}"
