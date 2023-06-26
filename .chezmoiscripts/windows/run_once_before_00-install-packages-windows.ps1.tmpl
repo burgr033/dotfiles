@@ -1,4 +1,6 @@
 {{- if eq .chezmoi.os "windows" }}
+{{- if eq .isServer "false" }}
+
 $ErrorActionPreference = "Stop"
 
 winget install 9N0DX20HK701 --accept-package-agreements --accept-source-agreements
@@ -71,4 +73,5 @@ foreach($package in $scoop_packages){scoop install $package}
 
 # Delete chezmoi binary from bootstrap
 Remove-Item ~/bin/chezmoi.exe -ErrorAction SilentlyContinue
+{{- end }}
 {{- end }}
