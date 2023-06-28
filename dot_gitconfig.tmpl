@@ -10,7 +10,12 @@
         clean = git-lfs clean -- %f
         smudge = git-lfs smudge -- %f
 [credential]
+{{if eq .chezmoi.os "windows" -}}
+        helper = git-credential-manager-core.exe
+{{end -}}
+{{if ne .chezmoi.os "windows" -}}
         helper = cache
+{{end -}}
 [commit]
         {{- if eq .isWorkMachine "false"}}
         gpgsign = true
