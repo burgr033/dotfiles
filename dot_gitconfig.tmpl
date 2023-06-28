@@ -11,7 +11,7 @@
         smudge = git-lfs smudge -- %f
 [credential]
 {{if eq .chezmoi.os "windows" -}}
-        helper = git-credential-manager-core.exe
+        helper = manager-core
 {{end -}}
 {{if ne .chezmoi.os "windows" -}}
         helper = cache
