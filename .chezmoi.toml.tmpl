@@ -1,10 +1,14 @@
-{{- $email := promptString "Email" "simon@burgr.io" }}
-{{- $name := promptString "Name" "sb" }}
-{{- $isServer := promptBool "is this machine headless (y/n)" }}
-{{- $isVirtual := promptBool "is this a virtual machine (y/n)" }}
-{{- $isMobile := promptBool "is this a a laptop with wifi? (y/n)" }}
-{{- $isWorkMachine := promptBool "is this a work machine (y/n)" }}
-{{- $manualSetup := promptBool "Do you want to setup this machine manually (y/n)" }}
+# -*-mode:conf-toml-*- vim:ft=toml
+{{ $isMobile := false -}}
+{{- $email := promptStringOnce . "email" "Email" "simon@burgr.io" }}
+{{- $name := promptStringOnce . "name" "Name" "sb" }}
+{{- $isServer := promptBoolOnce . "isServer" "is this machine headless (y/n)" }}
+{{- $isVirtual := promptBoolOnce . "isVirtual" "is this a virtual machine (y/n)" }}
+{{- if not $isVirtual}}
+  {{- $isMobile := promptBoolOnce . "isMobile" "is this a a laptop with wifi? (y/n)" }}
+{{- end}}
+{{- $isWorkMachine := promptBoolOnce . "isWorkMachine" "is this a work machine (y/n)" }}
+{{- $manualSetup := promptBoolOnce . "manualSetup" "Do you want to setup this machine manually (y/n)" }}
 
 [data]
         name =  "{{ $name }}"
