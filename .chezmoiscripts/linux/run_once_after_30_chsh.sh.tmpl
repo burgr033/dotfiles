@@ -2,8 +2,8 @@
 echo ""
 set -eufo pipefail
 {{if eq .shell "zsh"}}
-chsh -s $(which zsh)
+usermod -s $(which zsh) $USER
 {{end}}
 {{if eq .shell "fish"}}
-sudo chsh -s $(which fish)
+usermod -s $(which fish) $USER
 {{end}}
