@@ -47,6 +47,7 @@ set -e # Exit on error
 
 if ! command -v yay &> /dev/null
   then
+    echo ""
     {{- if eq .chezmoi.osRelease.id "manjaro" }}
     {{- $pacman_packages = mustAppend $pacman_packages "yay" }}
     {{- end}}
