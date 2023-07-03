@@ -1,5 +1,5 @@
-{{- if eq .manualSetup "false" }}
 #!/bin/bash
+{{- if eq .manualSetup "false" }}
 set -e # Exit on error
 {{- if eq .isServer "false" }}
 {{- if or (eq .chezmoi.osRelease.id "manjaro") (eq .chezmoi.osRelease.id "arch")}}
