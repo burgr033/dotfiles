@@ -1,5 +1,5 @@
-{{- if eq .manualSetup "false" }}
 #!/bin/bash
+{{- if eq .manualSetup "false" }}
 {{- if eq .chezmoi.os "linux" }}
 {{ $sudo := "sudo " -}}
 {{ if eq .chezmoi.username "root" -}}
