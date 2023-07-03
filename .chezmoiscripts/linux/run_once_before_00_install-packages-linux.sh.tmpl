@@ -36,7 +36,7 @@ if ! command -v zellij &> /dev/null
     curl -Lo zellij.tar.gz "https://github.com/zellij-org/zellij/releases/latest/download/zellij-x86_64-unknown-linux-musl.tar.gz"
     tar xf zellij.tar.gz zellij
     install zellij ~/.local/bin
-    rm zellij.tar.gz
+    rm zellij.tar.gz zellij
   fi
 {{else}}
 printf "this is no amd64 arch. Lazygit and delta missing! Install manually"
