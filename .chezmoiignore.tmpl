@@ -23,6 +23,13 @@ AppData/
 !AppData/
 !.gitconfig
 {{- end}}
+{{ if ne .shell "zsh" }}
+.zshrc
+{{ end }}
+{{ if ne .shell "fish" }}
+.config/omf
+.config/fish
+{{ end }}
 
 .chezmoiscripts/*/**
 !.chezmoiscripts/{{ .chezmoi.os }}/**

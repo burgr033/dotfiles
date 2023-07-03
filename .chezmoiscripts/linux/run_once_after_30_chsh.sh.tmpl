@@ -1,0 +1,9 @@
+#!/bin/bash
+echo ""
+set -eufo pipefail
+{{if eq .shell "zsh"}}
+chsh -s $(which zsh)
+{{end}}
+{{if eq .shell "fish"}}
+sudo chsh -s $(which fish)
+{{end}}

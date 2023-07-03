@@ -1,0 +1,6 @@
+package bang-bang
+package bass
+package fzf
+package thefuck
+theme default
+theme zish
