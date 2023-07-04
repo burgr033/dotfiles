@@ -3,6 +3,6 @@ echo ""
 set -eufo pipefail
 {{if eq .shell "fish"}}
 if [[ ! -d "$HOME/.local/share/omf" ]];then
-  curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+  curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish -N
 fi
 {{end}}
