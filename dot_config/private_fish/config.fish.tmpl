@@ -1,6 +1,5 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
-    eval (zellij setup --generate-auto-start fish | string collect)
     alias vi="nvim"
     alias vim="nvim"
     {{- if eq .isServer "false"}}
@@ -14,4 +13,16 @@ if status is-interactive
     fish_add_path $HOME/.local/bin
     set EDITOR "nvim"
     set VISUAL "nvim"
+    if not set -q DISPLAY
+        if not set -q ZELLIJ                                                                                                                                                           
+            if test "$ZELLIJ_AUTO_ATTACH" = "true"                                                                                                                                     
+                zellij attach -c                                                                                                                                                       
+            else                                                                                                                                                                       
+                zellij                                                                                                                                                                 
+            end                                                                                                                                                                        
+            if test "$ZELLIJ_AUTO_EXIT" = "true"                                                                                                                                       
+                kill $fish_pid                                                                                                                                                         
+            end                                                                                                                                                                        
+        end
+    end
 end
