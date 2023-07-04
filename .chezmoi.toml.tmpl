@@ -9,7 +9,7 @@
 {{- end}}
 {{- $isWorkMachine := promptBoolOnce . "isWorkMachine" "is this a work machine (y/n)" }}
 {{- $manualSetup := promptBoolOnce . "manualSetup" "Do you want to setup this machine manually (y/n)" }}
-{{- $shell := promptStringOnce . "shell" "Which shell? (fish or zsh)" "fish"}}
+{{- $shell := promptStringOnce . "shell" "Which shell? (fish or zsh or pwsh)" "fish"}}
 [data]
         name =  "{{ $name }}"
         email = "{{ $email }}"
