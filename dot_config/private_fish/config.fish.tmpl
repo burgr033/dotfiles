@@ -3,7 +3,14 @@ if status is-interactive
     eval (zellij setup --generate-auto-start fish | string collect)
     alias vi="nvim"
     alias vim="nvim"
+    {{- if eq .isServer "false"}}
+    set TERM "alacritty"
+    {{- end}}
+    {{ if (eq .chezmoi.osRelease.id "ubuntu") -}}
+    alias cat="batcat --plain"
+    {{else}}
     alias cat="bat --plain"
+    {{end}}
     fish_add_path $HOME/.local/bin
     set EDITOR "nvim"
     set VISUAL "nvim"
