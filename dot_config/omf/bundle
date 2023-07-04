@@ -1,7 +1,6 @@
 package bang-bang
 package bass
 package fzf
-package https://github.com/cigh033/fish-theme-bira
 package pisces
 package thefuck
 theme https://github.com/cigh033/fish-theme-bira
