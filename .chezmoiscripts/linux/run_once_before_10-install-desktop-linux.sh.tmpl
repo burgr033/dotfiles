@@ -52,7 +52,7 @@ if ! command -v yay &> /dev/null
     {{- $pacman_packages = mustAppend $pacman_packages "yay" }}
     {{- end}}
     {{- if eq .chezmoi.osRelease.id "arch" }}
-        pushd
+        pushd .
         git clone https://aur.archlinux.org/yay-bin.git /tmp/yay-bin
         cd /tmp/yay-bin
         makepkg -si --noconfirm
