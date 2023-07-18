@@ -34,7 +34,7 @@
 
 {{- if eq .chezmoi.os "linux" }}
 
-        {{- $shell := promptStringOnce . "shell" "Which shell? (fish or zsh)" "fish"}}
+        {{- $shell = promptStringOnce . "shell" "Which shell? (fish or zsh)" "fish"}}
 
 {{- end}}
 
