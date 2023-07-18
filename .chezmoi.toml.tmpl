@@ -2,7 +2,7 @@
 
 {{ $isServer := false }}
 {{ $isMobile := false }}
-{{ $manualSetup := true }}
+{{ $manualSetup := false }}
 {{ $shell := "null" }}
 
 {{- $email := promptStringOnce . "email" "Email" "simon@burgr.io" }}
