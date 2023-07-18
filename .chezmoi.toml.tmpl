@@ -1,15 +1,43 @@
 # -*-mode:conf-toml-*- vim:ft=toml
-{{ $isMobile := false -}}
+
+{{ $isServer := false }}
+{{ $isMobile := false }}
+{{ $manualSetup := true }}
+{{ $shell := "null" }}
+
 {{- $email := promptStringOnce . "email" "Email" "simon@burgr.io" }}
 {{- $name := promptStringOnce . "name" "Name" "sb" }}
-{{- $isServer := promptBoolOnce . "isServer" "is this machine headless (y/n)" }}
+
 {{- $isVirtual := promptBoolOnce . "isVirtual" "is this a virtual machine (y/n)" }}
-{{- if not $isVirtual}}
-  {{- $isMobile := promptBoolOnce . "isMobile" "is this a a laptop with wifi? (y/n)" }}
+
+{{- if $isVirtual}}
+
+  {{- $isServer := promptBoolOnce . "isServer" "is this machine headless (y/n)" }}
+
 {{- end}}
+
+{{- if not $isVirtual}}
+
+        {{- if eq .chezmoi.os "linux" }}
+          {{- $isMobile := promptBoolOnce . "isMobile" "is this a a laptop with wifi? (y/n)" }}
+        {{- end}}
+
+{{- end}}
+
 {{- $isWorkMachine := promptBoolOnce . "isWorkMachine" "is this a work machine (y/n)" }}
-{{- $manualSetup := promptBoolOnce . "manualSetup" "Do you want to setup this machine manually (y/n)" }}
-{{- $shell := promptStringOnce . "shell" "Which shell? (fish or zsh or pwsh)" "fish"}}
+
+{{- if $isWorkMachine }}
+
+  {{- $manualSetup := promptBoolOnce . "manualSetup" "Do you want to setup this machine manually (y/n)" }}
+
+{{- end }}
+
+{{- if eq .chezmoi.os "linux" }}
+
+        {{- $shell := promptStringOnce . "shell" "Which shell? (fish or zsh)" "fish"}}
+
+{{- end}}
+
 [data]
         name =  "{{ $name }}"
         email = "{{ $email }}"
