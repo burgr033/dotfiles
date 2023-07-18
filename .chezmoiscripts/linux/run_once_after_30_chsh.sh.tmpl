@@ -1,6 +1,7 @@
 #!/bin/bash
 echo ""
 set -eufo pipefail
+SHELL_PATH=""
 {{if eq .shell "zsh"}}
 SHELL_PATH="$(which zsh)"
 {{end}}
