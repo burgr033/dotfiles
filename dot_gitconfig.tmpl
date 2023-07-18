@@ -4,6 +4,9 @@
         {{- if eq .isWorkMachine "false"}}
         signingkey = 996ED0900094F1A1146904B9A453B5E1F1DCA166
         {{- end}}
+        {{- if eq .isWorkMachine "true"}}
+        signingkey = 83297FC845136CEC5D204EAB2FC883E6A65782EC
+        {{- end}}
 [filter "lfs"]
         process = git-lfs filter-process
         required = true
@@ -17,9 +20,7 @@
         helper = cache
 {{end -}}
 [commit]
-        {{- if eq .isWorkMachine "false"}}
         gpgsign = true
-        {{- end}}
 [core]
 {{ if lookPath "delta" }}
         pager = delta
