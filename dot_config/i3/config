@@ -219,12 +219,12 @@ exec --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id python ~/.config/i3/autoname_workspaces.py
 
 # color aliases
-set_from_resource $xbackground			background 	#2E3440
-set_from_resource $xforeground 			foreground 	#D8DEE9
-set_from_resource $xcolor14			color14	   	#8FBCBB
-set_from_resource $xcolor08			color8		#4C566A
-set_from_resource $xcolor09			color9		#BF616A
-set_from_resource $xcolor11			color11		#EBCB8B
+set_from_resource $xbackground			background 	#24283b
+set_from_resource $xforeground 			foreground 	#c0caf5
+set_from_resource $xcolor14			color14	   	#9ece6a
+set_from_resource $xcolor08			color8		#414868
+set_from_resource $xcolor09			color9		#f7768e
+set_from_resource $xcolor11			color11		#e0af68
 
 # window styling
 # class                 border  bground 	text    	indicator child_border

@@ -4,22 +4,22 @@
 
 config.load_autoconfig()
 
-base00 = "#2E3440"
-base01 = "#3B4252"
-base02 = "#434C5E"
-base03 = "#4C566A"
-base04 = "#D8DEE9"
-base05 = "#E5E9F0"
-base06 = "#ECEFF4"
-base07 = "#8FBCBB"
-base08 = "#BF616A"
-base09 = "#D08770"
-base0A = "#EBCB8B"
-base0B = "#A3BE8C"
-base0C = "#88C0D0"
-base0D = "#81A1C1"
-base0E = "#B48EAD"
-base0F = "#5E81AC"
+base00 = "#24283b"
+base01 = "#1f2335"
+base02 = "#292e42"
+base03 = "#565f89"
+base04 = "#a9b1d6"
+base05 = "#c0caf5"
+base06 = "#c0caf5"
+base07 = "#c0caf5"
+base08 = "#f7768e"
+base09 = "#ff9e64"
+base0A = "#e0af68"
+base0B = "#9ece6a"
+base0C = "#1abc9c"
+base0D = "#41a6b5"
+base0E = "#bb9af7"
+base0F = "#ff007c"
 
 # set qutebrowser colors
 
