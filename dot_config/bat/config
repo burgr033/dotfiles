@@ -1,4 +1,4 @@
 --map-syntax='**polybar/config:INI'
 --map-syntax='**/i3/config:INI'
 --map-syntax='*.conf:INI'
---theme="Nord"
+--theme="Tokyonight"

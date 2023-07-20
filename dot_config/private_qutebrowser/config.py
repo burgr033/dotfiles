@@ -1,6 +1,5 @@
 # base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
 # Base16 qutebrowser template by theova
-# Nord scheme by arcticicestudio
 
 config.load_autoconfig()
 
