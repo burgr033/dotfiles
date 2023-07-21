@@ -13,6 +13,15 @@ url = "https://github.com/cigh033/nvim-config"
 exact = true
 stripComponents = 1
 refreshPeriod = "168h"
+{{- if eq .isServer "false" }}
+
+["Pictures/wallpapers"]
+type = "archive"
+url = "https://github.com/cigh033/wallpapers/archive/main.tar.gz"
+exact = true
+stripComponents = 1
+refreshPeriod = "168h"
+{{- end}}
 {{if eq .shell "zsh"}}
 [".oh-my-zsh"]
 type = "archive"
