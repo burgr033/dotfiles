@@ -1,110 +1,111 @@
 * {
- font: "Fira Code Nerd Font 9";
-  bg0     : #1a1b26;
-  bg1     : #1f2335;
-  bg2     : #24283b;
-  bg3     : #414868;
-  fg0     : #c0caf5;
-  fg1     : #a9b1d6;
-  fg2     : #737aa2;
-  red     : #f7768e;
-  green   : #9ece6a;
-  yellow  : #e0af68;
-  blue    : #7aa2f7;
-  magenta : #9a7ecc;
-  cyan    : #4abaaf;
+    bg-col:  #1e1e2e;
+    bg-col-light: #1e1e2e;
+    border-col: #1e1e2e;
+    selected-col: #1e1e2e;
+    blue: #89b4fa;
+    fg-col: #cdd6f4;
+    fg-col2: #f38ba8;
+    grey: #6c7086;
 
-  accent: @red;
-  urgent: @yellow;
-
-  background-color : transparent;
-  text-color       : @fg0;
-
-  margin  : 0;
-  padding : 0;
-  spacing : 0;
+    width: 600;
+  font: "Fira Code Nerd Font 9";
 }
 
-element-icon, element-text, scrollbar {
-  cursor: pointer;
+element-text, element-icon , mode-switcher {
+    background-color: inherit;
+    text-color:       inherit;
 }
 
 window {
-  location : center;
-  width    : 480px;
-  x-offset : 0px;
-  y-offset : 0px;
+    height: 360px;
+    border: 3px;
+    border-color: @border-col;
+    background-color: @bg-col;
+}
 
-  background-color: @bg1;
-  border: 1px;
-  border-color: @bg3;
-  border-radius: 0px;
+mainbox {
+    background-color: @bg-col;
 }
 
 inputbar {
-  spacing  : 8px;
-  padding  : 4px 8px;
-  children : [ icon-search, entry ];
-
-  background-color: @bg0;
+    children: [prompt,entry];
+    background-color: @bg-col;
+    border-radius: 5px;
+    padding: 2px;
 }
 
-icon-search, entry, element-icon, element-text {
-  vertical-align: 0.5;
+prompt {
+    background-color: @blue;
+    padding: 6px;
+    text-color: @bg-col;
+    border-radius: 3px;
+    margin: 20px 0px 0px 20px;
 }
 
-icon-search {
-  expand   : false;
-  filename : "search-symbolic";
-  size     : 14px;
+textbox-prompt-colon {
+    expand: false;
+    str: ":";
 }
 
-textbox {
-  padding          : 4px 8px;
-  background-color : @bg2;
+entry {
+    padding: 6px;
+    margin: 20px 0px 0px 10px;
+    text-color: @fg-col;
+    background-color: @bg-col;
 }
 
 listview {
-  padding      : 4px 0px;
-  lines        : 12;
-  columns      : 1;
-  scrollbar    : true;
-  fixed-height : false;
-  dynamic      : true;
+    border: 0px 0px 0px;
+    padding: 6px 0px 0px;
+    margin: 10px 0px 0px 20px;
+    columns: 2;
+    lines: 5;
+    background-color: @bg-col;
 }
 
 element {
-  padding : 4px 8px;
-  spacing : 8px;
-}
-
-element normal urgent {
-  text-color: @urgent;
-}
-
-element normal active {
-  text-color: @accent;
-}
-
-element selected {
-  text-color       : @bg1;
-  background-color : @accent;
-}
-
-element selected urgent {
-  background-color: @urgent;
+    padding: 5px;
+    background-color: @bg-col;
+    text-color: @fg-col  ;
 }
 
 element-icon {
-  size: 0.8em;
+    size: 25px;
 }
 
-element-text {
-  text-color: inherit;
+element selected {
+    background-color:  @selected-col ;
+    text-color: @fg-col2  ;
 }
 
-scrollbar {
-  handle-width : 4px;
-  handle-color : @fg2;
-  padding      : 0 4px;
+mode-switcher {
+    spacing: 0;
+  }
+
+button {
+    padding: 10px;
+    background-color: @bg-col-light;
+    text-color: @grey;
+    vertical-align: 0.5; 
+    horizontal-align: 0.5;
+}
+
+button selected {
+  background-color: @bg-col;
+  text-color: @blue;
+}
+
+message {
+    background-color: @bg-col-light;
+    margin: 2px;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+textbox {
+    padding: 6px;
+    margin: 20px 0px 0px 20px;
+    text-color: @blue;
+    background-color: @bg-col-light;
 }

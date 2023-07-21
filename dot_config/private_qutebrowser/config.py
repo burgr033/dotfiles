@@ -3,22 +3,22 @@
 
 config.load_autoconfig()
 
-base00 = "#24283b"
-base01 = "#1f2335"
-base02 = "#292e42"
-base03 = "#565f89"
-base04 = "#a9b1d6"
-base05 = "#c0caf5"
-base06 = "#c0caf5"
-base07 = "#c0caf5"
-base08 = "#f7768e"
-base09 = "#ff9e64"
-base0A = "#e0af68"
-base0B = "#9ece6a"
-base0C = "#1abc9c"
-base0D = "#41a6b5"
-base0E = "#bb9af7"
-base0F = "#ff007c"
+base00 = "#1e1e2e"  # base
+base01 = "#181825"  # mantle
+base02 = "#313244"  # surface0
+base03 = "#45475a"  # surface1
+base04 = "#585b70"  # surface2
+base05 = "#cdd6f4"  # text
+base06 = "#f5e0dc"  # rosewater
+base07 = "#b4befe"  # lavender
+base08 = "#f38ba8"  # red
+base09 = "#fab387"  # peach
+base0A = "#f9e2af"  # yellow
+base0B = "#a6e3a1"  # green
+base0C = "#94e2d5"  # teal
+base0D = "#89b4fa"  # blue
+base0E = "#cba6f7"  # mauve
+base0F = "#f2cdcd"  # flamingo
 
 # set qutebrowser colors
 
@@ -78,12 +78,12 @@ c.colors.contextmenu.disabled.fg = base04
 c.colors.contextmenu.menu.bg = base00
 
 # Foreground color of the context menu. If set to null, the Qt default is used.
-c.colors.contextmenu.menu.fg =  base05
+c.colors.contextmenu.menu.fg = base05
 
 # Background color of the context menu’s selected item. If set to null, the Qt default is used.
 c.colors.contextmenu.selected.bg = base02
 
-#Foreground color of the context menu’s selected item. If set to null, the Qt default is used.
+# Foreground color of the context menu’s selected item. If set to null, the Qt default is used.
 c.colors.contextmenu.selected.fg = base05
 
 # Background color for the download bar.
@@ -299,4 +299,3 @@ c.colors.tabs.selected.even.bg = base02
 # Background color for webpages if unset (or empty to use the theme's
 # color).
 # c.colors.webpage.bg = base00
-
