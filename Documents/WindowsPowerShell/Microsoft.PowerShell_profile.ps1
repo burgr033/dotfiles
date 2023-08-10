@@ -9,6 +9,7 @@ Import-Module Terminal-Icons
 Register-ArgumentCompleter -CommandName ssh,scp,sftp -Native -ScriptBlock {
 	param($wordToComplete, $commandAst, $cursorPosition)
 
+
 	function Get-SSHHostList($sshConfigPath)
 	{
 		Get-Content -Path $sshConfigPath `
@@ -67,6 +68,12 @@ Register-ArgumentCompleter -CommandName ssh,scp,sftp -Native -ScriptBlock {
 	$hosts `
 	| Where-Object { $_ -like "${textToComplete}*" } `
 	| ForEach-Object { [CompletionResult]::new((&$generateCompletionText($_)), $_, [CompletionResultType]::ParameterValue, $_) }
+}
+
+
+function batcat
+{
+	bat --plain $args
 }
 
 function Randomize-List
