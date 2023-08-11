@@ -83,6 +83,10 @@ binding_modes:
       # Press enter/escape to return to default keybindings.
       - command: "binding mode none"
         bindings: ["Escape", "Enter"]
+  - name: "gaming"
+    keybindings:
+      - command: "binding mode none"
+        binding: "Alt+Shift+G"
 
 keybindings:
   # Shift focus in a given direction.
@@ -120,6 +124,8 @@ keybindings:
   - command: "binding mode resize"
     binding: "Alt+R"
 
+  - command: "binding mode gaming"
+    binding: "Alt+Shift+G"
   # Change tiling direction. This determines where new tiling windows will be inserted.
   - command: "tiling direction toggle"
     binding: "Alt+V"
