@@ -18,6 +18,7 @@ Configs included:
 * Windows
   * Windows PowerShell
   * Windows Terminal
+  * GlazeWM
 * both
   * Neovim
   * Git
