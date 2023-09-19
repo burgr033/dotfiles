@@ -5,7 +5,13 @@ gaps:
 general:
   # Whether to show floating windows as always on top.
   show_floating_on_top: false
-
+focus_borders:
+  active:
+    enabled: true
+    color: "#ff0000"
+  inactive:
+    enabled: false
+    color: "#0000ff"
 bar:
   height: "30px"
   position: "top"
@@ -44,6 +50,31 @@ bar:
       background: "#ffffff33"
       margin: "0 4px"
       padding: "0 8px"
+    - type: "system tray"
+      background: "#ffffff33"
+      margin: "0 4px"
+      padding: "0 8px"
+      label_expand_text: "<"
+      label_collapse_text: ">"
+    - type: "network"
+      background: "#ffffff33"
+      margin: "0 4px"
+      padding: "0 8px"
+      label_no_internet: "NC"
+      label_ethernet: "Eth"
+      label_wifi_strength_0: "WiFi: 0%"
+      label_wifi_strength_25: "WiFi: 25%"
+      label_wifi_strength_50: "WiFi: 50%"
+      label_wifi_strength_75: "WiFi: 75%"
+      label_wifi_strength_100: "WiFi: 100%"
+    - type: "volume"
+      background: "#ffffff33"
+      margin: "0 4px"
+      padding: "0 8px"
+      label_low: "🔊{volume_level}%"
+      label_medium: "🔊{volume_level}%"
+      label_high: "🔊{volume_level}%"
+      label_mute: "🔊{volume_level}%"
     - type: "clock"
       background: "#ffffff33"
       time_formatting: "HH:mm yyyy-MM-dd"
