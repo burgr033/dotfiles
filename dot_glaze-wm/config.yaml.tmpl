@@ -36,13 +36,15 @@ bar:
       background: "#ffffff33"
       margin: "0 4px 0 0"
       padding: "0 8px"
-    - type: "battery"
+{{- if eq .isMobile "true"}}
+  - type: "battery"
       margin: "0 4px"
       padding: "0 8px"
       label_draining: "󰂁 {battery_level}%"
       label_charging: "󰂄 {battery_level}%"
       label_power_saver: "󱈑 {battery_level}%"
       background: "#ffffff33"
+{{- end}}
     - type: "tiling direction"
       font_size: "20px"
       label_horizontal: ""
