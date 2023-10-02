@@ -18,9 +18,7 @@
 
 {{- if not $isVirtual}}
 
-        {{- if eq .chezmoi.os "linux" }}
-          {{- $isMobile = promptBoolOnce . "isMobile" "is this a a laptop with wifi? (y/n)" }}
-        {{- end}}
+  {{- $isMobile = promptBoolOnce . "isMobile" "is this a a laptop with wifi? (y/n)" }}
 
 {{- end}}
 

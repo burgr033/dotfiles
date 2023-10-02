@@ -18,8 +18,8 @@ bar:
   opacity: 1.0
   background: "#20242cc4"
   foreground: "#ffffff"
-  font_family: "FiraCode Nerd Font Mono"
-  font_weight: "100"
+  font_family: "Iosevka Nerd Font"
+  font_weight: "400"
   font_size: "13px"
   padding: "4px 6px"
   offset_x: "0"
@@ -34,10 +34,10 @@ bar:
   components_right:
     - type: "binding mode"
       background: "#ffffff33"
-      margin: "0 4px 0 0"
+      margin: "0 4px"
       padding: "0 8px"
 {{- if eq .isMobile "true"}}
-  - type: "battery"
+    - type: "battery"
       margin: "0 4px"
       padding: "0 8px"
       label_draining: "󰂁 {battery_level}%"
@@ -46,12 +46,11 @@ bar:
       background: "#ffffff33"
 {{- end}}
     - type: "tiling direction"
-      font_size: "20px"
       label_horizontal: ""
       label_vertical: ""
       background: "#ffffff33"
       margin: "0 4px"
-      padding: "0 8px"
+      padding: "0 11px 0 8px"
     - type: "network"
       background: "#ffffff33"
       margin: "0 4px"
@@ -245,4 +244,4 @@ keybindings:
   - commands: ["move to workspace 8", "focus workspace 8"]
     binding: "Alt+Shift+8"
   - commands: ["move to workspace 9", "focus workspace 9"]
-    bindings: ["Alt+Shift+9"]
+    bindings: ["Alt+Shift+9"] 
