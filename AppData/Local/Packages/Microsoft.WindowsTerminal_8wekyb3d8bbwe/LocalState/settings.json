@@ -39,7 +39,7 @@
       "adjustIndistinguishableColors": "indexed",
       "colorScheme": "Catppuccin Mocha",
       "font": {
-        "face": "FiraCode Nerd Font Mono",
+        "face": "Iosevka Nerd Font",
         "size": 10.0,
         "weight": "normal"
       }

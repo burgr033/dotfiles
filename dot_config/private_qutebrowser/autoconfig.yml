@@ -37,7 +37,7 @@ settings:
     global: false
   confirm_quit:
     global:
-    - downloads
+      - downloads
   content.media.audio_capture:
     https://teams.live.com: true
   content.notifications.enabled:
@@ -49,21 +49,21 @@ settings:
   downloads.location.prompt:
     global: false
   fonts.default_family:
-    global: Fira Code
+    global: Iosevka Nerd Font
   fonts.web.family.standard:
-    global: Fira Code
+    global: Iosevka Nerd Font
   input.insert_mode.auto_load:
     global: false
   statusbar.position:
     global: bottom
   statusbar.widgets:
     global:
-    - keypress
-    - url
-    - scroll
-    - history
-    - tabs
-    - progress
+      - keypress
+      - url
+      - scroll
+      - history
+      - tabs
+      - progress
   url.default_page:
     global: https://google.de
   url.searchengines:
