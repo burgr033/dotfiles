@@ -1,8 +1,6 @@
 ﻿using namespace System.Management.Automation
-
 #Import-Module PSFzf
 Import-Module PSReadLine   #, PSfzf
-Import-Module Terminal-Icons
 
 #Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 #Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
@@ -97,24 +95,21 @@ function Randomize-List
 	return $InputList | Get-Random -Count $InputList.Count;
 }
 
-Set-Alias -name todo -value runTODO
-Set-Alias -name TodoAdd -value addTODO
-
-
-
 # PSReadLine
-
-Set-PSReadLineOption -EditMode Windows
-Set-PSReadLineOption -BellStyle None
-Set-PSReadLineKeyHandler -Chord 'Ctrl+d' -Function DeleteChar
-Set-PSReadLineOption -PredictionSource History
-Set-PSReadlineKeyHandler -Chord UpArrow   -Function HistorySearchBackward
-Set-PSReadlineKeyHandler -Chord DownArrow -Function HistorySearchForward
-Set-PSReadLineKeyHandler -Chord Ctrl+f    -Function ForwardWord
-Set-PSReadLineKeyHandler -Chord Ctrl+k    -Function CaptureScreen
-Set-PSReadlineKeyHandler -Chord Ctrl+Tab  -Function Complete
-Set-PSReadlineKeyHandler -Chord Ctrl+q    -Function YankLastArg
-Set-PSReadLineKeyHandler -Chord Ctrl+u    -Function RevertLine
+if($PSVersionTable.PSEdition -ne "Desktop"){
+	Import-Module Terminal-Icons
+	Set-PSReadLineOption -EditMode Windows
+	Set-PSReadLineOption -BellStyle None
+	Set-PSReadLineKeyHandler -Chord 'Ctrl+d' -Function DeleteChar
+	Set-PSReadLineOption -PredictionSource History
+	Set-PSReadlineKeyHandler -Chord UpArrow   -Function HistorySearchBackward
+	Set-PSReadlineKeyHandler -Chord DownArrow -Function HistorySearchForward
+	Set-PSReadLineKeyHandler -Chord Ctrl+f    -Function ForwardWord
+	Set-PSReadLineKeyHandler -Chord Ctrl+k    -Function CaptureScreen
+	Set-PSReadlineKeyHandler -Chord Ctrl+Tab  -Function Complete
+	Set-PSReadlineKeyHandler -Chord Ctrl+q    -Function YankLastArg
+	Set-PSReadLineKeyHandler -Chord Ctrl+u    -Function RevertLine
+}
 # Fzf
 #Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChordReverseHistory 'Ctrl+r'
 
