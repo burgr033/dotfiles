@@ -1,301 +1,205 @@
-# base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
-# Base16 qutebrowser template by theova
-
 config.load_autoconfig()
 
-base00 = "#1e1e2e"  # base
-base01 = "#181825"  # mantle
-base02 = "#313244"  # surface0
-base03 = "#45475a"  # surface1
-base04 = "#585b70"  # surface2
-base05 = "#cdd6f4"  # text
-base06 = "#f5e0dc"  # rosewater
-base07 = "#b4befe"  # lavender
-base08 = "#f38ba8"  # red
-base09 = "#fab387"  # peach
-base0A = "#f9e2af"  # yellow
-base0B = "#a6e3a1"  # green
-base0C = "#94e2d5"  # teal
-base0D = "#89b4fa"  # blue
-base0E = "#cba6f7"  # mauve
-base0F = "#f2cdcd"  # flamingo
+def get_pallet(scheme = 'dark', intensity = 'hard'):
+    if scheme not in ('dark', 'light'):
+        raise RuntimeError('Schme must be one of "dark", "light".')
+    if intensity not in ('hard', 'medium', 'soft'):
+        raise RuntimeError('Intensity must be one of "hard", "medium", "soft".')
+
+    pallet = None
+    if scheme == 'dark':
+        pallet = {
+            'fg': '#d3c6aa',
+            'red': '#e67e80',
+            'orange': '#e69875',
+            'yellow': '#dbbc7f',
+            'green': '#a7c080',
+            'aqua': '#83c092',
+            'blue': '#7fbbb3',
+            'purple': '#d699b6',
+            'grey0': '#7a8478',
+            'grey1': '#859289',
+            'grey2': '#9da9a0',
+            'statusline1': '#a7c080',
+            'statusline2': '#d3c6aa',
+            'statusline3': '#e67e80',
+        }
+
+        if intensity == 'hard':
+            pallet.update({
+                'bg_dim': '#1e2326',
+                'bg0': '#272e33',
+                'bg1': '#2e383c',
+                'bg2': '#374145',
+                'bg3': '#414b50',
+                'bg4': '#495156',
+                'bg5': '#4f5b58',
+                'bg_visual': '#4c3743',
+                'bg_red': '#493b40',
+                'bg_green': '#3c4841',
+                'bg_blue': '#384b55',
+                'bg_yellow': '#45443c',
+            })
+        elif intensity == 'medium':
+            pallet.update({
+                'bg_dim': '#232a2e',
+                'bg0': '#2d353b',
+                'bg1': '#343f44',
+                'bg2': '#3d484d',
+                'bg3': '#475258',
+                'bg4': '#4f585e',
+                'bg5': '#56635f',
+                'bg_visual': '#543a48',
+                'bg_red': '#514045',
+                'bg_green': '#425047',
+                'bg_blue': '#3a515d',
+                'bg_yellow': '#4d4c43',
+            })
+        else:
+            pallet.update({
+                **pallet,
+                'bg_dim': '#293136',
+                'bg0': '#333c43',
+                'bg1': '#3a464c',
+                'bg2': '#434f55',
+                'bg3': '#4d5960',
+                'bg4': '#555f66',
+                'bg5': '#5d6b66',
+                'bg_visual': '#5c3f4f',
+                'bg_red': '#59464c',
+                'bg_green': '#48584e',
+                'bg_blue': '#3f5865',
+                'bg_yellow': '#55544a',
+            })
+
+    else:
+        pallet = {
+            'fg': '#5c6a72',
+            'red': '#f85552',
+            'orange': '#f57d26',
+            'yellow': '#dfa000',
+            'green': '#8da101',
+            'aqua': '#35a77c',
+            'blue': '#3a94c5',
+            'purple': '#df69ba',
+            'grey0': '#a6b0a0',
+            'grey1': '#939f91',
+            'grey2': '#829181',
+            'statusline1': '#93b259',
+            'statusline2': '#708089',
+            'statusline3': '#e66868',
+        }
+
+        if intensity == 'hard':
+            pallet.update({
+                'bg_dim': '#f2efdf',
+                'bg0': '#fffbef',
+                'bg1': '#f8f5e4',
+                'bg2': '#f2efdf',
+                'bg3': '#edeada',
+                'bg4': '#e8e5d5',
+                'bg5': '#bec5b2',
+                'bg_visual': '#f0f2d4',
+                'bg_red': '#ffe7de',
+                'bg_green': '#f3f5d9',
+                'bg_blue': '#ecf5ed',
+                'bg_yellow': '#fef2d5',
+            })
+        elif intensity == 'medium':
+            pallet.update({
+                'bg_dim': '#efebd4',
+                'bg0': '#fdf6e3',
+                'bg1': '#f4f0d9',
+                'bg2': '#efebd4',
+                'bg3': '#e6e2cc',
+                'bg4': '#e0dcc7',
+                'bg5': '#bdc3af',
+                'bg_visual': '#eaedc8',
+                'bg_red': '#fbe3da',
+                'bg_green': '#f0f1d2',
+                'bg_blue': '#e9f0e9',
+                'bg_yellow': '#faedcd',
+            })
+        else:
+            pallet.update({
+                'bg_dim': '#e5dfc5',
+                'bg0': '#f3ead3',
+                'bg1': '#eae4ca',
+                'bg2': '#e5dfc5',
+                'bg3': '#ddd8be',
+                'bg4': '#d8d3ba',
+                'bg5': '#b9c0ab',
+                'bg_visual': '#e1e4bd',
+                'bg_red': '#f4dbd0',
+                'bg_green': '#e5e6c5',
+                'bg_blue': '#e1e7dd',
+                'bg_yellow': '#f1e4c5',
+            })
+
+    return pallet
+
+def set(c, scheme = 'dark', intensity = 'hard'):
+    t = get_pallet(scheme, intensity)
+
+    c.colors.webpage.bg = t['bg0']
+
+    c.colors.keyhint.fg = t['fg']
+    c.colors.keyhint.suffix.fg = t['red']
+
+    c.colors.messages.error.bg = t['bg_red']
+    c.colors.messages.error.fg = t['fg']
+    c.colors.messages.info.bg = t['bg_blue']
+    c.colors.messages.info.fg = t['fg']
+    c.colors.messages.warning.bg = t['bg_yellow']
+    c.colors.messages.warning.fg = t['fg']
+
+    c.colors.prompts.bg = t['bg0']
+    c.colors.prompts.fg = t['fg']
+
+    c.colors.completion.category.bg = t['bg0']
+    c.colors.completion.category.fg = t['fg']
+    c.colors.completion.fg = t['fg']
+    c.colors.completion.even.bg = t['bg0']
+    c.colors.completion.odd.bg = t['bg1']
+    c.colors.completion.match.fg = t['red']
+    c.colors.completion.item.selected.fg = t['fg']
+    c.colors.completion.item.selected.bg = t['bg_yellow']
+    c.colors.completion.item.selected.border.top = t['bg_yellow']
+    c.colors.completion.item.selected.border.bottom = t['bg_yellow']
+
+    c.colors.completion.scrollbar.bg = t['bg_dim']
+    c.colors.completion.scrollbar.fg = t['fg']
+
+    c.colors.hints.bg = t['bg0']
+    c.colors.hints.fg = t['fg']
+    c.colors.hints.match.fg = t['red']
+    c.hints.border = '0px solid black'
+
+    c.colors.statusbar.normal.fg = t['fg']
+    c.colors.statusbar.normal.bg = t['bg3']
+
+    c.colors.statusbar.insert.fg = t['bg0']
+    c.colors.statusbar.insert.bg = t['statusline1']
+
+    c.colors.statusbar.command.fg = t['fg']
+    c.colors.statusbar.command.bg = t['bg0']
+
+    c.colors.statusbar.url.error.fg = t['orange']
+    c.colors.statusbar.url.fg = t['fg']
+    c.colors.statusbar.url.hover.fg = t['blue']
+    c.colors.statusbar.url.success.http.fg = t['green']
+    c.colors.statusbar.url.success.https.fg = t['green']
+
+    c.colors.tabs.bar.bg = t['bg_dim']
+    c.colors.tabs.even.bg = t['bg0']
+    c.colors.tabs.odd.bg = t['bg0']
+    c.colors.tabs.even.fg = t['fg']
+    c.colors.tabs.odd.fg = t['fg']
+    c.colors.tabs.selected.even.bg = t['bg2']
+    c.colors.tabs.selected.odd.bg = t['bg2']
+    c.colors.tabs.selected.even.fg = t['fg']
+    c.colors.tabs.selected.odd.fg = t['fg']
+    c.colors.tabs.indicator.start = t['blue']
+    c.colors.tabs.indicator.stop = t['green']
+    c.colors.tabs.indicator.error = t['red']
 
-# set qutebrowser colors
-
-# Text color of the completion widget. May be a single color to use for
-# all columns or a list of three colors, one for each column.
-c.colors.completion.fg = base05
-
-# Background color of the completion widget for odd rows.
-c.colors.completion.odd.bg = base01
-
-# Background color of the completion widget for even rows.
-c.colors.completion.even.bg = base00
-
-# Foreground color of completion widget category headers.
-c.colors.completion.category.fg = base0A
-
-# Background color of the completion widget category headers.
-c.colors.completion.category.bg = base00
-
-# Top border color of the completion widget category headers.
-c.colors.completion.category.border.top = base00
-
-# Bottom border color of the completion widget category headers.
-c.colors.completion.category.border.bottom = base00
-
-# Foreground color of the selected completion item.
-c.colors.completion.item.selected.fg = base05
-
-# Background color of the selected completion item.
-c.colors.completion.item.selected.bg = base02
-
-# Top border color of the selected completion item.
-c.colors.completion.item.selected.border.top = base02
-
-# Bottom border color of the selected completion item.
-c.colors.completion.item.selected.border.bottom = base02
-
-# Foreground color of the matched text in the selected completion item.
-c.colors.completion.item.selected.match.fg = base0B
-
-# Foreground color of the matched text in the completion.
-c.colors.completion.match.fg = base0B
-
-# Color of the scrollbar handle in the completion view.
-c.colors.completion.scrollbar.fg = base05
-
-# Color of the scrollbar in the completion view.
-c.colors.completion.scrollbar.bg = base00
-
-# Background color of disabled items in the context menu.
-c.colors.contextmenu.disabled.bg = base01
-
-# Foreground color of disabled items in the context menu.
-c.colors.contextmenu.disabled.fg = base04
-
-# Background color of the context menu. If set to null, the Qt default is used.
-c.colors.contextmenu.menu.bg = base00
-
-# Foreground color of the context menu. If set to null, the Qt default is used.
-c.colors.contextmenu.menu.fg = base05
-
-# Background color of the context menu’s selected item. If set to null, the Qt default is used.
-c.colors.contextmenu.selected.bg = base02
-
-# Foreground color of the context menu’s selected item. If set to null, the Qt default is used.
-c.colors.contextmenu.selected.fg = base05
-
-# Background color for the download bar.
-c.colors.downloads.bar.bg = base00
-
-# Color gradient start for download text.
-c.colors.downloads.start.fg = base00
-
-# Color gradient start for download backgrounds.
-c.colors.downloads.start.bg = base0D
-
-# Color gradient end for download text.
-c.colors.downloads.stop.fg = base00
-
-# Color gradient stop for download backgrounds.
-c.colors.downloads.stop.bg = base0C
-
-# Foreground color for downloads with errors.
-c.colors.downloads.error.fg = base08
-
-# Font color for hints.
-c.colors.hints.fg = base00
-
-# Background color for hints. Note that you can use a `rgba(...)` value
-# for transparency.
-c.colors.hints.bg = base0A
-
-# Font color for the matched part of hints.
-c.colors.hints.match.fg = base05
-
-# Text color for the keyhint widget.
-c.colors.keyhint.fg = base05
-
-# Highlight color for keys to complete the current keychain.
-c.colors.keyhint.suffix.fg = base05
-
-# Background color of the keyhint widget.
-c.colors.keyhint.bg = base00
-
-# Foreground color of an error message.
-c.colors.messages.error.fg = base00
-
-# Background color of an error message.
-c.colors.messages.error.bg = base08
-
-# Border color of an error message.
-c.colors.messages.error.border = base08
-
-# Foreground color of a warning message.
-c.colors.messages.warning.fg = base00
-
-# Background color of a warning message.
-c.colors.messages.warning.bg = base0E
-
-# Border color of a warning message.
-c.colors.messages.warning.border = base0E
-
-# Foreground color of an info message.
-c.colors.messages.info.fg = base05
-
-# Background color of an info message.
-c.colors.messages.info.bg = base00
-
-# Border color of an info message.
-c.colors.messages.info.border = base00
-
-# Foreground color for prompts.
-c.colors.prompts.fg = base05
-
-# Border used around UI elements in prompts.
-c.colors.prompts.border = base00
-
-# Background color for prompts.
-c.colors.prompts.bg = base00
-
-# Background color for the selected item in filename prompts.
-c.colors.prompts.selected.bg = base02
-
-# Foreground color for the selected item in filename prompts.
-c.colors.prompts.selected.fg = base05
-
-# Foreground color of the statusbar.
-c.colors.statusbar.normal.fg = base0B
-
-# Background color of the statusbar.
-c.colors.statusbar.normal.bg = base00
-
-# Foreground color of the statusbar in insert mode.
-c.colors.statusbar.insert.fg = base00
-
-# Background color of the statusbar in insert mode.
-c.colors.statusbar.insert.bg = base0D
-
-# Foreground color of the statusbar in passthrough mode.
-c.colors.statusbar.passthrough.fg = base00
-
-# Background color of the statusbar in passthrough mode.
-c.colors.statusbar.passthrough.bg = base0C
-
-# Foreground color of the statusbar in private browsing mode.
-c.colors.statusbar.private.fg = base00
-
-# Background color of the statusbar in private browsing mode.
-c.colors.statusbar.private.bg = base01
-
-# Foreground color of the statusbar in command mode.
-c.colors.statusbar.command.fg = base05
-
-# Background color of the statusbar in command mode.
-c.colors.statusbar.command.bg = base00
-
-# Foreground color of the statusbar in private browsing + command mode.
-c.colors.statusbar.command.private.fg = base05
-
-# Background color of the statusbar in private browsing + command mode.
-c.colors.statusbar.command.private.bg = base00
-
-# Foreground color of the statusbar in caret mode.
-c.colors.statusbar.caret.fg = base00
-
-# Background color of the statusbar in caret mode.
-c.colors.statusbar.caret.bg = base0E
-
-# Foreground color of the statusbar in caret mode with a selection.
-c.colors.statusbar.caret.selection.fg = base00
-
-# Background color of the statusbar in caret mode with a selection.
-c.colors.statusbar.caret.selection.bg = base0D
-
-# Background color of the progress bar.
-c.colors.statusbar.progress.bg = base0D
-
-# Default foreground color of the URL in the statusbar.
-c.colors.statusbar.url.fg = base05
-
-# Foreground color of the URL in the statusbar on error.
-c.colors.statusbar.url.error.fg = base08
-
-# Foreground color of the URL in the statusbar for hovered links.
-c.colors.statusbar.url.hover.fg = base05
-
-# Foreground color of the URL in the statusbar on successful load
-# (http).
-c.colors.statusbar.url.success.http.fg = base0C
-
-# Foreground color of the URL in the statusbar on successful load
-# (https).
-c.colors.statusbar.url.success.https.fg = base0B
-
-# Foreground color of the URL in the statusbar when there's a warning.
-c.colors.statusbar.url.warn.fg = base0E
-
-# Background color of the tab bar.
-c.colors.tabs.bar.bg = base00
-
-# Color gradient start for the tab indicator.
-c.colors.tabs.indicator.start = base0D
-
-# Color gradient end for the tab indicator.
-c.colors.tabs.indicator.stop = base0C
-
-# Color for the tab indicator on errors.
-c.colors.tabs.indicator.error = base08
-
-# Foreground color of unselected odd tabs.
-c.colors.tabs.odd.fg = base05
-
-# Background color of unselected odd tabs.
-c.colors.tabs.odd.bg = base01
-
-# Foreground color of unselected even tabs.
-c.colors.tabs.even.fg = base05
-
-# Background color of unselected even tabs.
-c.colors.tabs.even.bg = base00
-
-# Background color of pinned unselected even tabs.
-c.colors.tabs.pinned.even.bg = base0C
-
-# Foreground color of pinned unselected even tabs.
-c.colors.tabs.pinned.even.fg = base07
-
-# Background color of pinned unselected odd tabs.
-c.colors.tabs.pinned.odd.bg = base0B
-
-# Foreground color of pinned unselected odd tabs.
-c.colors.tabs.pinned.odd.fg = base07
-
-# Background color of pinned selected even tabs.
-c.colors.tabs.pinned.selected.even.bg = base02
-
-# Foreground color of pinned selected even tabs.
-c.colors.tabs.pinned.selected.even.fg = base05
-
-# Background color of pinned selected odd tabs.
-c.colors.tabs.pinned.selected.odd.bg = base02
-
-# Foreground color of pinned selected odd tabs.
-c.colors.tabs.pinned.selected.odd.fg = base05
-
-# Foreground color of selected odd tabs.
-c.colors.tabs.selected.odd.fg = base05
-
-# Background color of selected odd tabs.
-c.colors.tabs.selected.odd.bg = base02
-
-# Foreground color of selected even tabs.
-c.colors.tabs.selected.even.fg = base05
-
-# Background color of selected even tabs.
-c.colors.tabs.selected.even.bg = base02
-
-# Background color for webpages if unset (or empty to use the theme's
-# color).
-# c.colors.webpage.bg = base00

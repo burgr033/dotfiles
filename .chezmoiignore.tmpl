@@ -1,36 +1,33 @@
 README.md
 LICENSE
 {{if ne .chezmoi.os "windows" -}}
-Documents/
-.glaze-wm/
-AppData/
-{{- if eq .isServer "true" }}
-.local/bin/*_gui
-.local/bin/i3exit
-.Xresources
-.config/alacritty
-.config/dunst
-.config/i3
-.config/polybar
-.config/qutebrowser
-.config/ranger
-.config/rofi
-.config/picom.conf
-{{- end}}
+  Documents/
+  .glaze-wm/
+  AppData/
+  {{- if eq .isServer "true" }}
+    .local/bin/*_gui
+    .local/bin/i3exit
+    .Xresources
+    .config/alacritty
+    .config/dunst
+    .config/i3
+    .config/polybar
+    .config/qutebrowser
+    .config/ranger
+    .config/rofi
+    .config/picom.conf
+  {{- end}}
 {{- end}}
 {{if ne .chezmoi.os "linux" -}}
-*
-!Documents/
-!.glaze-wm/
-!AppData/
-!.gitconfig
+  *
+  !Documents/
+  !.glaze-wm/
+  !AppData/
+  !.gitconfig
 {{- end}}
-{{ if ne .shell "zsh" }}
-.zshrc
-{{ end }}
 {{ if ne .shell "fish" }}
-.config/omf
-.config/fish
+  .config/omf
+  .config/fish
 {{ end }}
 
 .chezmoiscripts/*/**

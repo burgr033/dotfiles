@@ -37,7 +37,7 @@
   "profiles": {
     "defaults": {
       "adjustIndistinguishableColors": "indexed",
-      "colorScheme": "Catppuccin Mocha",
+      "colorScheme": "ForestAlacritty",
       "font": {
         "face": "Iosevka Nerd Font",
         "size": 10.0,
@@ -212,6 +212,29 @@
       "selectionBackground": "#FFFFFF",
       "white": "#EEE8D5",
       "yellow": "#B58900"
+    },
+    {
+      "background": "#2B3339",
+      "black": "#4B565C",
+      "blue": "#7FBBB3",
+      "brightBlack": "#4B565C",
+      "brightBlue": "#7FBBB3",
+      "brightCyan": "#83C092",
+      "brightGreen": "#A7C080",
+      "brightPurple": "#D39BB6",
+      "brightRed": "#E67E80",
+      "brightWhite": "#D3C6AA",
+      "brightYellow": "#DBBC7F",
+      "cursorColor": "#FFFFFF",
+      "cyan": "#83C092",
+      "foreground": "#D3C6AA",
+      "green": "#A7C080",
+      "name": "ForestAlacritty",
+      "purple": "#D699B6",
+      "red": "#E67E80",
+      "selectionBackground": "#FFFFFF",
+      "white": "#D3C6AA",
+      "yellow": "#DBBC7F"
     },
     {
       "background": "#FDF6E3",

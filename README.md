@@ -4,7 +4,6 @@ These are my personal dotfiles.
 
 Configs included:
 * Linux
-  * zsh
   * alacritty
   * bat
   * dunst

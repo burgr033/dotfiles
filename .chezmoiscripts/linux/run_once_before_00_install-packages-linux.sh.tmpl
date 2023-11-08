@@ -63,7 +63,7 @@ printf "this is no amd64 arch. Lazygit and delta missing! Install manually"
      "gdu"
      "tree"
      "units"
-     "zsh" -}}
+     -}}
 	 
 {{ $classicSnaps := list
 	"nvim" -}}
@@ -114,7 +114,7 @@ printf "this is no amd64 arch. Lazygit and delta missing! Install manually"
      "tree"
      "lazygit"
      "bottom"
-     "zsh" -}}
+     -}}
 
 
 {{ $sudo }}sudo pacman --needed --noconfirm -Sy {{ $packages_arch | join " " }}
