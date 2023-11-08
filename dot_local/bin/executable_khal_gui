@@ -1,3 +1,3 @@
-#!/bin/zsh
+#!/bin/bash
 
 i3-sensible-terminal --class khal -e khal interactive

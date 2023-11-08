@@ -12,10 +12,11 @@ yellow = #F9E2AF
 highlight = #89B4FA
 
 [bar/main]
+dpi = ${xrdb:Xft.dpi:96}
 bottom = false
 fixed-center = true
 width = 100%
-height = 28
+height = 4%
 offset-x = 0%
 offset-y = 0%
 background = ${color.background}
@@ -284,7 +285,6 @@ exec = ~/.config/polybar/scripts/count-updates.sh
 interval = 30
 format = <label>
 format-background = ${color.background}
-#format-foreground = ${color.foreground}
 format-padding = 1
 label = %output%
 

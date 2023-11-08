@@ -3,7 +3,7 @@
 {{ $isServer := false }}
 {{ $isMobile := false }}
 {{ $manualSetup := false }}
-{{ $shell := "null" }}
+{{ $shell := "fish" }}
 
 {{- $email := promptStringOnce . "email" "Email" "simon@burgr.io" }}
 {{- $name := promptStringOnce . "name" "Name" "sb" }}
@@ -30,12 +30,9 @@
 
 {{- end }}
 
-{{- if eq .chezmoi.os "linux" }}
-
-        {{- $shell = promptStringOnce . "shell" "Which shell? (fish or zsh)" "fish"}}
-
+{{if ne .chezmoi.os "linux" -}}
+        $shell = "pwsh" 
 {{- end}}
-
 [data]
         name =  "{{ $name }}"
         email = "{{ $email }}"

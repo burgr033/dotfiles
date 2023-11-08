@@ -1,3 +1,1 @@
-#!/bin/zsh
-
 i3-sensible-terminal --class ncspot -e ncspot

@@ -2,9 +2,6 @@
 echo ""
 set -eufo pipefail
 SHELL_PATH=""
-{{if eq .shell "zsh"}}
-SHELL_PATH="$(which zsh)"
-{{end}}
 {{if eq .shell "fish"}}
 if ! grep --quiet "$(which fish)" /etc/shells; then
     sudo "$(which bash)" -c 'echo "$(which fish)" >> /etc/shells'
