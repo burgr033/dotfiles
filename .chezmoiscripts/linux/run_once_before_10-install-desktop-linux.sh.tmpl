@@ -7,7 +7,6 @@ set -e # Exit on error
 {{ $pacman_packages := list
     "i3-wm"
         "feh"
-        "xfce4-power-manager"
         "picom"
         "ly"
         "i3lock"
@@ -64,11 +63,14 @@ if ! command -v yay &> /dev/null
 
 
 printf '\nUpdating pacman packages. Root privileges needed.\n'
-{{ $sudo }} pacman -Syu --noconfirm --needed {{ $pacman_packages | join " " }}
+{{ $sudo }} pacman -Syu --noconfirm
+printf '\nUpdating pacman packages. Root privileges needed.\n'
+{{ $sudo }} pacman -S --noconfirm --needed {{ $pacman_packages | join " " }}
+{{ $sudo }} pacman -S --noconfirm --needed xfce4-power-manager --assume-installed xfce4-notifyd
 
 
 printf '\nUpdating yay packages. Root privileges needed.\n'
-yay --noconfirm -Syu --needed {{ $yay_packages | join " " }}
+yay --noconfirm -S --needed {{ $yay_packages | join " " }}
 
 printf '\n installing ly as service\n'
 sudo systemctl enable ly.service
