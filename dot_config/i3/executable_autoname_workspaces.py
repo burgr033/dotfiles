@@ -22,6 +22,7 @@ import sys
 #   http://fortawesome.github.io/Font-Awesome/icons/
 MDI_TERMINAL = 	'󰆍 '
 MDI_CHROME = 	'󰊯 '
+MDI_FIREFOX = 	'󰈹 '
 MDI_CODE = 	'󰨞 '
 MDI_EDITOR = 	'󱞂 '
 MDI_SPOTIFY = 	'󰓇 '
@@ -43,13 +44,14 @@ MDI_CHAT = 	'󰻞 '
 MDI_SIGNAL = 	'󰻞 '
 MDI_LISTEN = 	'󰋋 '
 MDI_PODCAST = 	'󰦔 '
-MDI_PAINT = 	'󰉼 '
+MDI_PAINT = 	'󰽉 '
 MDI_TEAMS = 	'󰊻 '
-MDI_MANJARO = 	'󰏖 '
+MDI_MANJARO = 	' '
 MDI_NORMAL = 	'󰘔 '
  
 WINDOW_ICONS = {
     'urxvt': MDI_TERMINAL,
+    'firefox': MDI_FIREFOX,
     'Alacritty': MDI_TERMINAL,
     'Steam': MDI_STEAM,
     'qutebrowser': MDI_BROWSER,
@@ -90,7 +92,7 @@ def xprop(win_id, property):
         prop = proc.check_output(['xprop', '-id', str(win_id), property], stderr=proc.DEVNULL)
         prop = prop.decode('utf-8')
         return re.findall('"([^"]+)"', prop)
-    except proc.CalledProcessError as e:
+    except proc.CalledProcessError:
         print("Unable to get property for window '%s'" % str(win_id))
         return None
 

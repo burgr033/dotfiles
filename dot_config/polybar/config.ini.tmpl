@@ -33,9 +33,9 @@ font-1 = "Material Design Icons:size=10;3"
 modules-left = i3
 #modules-center = title
 {{- if eq .isMobile "true"}}
-modules-right = updates sep memory sep cpu sep battery sep bluetooth sep wireless-network-info sep wireless-network-speed sep alsa sep date
+modules-right = updates sep battery sep bluetooth sep wireless-network-info sep alsa sep date
 {{else}}
-modules-right = updates sep memory sep cpu sep wired-network-speed sep alsa sep date
+modules-right = updates sep wired-network-info sep alsa sep date
 {{- end}}
 dim-value = 1.0
 wm-name = i3
@@ -44,7 +44,7 @@ override-redirect = false
 enable-ipc = true
 
 [settings]
-screenchange-reload = false
+screenchange-reload = true
 compositing-background = source
 compositing-foreground = over
 compositing-border = over
@@ -138,6 +138,7 @@ interval = 2
 format-padding = 1
 format-background = ${color.background}
 format-foreground = ${color.foreground}
+
 #################################################
 
 [module/date]
@@ -151,29 +152,6 @@ format-padding = 1
 label = "󱛡 %time%"
 
 ########################################################
-
-[module/cpu]
-type = internal/cpu
-interval = 0.5
-warn-percentage = 95
-label = 󰧑 %percentage%%
-label-warn = 󰧑 %percentage%%
-label-warn-foreground = ${color.red}
-label-padding = 1
-
-########################################################
-
-[module/memory]
-type = internal/memory
-interval = 3
-warn-percentage = 95
-label = 󰍛 %percentage_used%%
-label-warn = 󰍛 %percentage_used%%
-label-warn-foreground = ${color.red}
-label-padding = 1
-
-########################################################
-
 
 [module/i3]
 type = internal/i3
@@ -204,29 +182,10 @@ label-urgent-padding = 1
 
 ########################################################
 
-[module/wired-network-speed]
-type = internal/network
+[module/wired-network-info]
+inherit = network-base
 interface-type = wired
-interval = 1.0
-accumulate-stats = true
-unknown-as-up = true
-format-connected-background = ${color.background}
-format-connected-foreground = ${color.foreground}
-format-connected-padding = 1
-label-connected = "󰄠 %downspeed%"
-
-########################################################
-
-[module/wireless-network-speed]
-type = internal/network
-interface-type = wireless
-interval = 1.0
-accumulate-stats = true
-unknown-as-up = true
-format-connected-background = ${color.background}
-format-connected-foreground = ${color.foreground}
-format-connected-padding = 1
-label-connected = "󰄠 %downspeed%"
+label-connected = %ifname% %local_ip%
 
 ########################################################
 
