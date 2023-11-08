@@ -230,7 +230,7 @@ schemes:
       white:   '#d8d3ba'
 
 # Apply
-colors: *everforest_dark_medium
+colors: *everforest_dark_hard
 
 # Visual Bell
 #
