@@ -1,3 +1,5 @@
+config.load_autoconfig()
+
 def get_pallet(scheme = 'dark', intensity = 'hard'):
     if scheme not in ('dark', 'light'):
         raise RuntimeError('Schme must be one of "dark", "light".')
