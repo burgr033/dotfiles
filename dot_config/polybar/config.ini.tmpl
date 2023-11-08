@@ -183,9 +183,9 @@ label-urgent-padding = 1
 ########################################################
 
 [module/wired-network-info]
-inherit = network-base
 interface-type = wired
-label-connected = %ifname% %local_ip%
+interval = 5.0
+label-connected =  󰈀 %local_ip%
 
 ########################################################
 
@@ -199,13 +199,12 @@ format-connected = <ramp-signal> <label-connected>
 format-connected-background = ${color.background}
 format-connected-foreground = ${color.foreground}
 format-connected-padding = 1
+label-connected = "%essid% %local_ip%"
 format-disconnected = <label-disconnected>
-format-disconnected-prefix = X
 format-disconnected-background = ${color.background}
 format-disconnected-foreground = ${color.foreground}
 format-disconnected-padding = 1
-label-connected = "%essid%"
-label-disconnected = ""
+label-disconnected = 󰤮
 ramp-signal-0 = 󰤯
 ramp-signal-0-foreground = ${color.red}
 ramp-signal-1 = 󰤟
