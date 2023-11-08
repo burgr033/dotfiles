@@ -268,21 +268,21 @@
     # Context menu.
     context = ctrl+shift+period
     [global]
-    frame_color = "#89B4FA"
+    frame_color = "#4F5B58"
     separator_color= frame
 
     [urgency_low]
-    background = "#1E1E2E"
-    foreground = "#CDD6F4"
+    background = "#1E2326"
+    foreground = "#D3C6AA"
 
     [urgency_normal]
-    background = "#1E1E2E"
-    foreground = "#CDD6F4"
+    background = "#1E2326"
+    foreground = "#D3C6AA"
 
     [urgency_critical]
-    background = "#1E1E2E"
-    foreground = "#CDD6F4"
-    frame_color = "#FAB387"
+    background = "#1E2326"
+    foreground = "#D3C6AA"
+    frame_color = "#E67E80"
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
