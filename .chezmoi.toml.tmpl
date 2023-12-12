@@ -5,14 +5,22 @@
 {{ $manualSetup := false }}
 {{ $shell := "fish" }}
 
+{{- if $stdinIsATTY }}
+{{ $defaultVirtual := false }}
+{{ else }}
+{{ $defaultVirtual := true }}
+{{ $isServer := true }}
+{{ $isWorkMachine := true }}
+
+
 {{- $email := promptStringOnce . "email" "Email" "simon@burgr.io" }}
 {{- $name := promptStringOnce . "name" "Name" "sb" }}
 
-{{- $isVirtual := promptBoolOnce . "isVirtual" "is this a virtual machine (y/n)" }}
+{{- $isVirtual := promptBoolOnce . "isVirtual" "is this a virtual machine (y/n)" $defaultVirtual }}
 
 {{- if $isVirtual}}
 
-  {{- $isServer = promptBoolOnce . "isServer" "is this machine headless (y/n)" }}
+  {{- $isServer := promptBoolOnce . "isServer" "is this machine headless (y/n)" }}
 
 {{- end}}
 
