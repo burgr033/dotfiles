@@ -33,7 +33,7 @@
         {{- $manualSetup = promptBoolOnce . "manualSetup" "Do you want to setup this machine manually (y/n)" }}
     {{- end }}
 {{- end -}}
-{{- writeToStdout $name -}}
+{{- writeToStdout $isVirtual -}}
 [data]
         name =  "{{ $name }}"
         email = "{{ $email }}"
