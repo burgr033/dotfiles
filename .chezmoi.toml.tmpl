@@ -5,13 +5,13 @@
 {{ $manualSetup := false }}
 {{ $shell := "fish" }}
 
-{{- if $stdinIsATTY }}
+{{- if stdinIsATTY }}
 {{ $defaultVirtual := false }}
 {{ else }}
 {{ $defaultVirtual := true }}
 {{ $isServer := true }}
 {{ $isWorkMachine := true }}
-
+{{ end }}
 
 {{- $email := promptStringOnce . "email" "Email" "simon@burgr.io" }}
 {{- $name := promptStringOnce . "name" "Name" "sb" }}
