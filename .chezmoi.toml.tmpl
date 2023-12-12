@@ -2,7 +2,7 @@
 
 {{/* boolean feature tags */}}
 {{- $isVirtual := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
-{{ $isMobile := false }}{{/* true if this is a machine that is not a laptop */}}
+{{- $isMobile := false -}}{{/* true if this is a machine that is not a laptop */}}
 {{- $personal := false -}}{{/* true if this machine should have personal secrets */}}
 {{ $shell := "fish" }}
 {{- "" -}}
@@ -33,7 +33,7 @@
         {{- $manualSetup = promptBoolOnce . "manualSetup" "Do you want to setup this machine manually (y/n)" }}
     {{- end }}
 {{- end -}}
-
+{{- writeToStdout $name -}}
 [data]
         name =  "{{ $name }}"
         email = "{{ $email }}"
