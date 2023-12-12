@@ -1,46 +1,50 @@
 # -*-mode:conf-toml-*- vim:ft=toml
 
-{{ $isServer := false }}
-{{ $isMobile := false }}
-{{ $manualSetup := false }}
-{{ $shell := "fish" }}
-
 {{- if stdinIsATTY }}
-{{ $defaultVirtual := false }}
-{{ else }}
-{{ $defaultVirtual := true }}
-{{ $isServer := true }}
-{{ $isWorkMachine := true }}
-{{ end }}
+  {{ $isServer := false }}
+  {{ $isMobile := false }}
+  {{ $manualSetup := false }}
+  {{ $shell := "fish" }}
+  {{- $email := promptStringOnce . "email" "Email" "simon@burgr.io" }}
+  {{- $name := promptStringOnce . "name" "Name" "sb" }}
+  
+  {{- $isVirtual := promptBoolOnce . "isVirtual" "is this a virtual machine (y/n)" }}
+  
+  {{- if $isVirtual}}
+  
+    {{- $isServer := promptBoolOnce . "isServer" "is this machine headless (y/n)" }}
+  
+  {{- end}}
+  
+  {{- if not $isVirtual}}
+  
+    {{- $isMobile = promptBoolOnce . "isMobile" "is this a a laptop with wifi? (y/n)" }}
+  
+  {{- end}}
+  
+  {{- $isWorkMachine := promptBoolOnce . "isWorkMachine" "is this a work machine (y/n)" }}
+  
+  {{- if $isWorkMachine }}
+  
+    {{- $manualSetup = promptBoolOnce . "manualSetup" "Do you want to setup this machine manually (y/n)" }}
+  
+  {{- end }}
+  
+  {{if ne .chezmoi.os "linux" -}}
+          {{ $shell = "pwsh"  }}
+  {{- end}}
 
-{{- $email := promptStringOnce . "email" "Email" "simon@burgr.io" }}
-{{- $name := promptStringOnce . "name" "Name" "sb" }}
-
-{{- $isVirtual := promptBoolOnce . "isVirtual" "is this a virtual machine (y/n)" $defaultVirtual }}
-
-{{- if $isVirtual}}
-
-  {{- $isServer := promptBoolOnce . "isServer" "is this machine headless (y/n)" }}
-
+{{- else}}
+{{ $name = "sb" }}
+{{ $email = "simon@burgr.io" }}
+{{ shell = "fish" }}
+{{ isServer = "false" }}
+{{ isWorkMachine = "true" }}
+{{ manualSetup = "false" }}
+{{ isVirtual = "true" }}
+{{ isMobile = "false" }}
 {{- end}}
 
-{{- if not $isVirtual}}
-
-  {{- $isMobile = promptBoolOnce . "isMobile" "is this a a laptop with wifi? (y/n)" }}
-
-{{- end}}
-
-{{- $isWorkMachine := promptBoolOnce . "isWorkMachine" "is this a work machine (y/n)" }}
-
-{{- if $isWorkMachine }}
-
-  {{- $manualSetup = promptBoolOnce . "manualSetup" "Do you want to setup this machine manually (y/n)" }}
-
-{{- end }}
-
-{{if ne .chezmoi.os "linux" -}}
-        {{ $shell = "pwsh"  }}
-{{- end}}
 [data]
         name =  "{{ $name }}"
         email = "{{ $email }}"
