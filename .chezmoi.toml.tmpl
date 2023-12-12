@@ -23,10 +23,10 @@
 
 {{- if $isVirtual -}}
     {{-  $email := "simon@burgr.io" -}}
-    {{-  $name := "sb" }}
+    {{-  $name = "sb" }}
 {{- else -}}
     {{- $email := promptStringOnce . "email" "Email" "simon@burgr.io" }}
-    {{- $name := promptStringOnce . "name" "Name" "sb" }}
+    {{- $name = promptStringOnce . "name" "Name" "sb" }}
     {{- $isMobile = promptBoolOnce . "isMobile" "is this a a laptop with wifi? (y/n)" }}
     {{- $isWorkMachine := promptBoolOnce . "isWorkMachine" "is this a work machine (y/n)" }}
     {{- if $isWorkMachine }}
