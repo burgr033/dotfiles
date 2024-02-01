@@ -5,9 +5,24 @@ set -e # Exit on error
 {{- if eq .chezmoi.hostname "apophis" }}
 {{- if or (eq .chezmoi.osRelease.id "manjaro") (eq .chezmoi.osRelease.id "arch")}}
 
+{{ $sudo := "sudo " -}}
+{{ if eq .chezmoi.username "root" -}}
+{{  $sudo = "" -}}
+{{ end -}}
+
+curl -O https://blackarch.org/strap.sh
+chmod +x strap.sh
+sudo ./strap.sh
+
 {{ $pacman_packages := list
         "feh"
-        "xfce"
+        "xfce4"
+        "blackmate"
+        "xfce4-goodies"
+        "libxfce4util"
+        "libxfce4windowing"
+        "xarchiver"
+        "blackarch-config-xfce"
         "ly"
         "make"
         "xorg-xauth"
@@ -24,13 +39,9 @@ set -e # Exit on error
 -}}
 
 {{ $yay_packages := list
-    "autotiling"
-    "ttf-material-design-icons-extended" -}}
+    "zenmap" -}}
 
-{{ $sudo := "sudo " -}}
-{{ if eq .chezmoi.username "root" -}}
-{{  $sudo = "" -}}
-{{ end -}}
+
 
 
 if ! command -v yay &> /dev/null
