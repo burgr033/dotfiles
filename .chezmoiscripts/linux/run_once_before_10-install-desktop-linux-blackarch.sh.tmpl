@@ -1,38 +1,25 @@
 #!/bin/bash
-{{- if eq .manualSetup "false" }}
 set -e # Exit on error
+{{- if eq .manualSetup "false" }}
 {{- if eq .isServer "false" }}
-{{- if ne .chezmoi.hostname "apophis" }}
+{{- if eq .chezmoi.hostname "apophis" }}
 {{- if or (eq .chezmoi.osRelease.id "manjaro") (eq .chezmoi.osRelease.id "arch")}}
 
 {{ $pacman_packages := list
-    "i3-wm"
         "feh"
-        "picom"
+        "xfce"
         "ly"
-        "i3lock"
         "make"
         "xorg-xauth"
         "gcc"
         "base-devel"
-        "gnome-keyring"
-        "polkit-gnome"
         "xss-lock"
-        "alacritty"
-        "dunst"
-        "rofi"
         "xorg-xrdb"
-        "ranger"
         "pacman-contrib"
         "qutebrowser"
-        "polybar"
         "zathura"
-        "aerc"
         "ttf-iosevka-nerd"
         "xorg-server"
-        "unclutter"
-        "mpv"
-        "khal"
         "obsidian"
 -}}
 
@@ -67,7 +54,6 @@ printf '\nUpdating pacman packages. Root privileges needed.\n'
 {{ $sudo }} pacman -Syu --noconfirm
 printf '\nUpdating pacman packages. Root privileges needed.\n'
 {{ $sudo }} pacman -S --noconfirm --needed {{ $pacman_packages | join " " }}
-{{ $sudo }} pacman -S --noconfirm --needed xfce4-power-manager --assume-installed xfce4-notifyd
 
 
 printf '\nUpdating yay packages. Root privileges needed.\n'
@@ -86,4 +72,3 @@ printf 'You can add it in `run_onchange_install-packages.sh`.\n'
 {{ end -}}
 {{ end -}}
 {{ end -}}
-
