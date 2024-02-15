@@ -1,0 +1,75 @@
+set scrolloff=10
+set relativenumber
+set showmode
+set showcmd
+set visualbell
+set clipboard+=unnamed
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+let mapleader = " "
+set surround
+set highlightedyank
+set easymotion
+set notimeout
+set which-key
+set nerdtree
+
+" general
+map <leader>/ <action>(CommentByLineComment)
+
+" open nerdtree
+map <leader>e :NERDTreeToggle<CR>
+
+" File navigation
+map <leader>ff <action>(GotoFile)
+map <leader>fr <action>(RecentFiles)
+map <leader>fc <action>(FindInPath)
+map <leader>fl <action>(RecentLocations)
+map <leader>q <action>(CloseContent)
+
+" saving
+map <leader>w :w!<CR>
+
+" running
+map <leader>rr <action>(Run)
+
+" easymotion
+map <leader>j <Plug>(easymotion-s)
+
+" symbols and stuff
+map <leader>la <action>(ShowIntentionActions)
+nmap <leader>ld <Action>(GotoDeclaration)
+nmap <leader>ly <Action>(GotoTypeDeclaration)
+nmap <leader>li <Action>(GotoImplementation)
+nmap <leader>lt <Action>(GotoTest)
+nmap <leader>lf <Action>(Back)
+nmap <leader>lb <Action>(Forward)
+
+" git
+map <leader>gc <Action>(CheckinProject)
+map <leader>gs <Action>(ActivateVersionControlToolWindow)
+map <leader>gb <Action>(Git.Branches)
+
+" Pane navigation
+nnoremap <C-Left> <C-w>h
+nnoremap <C-Down> <C-w>l
+nnoremap <C-Up> <C-w>k
+nnoremap <C-Right> <C-w>j
+nnoremap <C-Tab> :tabnext<CR>
+nnoremap <S-Tab> :tabprevious<CR>
+
+" Window splits
+map <leader>wv <Action>(SplitVertically)
+map <leader>ws <Action>(SplitHorizontally)
+map <leader>wu <Action>(Unsplit)
+map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
+
+" Folding
+map <leader>zc :action CollapseAllRegions<CR>
+map <leader>zo :action ExpandAllRegions<CR>
+
+" Easy visual indentation
+vnoremap < <gv
+vnoremap > >gv
