@@ -60,11 +60,11 @@ nnoremap <C-Right> <C-w>j
 nnoremap <C-Tab> :tabnext<CR>
 nnoremap <S-Tab> :tabprevious<CR>
 
-" Window splits
-map <leader>wv <Action>(SplitVertically)
-map <leader>ws <Action>(SplitHorizontally)
-map <leader>wu <Action>(Unsplit)
-map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
+" Buffer splits
+map <leader>bv <Action>(SplitVertically)
+map <leader>bs <Action>(SplitHorizontally)
+map <leader>bu <Action>(Unsplit)
+map <leader>bm <Action>(MoveEditorToOppositeTabGroup)
 
 " Folding
 map <leader>zc :action CollapseAllRegions<CR>
