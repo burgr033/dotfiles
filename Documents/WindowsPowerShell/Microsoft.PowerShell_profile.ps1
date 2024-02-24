@@ -68,7 +68,8 @@ Register-ArgumentCompleter -CommandName ssh,scp,sftp -Native -ScriptBlock {
 	| ForEach-Object { [CompletionResult]::new((&$generateCompletionText($_)), $_, [CompletionResultType]::ParameterValue, $_) }
 }
 
-
+Set-Alias ll ls
+remove-alias r
 function batcat
 {
 	bat --plain $args

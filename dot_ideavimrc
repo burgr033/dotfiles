@@ -1,6 +1,5 @@
 set scrolloff=10
 set relativenumber
-set showmode
 set showcmd
 set number
 set visualbell
@@ -15,6 +14,7 @@ set highlightedyank
 set notimeout
 set which-key
 set nerdtree
+set showmodewidget
 
 " general
 let g:WhichKeyDesc_Comment = "<leader>/ #️⃣Comment"
@@ -50,6 +50,11 @@ nmap <leader>ly <Action>(GotoTypeDeclaration)
 nmap <leader>li <Action>(GotoImplementation)
 nmap <leader>lt <Action>(GotoTest)
 nmap <leader>lf <Action>(ReformatCode)
+
+" Definition
+let g:WhichKeyDesc_Describe = "<leader>? 🖥️️Describe"
+nnoremap <Leader>? :action ShowHoverInfo<CR>
+vnoremap <Leader>? :action ShowHoverInfo<CR>
 
 " terminal
 let g:WhichKeyDesc_Terminal = "<leader>t 🖥️️️Terminal"
