@@ -26,7 +26,7 @@ Configs included:
 #### steps
 1. get chezmoi
     ```shell
-    sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply cigh033
+    sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply burgr033
     ```
 ### apply dotfiles (windows)
 #### Steps
@@ -40,5 +40,5 @@ Configs included:
     ```
 3. init & apply dotfiles
     ```shell
-    chezmoi init cigh033 --apply
+    chezmoi init burgr033 --apply
     ```
