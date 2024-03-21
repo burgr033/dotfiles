@@ -15,6 +15,7 @@ scoop bucket add nerd-fonts
 # Install essentials
 $scoop_packages = @(
 "chezmoi",
+"starship",
 "Iosevka-NF"
 "7zip",
 "innounp",
@@ -71,5 +72,9 @@ foreach($package in $scoop_packages){scoop install $package}
 
 # Delete chezmoi binary from bootstrap
 Remove-Item ~/bin/chezmoi.exe -ErrorAction SilentlyContinue
+
+# Add Starship to Profile
+echo "Invoke-Expression (&starship init powershell)" >> $PROFILE
+
 {{- end }}
 {{- end }}

@@ -18,7 +18,7 @@ LICENSE
     .config/picom.conf
   {{- end}}
 {{- end}}
-{{if ne .chezmoi.os "linux" -}}
+{{if eq .chezmoi.os "windows" -}}
   *
   !Documents/
   !.glaze-wm/
