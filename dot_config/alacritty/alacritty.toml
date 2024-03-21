@@ -238,9 +238,9 @@ builtin_box_drawing = true
 # colors primary
 # This section documents the [colors.primary] table of the configuration file.
 
-[colors]
-#foreground = "#d8d8d8"
-#background = "#181818"
+[colors.primary]
+background = "#282c34"
+foreground = "#dcdfe4"
 #dim_foreground = "#828482"
 #bright_foreground = "None"
 #cursor = { text = "CellBackground", cursor = "CellForeground" }
