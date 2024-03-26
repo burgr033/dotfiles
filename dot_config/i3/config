@@ -208,6 +208,7 @@ bindsym $mod+l exec i3lock
 # Autostart applications
 exec --no-startup-id setxkbmap de
 exec --no-startup-id xset b off 
+exec --no-startup-id gensystray
 exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/* -z
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock
 exec --no-startup-id picom -b --config $HOME/.config/picom.conf

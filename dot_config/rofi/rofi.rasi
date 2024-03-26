@@ -1,15 +1,15 @@
 * {
-    bg-col:  #2E383C;
-    bg-col-light: #4F5B58;
-    border-col: #1E2326;
-    selected-col: #272E33;
-    blue: #7FBBB3;
-    fg-col: #D3C6AA;
-    fg-col2: #9DA9A0;
-    grey: #859289;
+    bg-col:  #282c34;
+    bg-col-light: #393d45;
+    border-col: #393d45;
+    selected-col: #61afef;
+    blue: #61afef;
+    fg-col: #dcdfe4;
+    fg-col2: #dcdfe4;
+    grey: #dcdfe4;
     width: 600;
 
-  font: "JetBrains Mono Nerd Font 9";
+  font: "JetBrains Mono Nerd Font 12";
 }
 
 element-text, element-icon , mode-switcher {
@@ -59,7 +59,7 @@ listview {
     border: 0px 0px 0px;
     padding: 6px 0px 0px;
     margin: 10px 0px 0px 20px;
-    columns: 2;
+    columns: 1;
     lines: 5;
     background-color: @bg-col;
 }

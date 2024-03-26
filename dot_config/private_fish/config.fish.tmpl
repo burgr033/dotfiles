@@ -4,6 +4,9 @@ if status is-interactive
     alias vim="nvim"
     {{- if eq .isServer "false"}}
     set TERM "alacritty"
+    export TERM
+    set GPG_TTY $(tty)
+    export GPG_TTY
     {{- end}}
     {{ if (eq .chezmoi.osRelease.id "ubuntu") -}}
     alias cat="batcat --plain"
@@ -12,7 +15,9 @@ if status is-interactive
     {{end}}
     fish_add_path $HOME/.local/bin
     set EDITOR "nvim"
+    export EDITOR
     set VISUAL "nvim"
+    export VISUAL
     if not set -q DISPLAY
         if not set -q ZELLIJ                                                                                                                                                           
             if test "$ZELLIJ_AUTO_ATTACH" = "true"                                                                                                                                     
