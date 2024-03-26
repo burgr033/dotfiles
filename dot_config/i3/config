@@ -7,7 +7,7 @@ set $alt Mod4
 
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border pixel 1
+default_border pixel 2
 default_floating_border normal
 
 # Hide borders
@@ -133,15 +133,15 @@ bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 
 # Open specific applications in floating mode
-for_window [title="alsamixer"] floating enable border pixel 1
-for_window [class="calamares"] floating enable border normal
+for_window [title="alsamixer"] floating enable
+for_window [class="calamares"] floating enable
+for_window [class="Arandr"] floating enable resize set 640 480
 for_window [class="Clipgrab"] floating enable
 for_window [title="File Transfer*"] floating enable
-for_window [class="Galculator"] floating enable border pixel 1
-for_window [class="GParted"] floating enable border normal
+for_window [class="Galculator"] floating enable
+for_window [class="GParted"] floating enable
 for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Nitrogen"] floating enable sticky enable border normal
-for_window [class="Oblogout"] fullscreen enable
 for_window [class="octopi"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Simple-scan"] floating enable border normal
@@ -206,26 +206,26 @@ mode "resize" {
 bindsym $mod+l exec i3lock
 
 # Autostart applications
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id eval $(gnome-keyring-daemon --start)
 exec --no-startup-id setxkbmap de
+exec --no-startup-id xset b off 
 exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/* -z
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock
 exec --no-startup-id picom -b --config $HOME/.config/picom.conf
 exec --no-startup-id xfce4-power-manager --daemon
 exec --no-startup-id autotiling
 exec --no-startup-id unclutter
+exec --no-startup-id /opt/enpass/Enpass -minimize
 exec --no-startup-id $HOME/.config/polybar/launch.sh 
 exec --no-startup-id python ~/.config/i3/autoname_workspaces.py
 
 # Color Settings
 # class                 border  bground text    indicator child_border
-client.focused          #A7C080 #A7C080 #2D353B #A7C080   #A7C080
-client.focused_inactive #3D484D #2D353B #859289 #3D484D   #3D484D
-client.unfocused        #3D484D #2D353B #859289 #3D484D   #3D484D
-client.urgent           #E67E80 #E67E80 #2D353B #E67E80   #E67E80
-client.placeholder      #2D353B #2D353B #859289 #2D353B   #2D353B
-client.background       #2D353B
+client.focused          #98C379 #98C379 #282c34 #98C379   #98C379
+client.focused_inactive #282c34 #282c34 #dcdfe4 #282c34   #282c34
+client.unfocused        #282c34 #282c34 #dcdfe4 #282c34   #282c34
+client.urgent           #E67E80 #E67E80 #282c34 #E67E80   #E67E80
+client.placeholder      #282c34 #282c34 #dcdfe4 #282c34   #282c34
+client.background       #282c34
 # window styling
 # class                 border  bground 	text    	indicator child_border
 
@@ -234,11 +234,11 @@ client.background       #2D353B
 #############################
 
 # Set inner/outer gaps
-#gaps inner 14
-#gaps outer -2
-
+# gaps inner 10
+gaps inner 5
+gaps top 45
 # Smart gaps (gaps used if only more than one container on the workspace)
-#smart_gaps on
+# smart_gaps on
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace)
 

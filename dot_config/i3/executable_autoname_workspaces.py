@@ -39,8 +39,10 @@ MDI_EMAIL = 	'󰻤 '
 MDI_REMOTE = 	'󰢹 '
 MDI_STEAM = 	'󰓓 '
 MDI_CALENDAR = 	'󰃭 '
+MDI_GO       =  ' '
 MDI_SLACK = 	'󰒱 '
 MDI_CHAT = 	'󰻞 '
+MDI_TOOLBOX = '󰦬 '
 MDI_SIGNAL = 	'󰻞 '
 MDI_LISTEN = 	'󰋋 '
 MDI_PODCAST = 	'󰦔 '
@@ -50,6 +52,7 @@ MDI_MANJARO = 	' '
 MDI_NORMAL = 	'󰘔 '
  
 WINDOW_ICONS = {
+    'jetbrains-toolbox': MDI_TOOLBOX,
     'urxvt': MDI_TERMINAL,
     'firefox': MDI_FIREFOX,
     'Alacritty': MDI_TERMINAL,
@@ -63,6 +66,7 @@ WINDOW_ICONS = {
     'zathura': MDI_PDF,
     'ranger': MDI_FILES,
     'vim': MDI_VIM,
+    'jetbrains-goland': MDI_GO,
     'subl': MDI_EDITOR,
     'gvim': MDI_VIM,
     'nvim': MDI_VIM,

@@ -51,9 +51,9 @@ live_config_reload = true
 
 # Example:
 
-# [shell]
-# program = "/bin/zsh"
-# args = ["-l"]
+[shell]
+program = "/bin/fish"
+args = ["-l"]
 
 
 # ENV
@@ -169,7 +169,7 @@ title = "Alacritty"
 dynamic_title = true 
 decorations_theme_variant = "None"
 decorations = "Full"
-opacity = 0.9
+opacity = 0.99
 blur = true 
 
 
@@ -227,8 +227,8 @@ multiplier = 3
 # Default: true
 
 [font]
-normal = { family = "JetBrains Mono Nerd Font", style = "Italic" }
-size = 8
+normal = { family = "JetBrains Mono Nerd Font" }
+size = 12
 builtin_box_drawing = true 
 
 # COLORS
@@ -347,14 +347,14 @@ white = "#dcdfe4"
 # Defaults from Alacritty.org used.
 
 [colors.bright]
-black = "#282c34"
-red = "#e06c75"
-green = "#98c379"
-yellow = "#e5c07b"
-blue = "#61afef"
-magenta = "#c678dd"
-cyan = "#56b6c2"
-white = "#dcdfe4"
+black = "#7f848e"
+red = "#e45649"
+green = "#50a14f"
+yellow = "#c18401"
+blue = "#0184bc"
+magenta = "#a626a4"
+cyan = "#0997b3"
+white = "#fafafa"
 
 # BELL
 # This section documents the [bell] table of the configuration file.

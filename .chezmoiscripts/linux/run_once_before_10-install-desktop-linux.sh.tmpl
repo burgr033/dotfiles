@@ -31,6 +31,8 @@ set -e # Exit on error
         "ttf-jetbrains-mono-nerd"
         "xorg-server"
         "unclutter"
+        "arandr"
+        "pavucontrol"
         "mpv"
         "khal"
         "obsidian"
@@ -38,6 +40,7 @@ set -e # Exit on error
 
 {{ $yay_packages := list
     "autotiling"
+    "gensystray"
     "ttf-material-design-icons-extended" -}}
 
 {{ $sudo := "sudo " -}}

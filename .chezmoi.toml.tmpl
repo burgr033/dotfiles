@@ -7,29 +7,10 @@
 
 {{- $email := promptStringOnce . "email" "Email" "simon@burgr.io" }}
 {{- $name := promptStringOnce . "name" "Name" "sb" }}
-
 {{- $isVirtual := promptBoolOnce . "isVirtual" "is this a virtual machine (y/n)" }}
-
-{{- if $isVirtual}}
-
-  {{- $isServer = promptBoolOnce . "isServer" "is this machine headless (y/n)" }}
-
-{{- end}}
-
-{{- if not $isVirtual}}
-
-  {{- $isMobile = promptBoolOnce . "isMobile" "is this a a laptop with wifi? (y/n)" }}
-
-{{- end}}
-
+{{- $isServer = promptBoolOnce . "isServer" "is this machine headless (y/n)" }}
 {{- $isWorkMachine := promptBoolOnce . "isWorkMachine" "is this a work machine (y/n)" }}
-
-{{- if $isWorkMachine }}
-
-  {{- $manualSetup = promptBoolOnce . "manualSetup" "Do you want to setup this machine manually (y/n)" }}
-
-{{- end }}
-
+{{- $manualSetup = promptBoolOnce . "manualSetup" "Do you want to setup this machine manually (y/n)" }}
 {{if ne .chezmoi.os "linux" -}}
         {{ $shell = "pwsh"  }}
 {{- end}}
@@ -41,4 +22,3 @@
         isWorkMachine = "{{ $isWorkMachine }}"
         manualSetup = "{{ $manualSetup }}"
         isVirtual = "{{ $isVirtual }}"
-        isMobile = "{{ $isMobile }}"

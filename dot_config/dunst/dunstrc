@@ -268,20 +268,20 @@
     # Context menu.
     context = ctrl+shift+period
     [global]
-    frame_color = "#4F5B58"
+    frame_color = "#282c34"
     separator_color= frame
 
     [urgency_low]
-    background = "#1E2326"
-    foreground = "#D3C6AA"
+    background = "#282c34"
+    foreground = "#dcdfe4"
 
     [urgency_normal]
-    background = "#1E2326"
-    foreground = "#D3C6AA"
+    background = "#282c34"
+    foreground = "#dcdfe4"
 
     [urgency_critical]
-    background = "#1E2326"
-    foreground = "#D3C6AA"
+    background = "#282c34"
+    foreground = "#dcdfe4"
     frame_color = "#E67E80"
 
 # Every section that isn't one of the above is interpreted as a rules to
