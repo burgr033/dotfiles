@@ -8,19 +8,25 @@ set -e # Exit on error
 {{ $pacman_packages := list
     "i3-wm"
         "feh"
+        "network-manager-applet"
         "picom"
         "ly"
+        "xclip"
         "i3lock"
         "make"
         "xorg-xauth"
         "gcc"
         "base-devel"
-        "gnome-keyring"
-        "polkit-gnome"
         "xss-lock"
         "alacritty"
         "dunst"
         "rofi"
+        "firefox"
+        "gopass"
+        "git-credential-gopass"
+        "xorg-xkill"
+        "xorg-xev"
+        "xorg-xinput"
         "xorg-xrdb"
         "ranger"
         "pacman-contrib"
@@ -34,14 +40,16 @@ set -e # Exit on error
         "arandr"
         "pavucontrol"
         "mpv"
-        "khal"
+        "tailscale"
         "obsidian"
 -}}
 
 {{ $yay_packages := list
     "autotiling"
+    "pmenuautotiling"
     "python-pystray"
-    "ttf-material-design-icons-extended" -}}
+    "enpass-bin"
+    -}}
 
 {{ $sudo := "sudo " -}}
 {{ if eq .chezmoi.username "root" -}}
