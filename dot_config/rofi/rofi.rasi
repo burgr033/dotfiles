@@ -5,7 +5,7 @@
     selected-col: #61afef;
     blue: #61afef;
     fg-col: #dcdfe4;
-    fg-col2: #dcdfe4;
+    fg-col2: #393d45;
     grey: #dcdfe4;
     width: 600;
 
@@ -39,8 +39,8 @@ prompt {
     background-color: @blue;
     padding: 6px;
     text-color: @bg-col;
-    border-radius: 3px;
-    margin: 20px 0px 0px 20px;
+    border-radius: 5px;
+    margin: 20px 20px 0px 20px;
 }
 
 textbox-prompt-colon {
@@ -50,15 +50,13 @@ textbox-prompt-colon {
 
 entry {
     padding: 6px;
-    margin: 20px 0px 0px 10px;
+    margin: 20px 20px 0px 20px;
     text-color: @fg-col;
     background-color: @bg-col;
 }
 
 listview {
-    border: 0px 0px 0px;
-    padding: 6px 0px 0px;
-    margin: 10px 0px 0px 20px;
+    margin: 20px 20px 0px 20px;
     columns: 1;
     lines: 5;
     background-color: @bg-col;
@@ -76,7 +74,8 @@ element-icon {
 
 element selected {
     background-color:  @selected-col ;
-    text-color: @fg-col2  ;
+    border-radius: 5px;
+    text-color: @bg-col  ;
 }
 
 mode-switcher {
@@ -98,14 +97,14 @@ button selected {
 
 message {
     background-color: @bg-col-light;
-    margin: 2px;
+    margin: 20px 20px 0px 20px;
     padding: 2px;
     border-radius: 5px;
 }
 
 textbox {
     padding: 6px;
-    margin: 20px 0px 0px 20px;
+    margin: 20px 20px 0px 20px;
     text-color: @blue;
     background-color: @bg-col-light;
 }

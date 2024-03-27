@@ -21,15 +21,15 @@ font xft:JetBrains Mono Nerd Font 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec rofi -show run -theme ~/.config/rofi/rofi.rasi
-bindsym $mod+Shift+d exec rofi -show window -theme ~/.config/rofi/rofi.rasi
-bindsym $mod+Shift+s exec rofi -show ssh -theme ~/.config/rofi/rofi.rasi
+bindsym $mod+d exec --no-startup-id rofi -show run -theme ~/.config/rofi/rofi.rasi
+bindsym $mod+Shift+d exec --no-startup-id rofi -show window -theme ~/.config/rofi/rofi.rasi
+bindsym $mod+Shift+s exec --no-startup-id rofi -show ssh -theme ~/.config/rofi/rofi.rasi
 # launch categorized menu
 
 ################################################################################################
@@ -210,10 +210,11 @@ exec --no-startup-id picom -b --config $HOME/.config/picom.conf
 exec --no-startup-id xfce4-power-manager --daemon
 exec --no-startup-id autotiling
 exec --no-startup-id unclutter
+exec --no-startup-id nm-applet
 exec --no-startup-id /opt/enpass/Enpass -minimize
 exec --no-startup-id $HOME/.config/polybar/launch.sh 
 exec --no-startup-id python ~/.config/i3/autoname_workspaces.py
-
+exec --no-startup-id python ~/.config/i3/systray.py
 # Color Settings
 # class                 border  bground text    indicator child_border
 client.focused          #98C379 #98C379 #282c34 #98C379   #98C379
@@ -222,57 +223,7 @@ client.unfocused        #282c34 #282c34 #dcdfe4 #282c34   #282c34
 client.urgent           #E67E80 #E67E80 #282c34 #E67E80   #E67E80
 client.placeholder      #282c34 #282c34 #dcdfe4 #282c34   #282c34
 client.background       #282c34
-# window styling
-# class                 border  bground 	text    	indicator child_border
 
-#############################
-### settings for i3-gaps: ###
-#############################
-
-# Set inner/outer gaps
-# gaps inner 10
 gaps inner 5
 gaps top 45
-# Smart gaps (gaps used if only more than one container on the workspace)
-# smart_gaps on
-
-# Smart borders (draw borders around container only if it is not the only container on this workspace)
-
-# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 smart_borders on
-# Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
-set $mode_gaps Gaps: (o) outer, (i) inner
-set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-bindsym $mod+Shift+g mode "$mode_gaps"
-
-mode "$mode_gaps" {
-        bindsym o      mode "$mode_gaps_outer"
-        bindsym i      mode "$mode_gaps_inner"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 5
-        bindsym minus gaps inner current minus 5
-        bindsym 0     gaps inner current set 0
-
-        bindsym Shift+plus  gaps inner all plus 5
-        bindsym Shift+minus gaps inner all minus 5
-        bindsym Shift+0     gaps inner all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 5
-        bindsym minus gaps outer current minus 5
-        bindsym 0     gaps outer current set 0
-
-        bindsym Shift+plus  gaps outer all plus 5
-        bindsym Shift+minus gaps outer all minus 5
-        bindsym Shift+0     gaps outer all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}

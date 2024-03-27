@@ -8,11 +8,17 @@ get_orientation() {
 # Function to rotate the screen to the left
 rotate_left() {
     xrandr --output "$(xrandr --verbose | grep " connected" | awk '{print $1}')" --rotate left
+    xinput --map-to-output 'Wacom HID 52EB Pen Eraser (0x82a1fc67)' eDP
+    xinput --map-to-output 'Wacom HID 52EB Finger' eDP
+    xinput --map-to-output 'Wacom HID 52EB Pen Pen (0x82a1fc67)' eDP
 }
 
 # Function to rotate the screen to normal orientation
 rotate_normal() {
     xrandr --output "$(xrandr --verbose | grep " connected" | awk '{print $1}')" --rotate normal
+    xinput --map-to-output 'Wacom HID 52EB Pen Eraser (0x82a1fc67)' eDP
+    xinput --map-to-output 'Wacom HID 52EB Finger' eDP
+    xinput --map-to-output 'Wacom HID 52EB Pen Pen (0x82a1fc67)' eDP
 }
 
 # Check if parameter is provided

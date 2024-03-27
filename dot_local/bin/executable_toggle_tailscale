@@ -1,0 +1,7 @@
+#!/bin/sh
+STOPPED="Tailscale is stopped."
+if tailscale status | grep -q "$STOPPED"; then
+  tailscale up
+else
+  tailscale down
+fi
