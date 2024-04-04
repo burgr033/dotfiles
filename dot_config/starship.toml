@@ -1,7 +1,6 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = """
-╭─[$username$hostname](green) $directory([❮](yellow)$git_branch$git_status[❯](yellow))
+format = """╭─[$username$hostname](green) $directory([❮](yellow)$git_branch$git_status[❯](yellow))$golang$python
 ╰─$character"""
 
 scan_timeout = 10
@@ -30,3 +29,11 @@ format = '[$modified](red)'
 [character]
 success_symbol = '\$'
 error_symbol = '[\$](red)'
+
+[golang]
+symbol = '  '
+format = '[$symbol](cyan)$version'
+
+[python]
+symbol = '  '
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )](yellow)'
