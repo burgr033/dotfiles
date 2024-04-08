@@ -7,7 +7,7 @@ set $alt Mod4
 
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border pixel 2
+default_border pixel 4
 default_floating_border normal
 
 # Hide borders
@@ -198,14 +198,14 @@ mode "resize" {
 }
 
 # Lock screen
-bindsym $mod+l exec --no-startup-id i3lock
+bindsym $mod+l exec --no-startup-id i3lock -i ~/Pictures/i3lock/i3lock.png
 
 # Autostart applications
 exec --no-startup-id setxkbmap de
 exec --no-startup-id xset b off 
 exec --no-startup-id gensystray
 exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/* -z
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -i ~/Pictures/i3lock/i3lock.png
 exec --no-startup-id picom -b --config $HOME/.config/picom.conf
 exec --no-startup-id xfce4-power-manager --daemon
 exec --no-startup-id autotiling
@@ -217,7 +217,7 @@ exec --no-startup-id python ~/.config/i3/autoname_workspaces.py
 exec --no-startup-id python ~/.config/i3/systray.py
 # Color Settings
 # class                 border  bground text    indicator child_border
-client.focused          #98C379 #98C379 #282c34 #98C379   #98C379
+client.focused          #98C379 #98C379 #282c34 #61afef   #98C379
 client.focused_inactive #282c34 #282c34 #dcdfe4 #282c34   #282c34
 client.unfocused        #282c34 #282c34 #dcdfe4 #282c34   #282c34
 client.urgent           #E67E80 #E67E80 #282c34 #E67E80   #E67E80
