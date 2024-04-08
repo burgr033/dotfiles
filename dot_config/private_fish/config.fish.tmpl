@@ -1,23 +1,19 @@
+set fish_greeting
 if status is-interactive
     # Commands to run in interactive sessions can go here
+    fish_add_path $HOME/.local/bin
     alias vi="nvim"
     alias vim="nvim"
-    {{- if eq .isServer "false"}}
-    set TERM "alacritty"
-    export TERM
-    set GPG_TTY $(tty)
-    export GPG_TTY
-    {{- end}}
-    {{ if (eq .chezmoi.osRelease.id "ubuntu") -}}
     alias cat="batcat --plain"
+    {{- if eq .isServer "false"}}
+    set --export GPG_TTY $(tty)
+    {{- end}}
+    set --export SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
+    {{ if (eq .chezmoi.osRelease.id "ubuntu") -}}
     {{else}}
-    alias cat="bat --plain"
+    set --export EDITOR "nvim"
+    set --export VISUAL "nvim"
     {{end}}
-    fish_add_path $HOME/.local/bin
-    set EDITOR "nvim"
-    export EDITOR
-    set VISUAL "nvim"
-    export VISUAL
     if not set -q DISPLAY
         if not set -q ZELLIJ                                                                                                                                                           
             if test "$ZELLIJ_AUTO_ATTACH" = "true"                                                                                                                                     

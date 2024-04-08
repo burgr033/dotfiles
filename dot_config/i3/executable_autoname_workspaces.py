@@ -56,7 +56,7 @@ WINDOW_ICONS = {
     'urxvt': MDI_TERMINAL,
     'firefox': MDI_FIREFOX,
     'Alacritty': MDI_TERMINAL,
-    'Steam': MDI_STEAM,
+    'steam': MDI_STEAM,
     'qutebrowser': MDI_BROWSER,
     'ncspot': MDI_SPOTIFY,
     'obsidian': MDI_EDITOR,
