@@ -42,16 +42,13 @@ sudo ./strap.sh
         "qutebrowser"
         "polybar"
         "zathura"
-        "aerc"
         "ttf-jetbrains-mono-nerd"
         "xorg-server"
         "unclutter"
         "arandr"
         "pavucontrol"
         "mpv"
-        "tailscale"
         "obsidian"
-        "blackmate"
         "networkmanager-openconnect"
         "networkmanager-openvpn"
         "networkmanager-pptp"
@@ -89,7 +86,6 @@ sudo ./strap.sh
         "wpscan"
         "volatility3"
         "volatility-extra"
-        "dirb"
         "dirbuster"
         "burpsuite"
 -}}
@@ -121,6 +117,8 @@ printf '\nUpdating pacman packages. Root privileges needed.\n'
 {{ $sudo }} pacman -Syu --noconfirm
 printf '\nUpdating pacman packages. Root privileges needed.\n'
 {{ $sudo }} pacman -S --noconfirm --needed {{ $pacman_packages | join " " }}
+{{ $sudo }} pacman -S --noconfirm --needed xfce4-power-manager --assume-installed xfce4-notifyd
+
 
 
 printf '\nUpdating yay packages. Root privileges needed.\n'
