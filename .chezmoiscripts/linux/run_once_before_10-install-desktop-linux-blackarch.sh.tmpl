@@ -14,7 +14,7 @@ set -e # Exit on error
 echo "[archstrike]" | {{ $sudo }} tee -a /etc/pacman.conf
 echo "Include = /etc/pacman.d/archstrike-mirrorlist" | {{ $sudo }} tee -a /etc/pacman.conf
 
-echo "Server = https://mirror.archstrike.org/$arch/$repo" | {{ $sudo }} tee -a /etc/pacman.d/archstrike-mirrorlist
+echo "Server = https://mirror.archstrike.org/\$arch/\$repo" | {{ $sudo }} tee -a /etc/pacman.d/archstrike-mirrorlist
 
 {{ $sudo }} pacman-key --init
 {{ $sudo }} dirmngr < /dev/null
