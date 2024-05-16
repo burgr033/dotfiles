@@ -4,7 +4,7 @@ if status is-interactive
     fish_add_path $HOME/.local/bin
     alias vi="nvim"
     alias vim="nvim"
-    alias cat="batcat --plain"
+    alias cat="bat --plain"
     {{- if eq .isServer "false"}}
     set --export GPG_TTY $(tty)
     {{- end}}
