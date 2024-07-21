@@ -3,53 +3,77 @@
 set -e # Exit on error
 {{- if eq .isServer "false" }}
 {{- if ne .chezmoi.hostname "apophis" }}
-{{- if or (eq .chezmoi.osRelease.id "manjaro") (eq .chezmoi.osRelease.id "arch")}}
+{{- if eq .chezmoi.osRelease.id "arch"}}
 
-{{ $pacman_packages := list
-    "i3-wm"
+{{ $normal_packages := list
         "feh"
         "network-manager-applet"
-        "picom"
         "ly"
-        "xclip"
         "i3lock"
         "make"
-        "xorg-xauth"
         "gcc"
         "base-devel"
-        "xss-lock"
+        "ranger"
         "alacritty"
-        "dunst"
-        "rofi"
         "firefox"
         "gopass"
         "git-credential-gopass"
-        "xorg-xkill"
-        "xorg-xev"
-        "xorg-xinput"
-        "xorg-xrdb"
-        "ranger"
         "pacman-contrib"
         "qutebrowser"
-        "polybar"
         "zathura"
         "aerc"
         "ttf-jetbrains-mono-nerd"
-        "xorg-server"
-        "unclutter"
-        "arandr"
         "pavucontrol"
         "mpv"
         "tailscale"
         "obsidian"
 -}}
 
-{{ $yay_packages := list
+{{ $i3_packages := list
+    "i3-wm"
+    "picom"
+    "xclip"
+    "xorg-xauth"
+    "xss-lock"
+    "dunst"
+    "rofi"
+    "xorg-xkill"
+    "xorg-xev"
+    "xorg-xinput"
+    "xorg-xrdb"
+    "polybar"
+    "xorg-server"
+    "unclutter"
+    "arandr"
     "autotiling"
     "pmenuautotiling"
     "python-pystray"
     "enpass-bin"
-    -}}
+-}}
+
+{{ $hypr_packages := list
+    "brightnessctl"
+    "hypridle"
+    "hyprland"
+    "hyprlock"
+    "hyprpaper"
+    "pcmanfm"
+    "polkit-gnome"
+    "waybar"
+    "wl-clipboard"
+    "wlsunset"
+    "rofi-wayland"
+    "xdg-desktop-portal-hyprland"
+    "enpass-bin"
+    "easyroam-desktop-bin"
+    "hyprland-autoname-workspaces-git"
+    "ncspot-bin"
+    "grimblast-git"
+    "wlogout"
+    "hyprevents-git"
+    "hyprpicker"
+    "hyprprop-git"
+-}}
 
 {{ $sudo := "sudo " -}}
 {{ if eq .chezmoi.username "root" -}}
@@ -60,9 +84,6 @@ set -e # Exit on error
 if ! command -v yay &> /dev/null
   then
     echo ""
-    {{- if eq .chezmoi.osRelease.id "manjaro" }}
-    {{- $pacman_packages = mustAppend $pacman_packages "yay" }}
-    {{- end}}
     {{- if eq .chezmoi.osRelease.id "arch" }}
         pushd .
         git clone https://aur.archlinux.org/yay-bin.git /tmp/yay-bin
@@ -73,16 +94,16 @@ if ! command -v yay &> /dev/null
     {{- end}}
   fi
 
+{{- if eq .isVirtual "false"  }}
+    {{ $normal_packages = mustAppend $hypr_packages $normal_packages -}}
+{{- end}}
 
-printf '\nUpdating pacman packages. Root privileges needed.\n'
-{{ $sudo }} pacman -Syu --noconfirm
-printf '\nUpdating pacman packages. Root privileges needed.\n'
-{{ $sudo }} pacman -S --noconfirm --needed {{ $pacman_packages | join " " }}
-{{ $sudo }} pacman -S --noconfirm --needed xfce4-power-manager --assume-installed xfce4-notifyd
-
+{{- if eq .isVirtual "true"  }}
+    {{ $normal_packages = mustAppend $i3_packages $normal_packages -}}
+{{- end}}
 
 printf '\nUpdating yay packages. Root privileges needed.\n'
-yay --noconfirm -S --needed {{ $yay_packages | join " " }}
+yay --noconfirm -S --needed {{ $normal_packages | join " " }}
 
 printf '\n installing ly as service\n'
 sudo systemctl enable ly.service

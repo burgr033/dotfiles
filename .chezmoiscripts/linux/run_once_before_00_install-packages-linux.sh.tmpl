@@ -1,12 +1,12 @@
 #!/bin/bash
+echo ""
+set -eufo pipefail
 {{- if eq .manualSetup "false" }}
 {{- if eq .chezmoi.os "linux" }}
 {{ $sudo := "sudo " -}}
 {{ if eq .chezmoi.username "root" -}}
 {{   $sudo = "" -}}
 {{ end -}}
-
-set -eufo pipefail
 
 {{ if eq .chezmoi.osRelease.id "ubuntu" -}}
 #UBUNTU
@@ -30,7 +30,7 @@ if ! command -v delta &> /dev/null
     sudo dpkg -i git-delta.deb
     rm git-delta.deb
   fi
-#delta
+#zellij
 if ! command -v zellij &> /dev/null
   then
     curl -Lo zellij.tar.gz "https://github.com/zellij-org/zellij/releases/latest/download/zellij-x86_64-unknown-linux-musl.tar.gz"
@@ -81,7 +81,7 @@ printf "this is no amd64 arch. Lazygit and delta missing! Install manually"
 
 #####################################################################
 
-{{ if or (eq .chezmoi.osRelease.id "arch") (eq .chezmoi.osRelease.id "manjaro") -}}
+{{ if eq .chezmoi.osRelease.id "arch" -}}
 
 #ARCH
 

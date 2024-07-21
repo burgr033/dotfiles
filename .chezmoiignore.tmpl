@@ -5,18 +5,34 @@ LICENSE
   .glaze-wm/
   AppData/
   {{- if eq .isServer "true" }}
-    .local/bin/*_gui
-    .local/bin/i3exit
     .Xresources
     .config/alacritty
+    .config/aerc
+    .config/swaync
+    .config/hypr
+    .config/hyprland-autoname-workspaces
     .config/dunst
+    .config/waybar
     .config/i3
     .config/polybar
     .config/qutebrowser
-    .config/ranger
     .config/rofi
     .config/picom.conf
   {{- end}}
+  {{- if eq .isVirtual "true"  }}
+    .config/hypr
+    .config/hyprland-autoname-workspaces
+    .config/waybar
+    .config/swaync
+  {{- end}}
+  {{- if eq .isVirtual "false"  }}
+    .Xresources
+    .config/dunst
+    .config/polybar
+    .config/picom.conf
+    .config/i3
+  {{- end}}
+
 {{- end}}
 {{if eq .chezmoi.os "windows" -}}
   *
