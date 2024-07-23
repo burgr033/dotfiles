@@ -1,5 +1,7 @@
 # my personal dotfiles
 
+![screenshot](https://github.com/burgr033/dotfiles/blob/main/.github/screenshot.png)
+
 dotfiles generated with **[chezmoi](https://github.com/twpayne/chezmoi)**
 
 Configs include:
