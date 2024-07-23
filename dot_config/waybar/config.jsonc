@@ -6,7 +6,7 @@
   "exclusive": true,
   "passthrough": false,
   "gtk-layer-shell": true,
-  "height": 50,
+  "height": 48,
   "modules-left": [
     "hyprland/workspaces"
   ],
@@ -95,7 +95,7 @@
   "pulseaudio": {
     "format": "{icon} {volume}%",
     "tooltip": false,
-    "format-muted": " ",
+    "format-muted": " ",
     "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
     "on-click-right": "pavucontrol",
     "on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_SINK@ 5%+",
@@ -133,7 +133,7 @@
     "format-source": "",
     "format-source-muted": " ",
     "on-click": "wpctl set-mute @DEFAULT_SOURCE@ toggle",
-    "on-click-right": "pavucontrol",
+    "on-click-right": "pavucontrol"
   },
   "temperature": {
     "thermal-zone": 0,
