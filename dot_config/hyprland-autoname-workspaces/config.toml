@@ -2,7 +2,7 @@ version = "1.1.14"
 
 [format]
 dedup = true
-workspace = "{id}: {clients}"
+workspace = "{id} {clients}"
 client = "{icon}"
 client_dup = "{icon} {counter_sup}{delim}"
 client_dup_fullscreen = "[{icon}]{delim}{icon}{counter_unfocused_sup}"
