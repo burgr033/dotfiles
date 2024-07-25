@@ -1,61 +1,76 @@
 * {
-    border: none;
-    border-radius: 0;
-    font-family: "JetBrainsMono Nerd Font, monospace";
-    font-size: 15px;
-    min-height: 0;
-}
+  padding: 0;
+  margin: 0;
+  font-family: "JetBrainsMono Nerd Font, monospace";
+  }
 
 window#waybar, tooltip {
     border-radius: 10px;
     background: #282c34;
     color: #dcdfe4;
+    font-size: 13pt;
+    border: none;
 }
 
-#workspaces button {
-    border-radius: 10px;
-    background: #383a42;
-    color: #dcdfe4;
-    margin-left: 5px;
-    margin-right: 5px;
-}
-#workspaces button.active {
-  transition: all 0.5s cubic-bezier(0.55, -0.68, 0.48, 1.682);
-  padding-left: 20px;
-  padding-right: 20px;
-}
-#workspaces button.urgent {
-    background: #eba0ac;
-}
-#workspaces button:hover {
-    background: #5e81ac;
-}
-#window,
-#clock,
+#workspaces {
+  padding-left: 3px;
+  padding-right: 3px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-right: 6px;
+  border-radius: 5px; }
+
+#cpu,
+#memory,
+#temperature,
 #battery,
-#pulseaudio,
+#backlight,
 #network,
 #bluetooth,
-#temperature,
-#tray,
-#backlight {
-    padding: 0 5px;
-}
+#pulseaudio,
+#custom-notification,
+#custom-updates,
+#tray {
+  padding-left: 3px;
+  padding-right: 3px;
+  margin-top: 3px;
+  margin-bottom: 3px; }
+
+#bluetooth.connected {
+  font-size: 1.15em;
+  color: #1b6acb; }
+
+#workspaces button {
+  font-size: 0;
+  min-width: 11.05pt;
+  min-height: 11.05pt;
+  margin: 4.5px;
+  border-radius: 30px;
+  background-color: #dcdfe4;
+  transition: 100ms;
+  animation: ws_normal 20s ease-out 10; }
+
+#workspaces button.empty {
+  background-color: #4C566A; }
+
+#workspaces button.active {
+  min-width: 26pt;
+  background-color: #61afef;
+  transition: 100ms; }
+
 #custom-separator {
-    color: #7f848e;
+    color: #4C566A;
     margin: 0 5px;
 }
 #temperature.critical {
     color: #eba0ac;
 }
+
 #tray {
     margin-right: 10px;
 }
-#workspaces {
-    margin: 10px;
-}
 #bluetooth {
-    color: #5e81ac;
+    color: #61afef;
 }
 #bluetooth.off {
     color: #4C566A;

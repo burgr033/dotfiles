@@ -5,12 +5,13 @@
   "mod": "dock",
   "exclusive": true,
   "passthrough": false,
+  "reload_style_on_change": true,
   "gtk-layer-shell": true,
-  "height": 48,
   "modules-left": [
-    "hyprland/workspaces"
+    "hyprland/workspaces",
+    "hyprland/submap"
   ],
-  "modules-center": [
+  "modules-cen  ter": [
     "hyprland/window"
   ],
   "modules-right": [
@@ -19,8 +20,6 @@
     "network",
     "custom/separator",
     "bluetooth",
-    "custom/separator",
-    "temperature",
     "custom/separator",
     "battery",
     "custom/separator",
@@ -38,8 +37,24 @@
     "format": "{}"
   },
   "hyprland/workspaces": {
-    "all-outputs": true,
-    "on-click": "activate"
+    "format": "{name}",
+    "tooltip": false,
+    "all-outputs": false,
+    "sort-by-number": true,
+    "persistent-workspaces": {
+      "*": 9
+    },
+    "format-icons": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "",
+      "7": "",
+      "8": "",
+      "9": ""
+    }
   },
   "tray": {
     "icon-size": 18,
