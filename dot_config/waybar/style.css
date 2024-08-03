@@ -5,7 +5,7 @@
 window#waybar, tooltip {
     border-radius: 10px;
     font-family: "JetbrainsMono Nerd Font";
-    font-size: 20px;
+    font-size: 15px;
     background: transparent; 
     color: #dcdfe4;
 }
@@ -13,7 +13,7 @@ tooltip {
     background-color: #282c34;
     padding: 10px;
     margin: 10px;
-    font-size: 14px;
+    font-size: 15px;
 }
 #workspaces{
   margin-left: 4px;
@@ -30,6 +30,7 @@ tooltip {
 #clock,
 #custom-notification,
 #custom-updates{
+  font-size: 18px;
   margin-right: 10px;
   margin-left: 10px;
 }
