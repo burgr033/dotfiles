@@ -11,30 +11,56 @@
     "hyprland/workspaces",
     "hyprland/submap"
   ],
-  "modules-cen  ter": [
+  "modules-center": [
     "hyprland/window"
   ],
   "modules-right": [
+    "custom/notification",
     "custom/updates",
-    "custom/separator",
+    "custom/separator2",
     "network",
-    "custom/separator",
     "bluetooth",
-    "custom/separator",
     "battery",
-    "custom/separator",
     "backlight",
-    "custom/separator",
     "pulseaudio#microphone",
     "pulseaudio",
-    "custom/separator",
     "clock",
-    "custom/separator",
-    "tray"
+    "group/tray"
   ],
-  "include": [],
+  "group/tray": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 500,
+      "children-class": "",
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "custom/separator",
+      "tray"
+    ]
+  },
   "hyprland/window": {
-    "format": "{}"
+    "format": "{title}"
+  },
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{} {icon}",
+    "format-icons": {
+      "notification": "󱅫",
+      "none": "",
+      "dnd-notification": " ",
+      "dnd-none": "󰂛",
+      "inhibited-notification": " ",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": " ",
+      "dnd-inhibited-none": " "
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "sleep 0.1 && swaync-client -t -sw",
+    "on-click-right": "sleep 0.1 && swaync-client -d -sw",
+    "escape": true
   },
   "hyprland/workspaces": {
     "format": "{name}",
@@ -58,7 +84,8 @@
   },
   "tray": {
     "icon-size": 18,
-    "spacing": 10
+    "spacing": 10,
+    "show-passive-items": true
   },
   "clock": {
     "format": "{:%H:%M %Y-%m-%d}",
@@ -73,49 +100,30 @@
   },
   "backlight": {
     "device": "intel_backlight",
-    "format": "{icon} {percent}%",
+    "format": "{icon}",
     "format-icons": [
-      "󰃞",
-      "󰃟",
-      "󰃠"
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
-    "on-scroll-up": "brightnessctl set 10%+",
-    "on-scroll-down": "brightnessctl set 10%-",
-    "min-length": 6
-  },
-  "battery": {
-    "states": {
-      "good": 95,
-      "warning": 30,
-      "critical": 20
-    },
-    "format": "{icon} {capacity}%",
-    "format-charging": " {capacity}%",
-    "format-plugged": " {capacity}%",
-    "format-alt": "{time} {icon}",
-    "format-icons": [
-      "󰂎",
-      "󰁺",
-      "󰁻",
-      "󰁼",
-      "󰁽",
-      "󰁾",
-      "󰁿",
-      "󰂀",
-      "󰂁",
-      "󰂂",
-      "󰁹"
-    ]
+    "on-click": "brightnessctl set 10%+",
+    "on-double-click": "brightnessctl set 100%",
+    "on-double-click-right": "brightnessctl set 0%",
+    "on-click-right": "brightnessctl set 10%-"
   },
   "pulseaudio": {
-    "format": "{icon} {volume}%",
-    "tooltip": false,
+    "format": "{icon}",
+    "tooltip-format": "{volume}%",
     "format-muted": " ",
     "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
     "on-click-right": "pavucontrol",
-    "on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_SINK@ 5%+",
-    "on-scroll-down": "wpctl set-volume @DEFAULT_SINK@ 5%-",
-    "scroll-step": 5,
+    "scroll-step": 0.5,
     "format-icons": {
       "headphone": "",
       "hands-free": "",
@@ -129,6 +137,11 @@
         ""
       ]
     }
+  },
+  "custom/separator2": {
+    "format": "|",
+    "interval": "once",
+    "tooltip": false
   },
   "custom/separator": {
     "format": "•",
@@ -157,21 +170,64 @@
     "format-critical": "{temperatureC}°C "
   },
   "network": {
-    "format-wifi": "  {signalStrength}%",
-    "format-ethernet": "{ipaddr}",
+    "format-icons": [
+      "󰤯",
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨"
+    ],
+    "format-ethernet": "󰈀",
+    "format-wifi": "{icon}",
     "tooltip-format": "{essid} - {ifname} via {gwaddr}",
     "format-linked": "{ifname} (No IP)",
-    "format-disconnected": "Disconnected ⚠",
+    "format-disconnected": "⚠",
     "format-alt": "{ifname}:{essid} {ipaddr}"
   },
+  "battery": {
+    "format": "{icon}",
+    "format-alt": "{icon}{capacity}%",
+    "format-icons": {
+      "discharging": [
+        "󰁺",
+        "󰁻",
+        "󰁼",
+        "󰁽",
+        "󰁾",
+        "󰁿",
+        "󰂀",
+        "󰂁",
+        "󰂂",
+        "󰁹"
+      ],
+      "charging": [
+        "󰂅",
+        "󰂋",
+        "󰂊",
+        "󰢞",
+        "󰂉",
+        "󰢝",
+        "󰂈",
+        "󰂇",
+        "󰂆",
+        "󰢜"
+      ],
+      "plugged": "󰂅"
+    },
+    "tooltip-format": "{capacity}% - {time} remaining",
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 20
+    }
+  },
   "bluetooth": {
-    "format": " {status}",
-    "format-disabled": "",
-    "format-connected": " {num_connections}",
+    "format": "󰂯",
+    "format-disabled": "󰂲",
+    "format-connected": "󰂱",
     "tooltip-format": "{device_alias}",
-    "tooltip-format-connected": " {device_enumerate}",
+    "tooltip-format-connected": "{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias} {device_battery_percentage}%",
-    //hier mit dem Toggle noch was machen
     "on-click": "blueman-manager"
   }
 }

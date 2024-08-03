@@ -1,25 +1,24 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: "JetBrainsMono Nerd Font, monospace";
-  }
-
+}
 window#waybar, tooltip {
     border-radius: 10px;
-    background: #282c34;
+    font-family: "JetbrainsMono Nerd Font";
+    font-size: 20px;
+    background: transparent; 
     color: #dcdfe4;
-    font-size: 13pt;
-    border: none;
 }
-
-#workspaces {
-  padding-left: 3px;
-  padding-right: 3px;
-  margin-top: 3px;
-  margin-bottom: 3px;
-  margin-right: 6px;
-  border-radius: 5px; }
-
+tooltip {
+    background-color: #282c34;
+    padding: 10px;
+    margin: 10px;
+    font-size: 14px;
+}
+#workspaces{
+  margin-left: 4px;
+  margin-right: 4px;
+}
 #cpu,
 #memory,
 #temperature,
@@ -28,51 +27,68 @@ window#waybar, tooltip {
 #network,
 #bluetooth,
 #pulseaudio,
+#clock,
 #custom-notification,
-#custom-updates,
-#tray {
-  padding-left: 3px;
-  padding-right: 3px;
-  margin-top: 3px;
-  margin-bottom: 3px; }
+#custom-updates{
+  margin-right: 12px;
+  margin-left: 12px;
+}
+.modules-right{
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #282c34;
+  border-radius: 10px; 
+  margin-top: 4px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+.modules-left{
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #282c34;
+  margin-top: 4px;
+  margin-left: 4px;
+  margin-bottom: 4px;
+  border-radius: 10px; 
 
-#bluetooth.connected {
-  font-size: 1.15em;
-  color: #1b6acb; }
+}
 
 #workspaces button {
   font-size: 0;
   min-width: 11.05pt;
   min-height: 11.05pt;
-  margin: 4.5px;
+  margin: 5px;
   border-radius: 30px;
   background-color: #dcdfe4;
   transition: 100ms;
   animation: ws_normal 20s ease-out 10; }
 
 #workspaces button.empty {
+  font-size: 0;
   background-color: #4C566A; }
 
 #workspaces button.active {
-  min-width: 26pt;
+  min-width: 30pt;
   background-color: #61afef;
   transition: 100ms; }
 
-#custom-separator {
+#custom-separator,#custom-separator2 {
     color: #4C566A;
-    margin: 0 5px;
 }
 #temperature.critical {
     color: #eba0ac;
-}
-
-#tray {
-    margin-right: 10px;
 }
 #bluetooth {
     color: #61afef;
 }
 #bluetooth.off {
+    color: #4C566A;
+}
+#bluetooth.disabled {
     color: #4C566A;
 }
 #battery {
