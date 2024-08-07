@@ -46,7 +46,7 @@
 
 .close-button {
   background: @noti-close-bg;
-  color: white;
+  color: @noti-fg;
   text-shadow: none;
   padding: 0;
   border-radius: 100%;
@@ -72,9 +72,11 @@
   box-shadow: none;
   background: @noti-bg;
   border: 1px solid @noti-border-color;
-  color: white;
+  color: @noti-fg;
 }
-
+.button:active {
+  background-color: rgba(128, 128, 128, 0.7);
+}
 .notification-default-action:hover,
 .notification-action:hover {
   -gtk-icon-effect: none;
@@ -82,7 +84,7 @@
 }
 
 .notification-default-action {
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
 /* When alternative actions are visible */
@@ -112,7 +114,7 @@
 .body-image {
   margin-top: 6px;
   background-color: white;
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
 .summary {
@@ -178,7 +180,7 @@
   background: @noti-bg;
   border: 1px solid @noti-border-color;
   box-shadow: none;
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
 .widget-title>button:hover {
@@ -192,7 +194,7 @@
 
 .widget-dnd>switch {
   font-size: initial;
-  border-radius: 12px;
+  border-radius: 10px;
   background: @noti-bg;
   border: 1px solid @noti-border-color;
   box-shadow: none;
@@ -204,7 +206,7 @@
 
 .widget-dnd>switch slider {
   background: @noti-bg-hover;
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
 .widget-label {
@@ -246,4 +248,27 @@
   margin: 8px 8px 8px 8px;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
+}
+.widget-buttons-grid {
+  background: @noti-bg-alt;
+}
+.widget-buttons-grid > flowbox > flowboxchild > button {
+  font-size: initial;
+  color: @noti-fg;
+  text-shadow: none;
+  background: @noti-bg;
+  border: 1px solid @noti-border-color;
+  box-shadow: none;
+  border-radius: 10px;
+
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button.toggle:checked {
+  font-size: initial;
+  color: @noti-fg;
+  text-shadow: none;
+  border: 1px solid @noti-border-color;
+  box-shadow: none;
+  border-radius: 10px;
+  background: @noti-bg-hover;
 }

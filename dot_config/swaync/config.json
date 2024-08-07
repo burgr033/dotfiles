@@ -30,6 +30,7 @@
     }
   },
   "widgets": [
+    "buttons-grid",
     "backlight",
     "backlight#KB",
     "volume",
@@ -43,6 +44,16 @@
       "text": "Notifications",
       "clear-all-button": true,
       "button-text": "Clear All"
+    },
+    "buttons-grid": {
+      "actions": [
+        {
+          "label": "󰐨",
+          "type": "toggle",
+          "active": false,
+          "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && vigiland || pkill vigiland'"
+        }
+      ]
     },
     "dnd": {
       "text": "Do Not Disturb"

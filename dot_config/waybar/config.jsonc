@@ -17,6 +17,7 @@
   "modules-right": [
     "custom/notification",
     "custom/updates",
+    "custom/vigiland",
     "custom/separator2",
     "network",
     "bluetooth",
@@ -128,6 +129,12 @@
     "interval": "once",
     "tooltip": false
   },
+  "custom/vigiland": {
+    "format": "{}",
+    "interval": 30,
+    "exec": "~/.config/waybar/scripts/vigiland_status",
+    "return-type": "json"
+  },
   "custom/updates": {
     "format": "{}",
     "interval": 3600,
@@ -166,7 +173,7 @@
   },
   "battery": {
     "format": "{icon}",
-    "format-alt": "{icon}{capacity}%",
+    "format-alt": "{icon} {capacity}%",
     "format-icons": {
       "discharging": [
         "󰁺",
@@ -180,7 +187,7 @@
         "󰂂",
         "󰁹"
       ],
-      "charging": [
+      "plugged": [
         "󰢜",
         "󰂆",
         "󰂇",
@@ -192,8 +199,18 @@
         "󰂋",
         "󰂅"
       ],
-      "plugged": "󰂅",
-      "full": "󰂅"
+      "charging": [
+        "󰢜",
+        "󰂆",
+        "󰂇",
+        "󰂈",
+        "󰢝",
+        "󰂉",
+        "󰢞",
+        "󰂊",
+        "󰂋",
+        "󰂅"
+      ]
     },
     "tooltip-format": "{capacity}% - {time} remaining",
     "states": {
