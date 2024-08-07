@@ -1,0 +1,11 @@
+#!/bin/bash
+
+PROCESS_NAME="vigiland"
+
+# The name of the process to check
+if pgrep -x "$PROCESS_NAME" > /dev/null
+then
+    echo "{\"text\":\"󰐨\",\"class\":\"running\"}"
+else
+    echo "{\"text\":\"\",\"class\":\"not-running\"}"
+fi
