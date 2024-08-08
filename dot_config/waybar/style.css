@@ -4,7 +4,7 @@
 }
 window#waybar, tooltip {
     border-radius: 10px;
-    font-family: "JetbrainsMono Nerd Font";
+    font-family: "NotoSans NF";
     font-size: 15px;
     background: transparent; 
     color: #dcdfe4;
@@ -32,11 +32,13 @@ tooltip {
 #custom-vigiland,
 #custom-updates{
   font-size: 18px;
+  font-weight: bold;
   margin-right: 10px;
   margin-left: 10px;
 }
 #clock{
-  font-size: 15px;
+  font-weight: bold;
+  /* font-size: 15px; */
 }
 .modules-right{
   padding-left: 5px;
@@ -59,13 +61,12 @@ tooltip {
   margin-left: 4px;
   margin-bottom: 4px;
   border-radius: 10px; 
-
 }
 
 #workspaces button {
   font-size: 0;
-  min-width: 11.05pt;
-  min-height: 11.05pt;
+  min-width: 15px;
+  min-height: 15px;
   margin: 5px;
   border-radius: 30px;
   background-color: #dcdfe4;
@@ -77,7 +78,7 @@ tooltip {
   background-color: #4C566A; }
 
 #workspaces button.active {
-  min-width: 30pt;
+  min-width: 60px;
   background-color: #61afef;
   transition: 100ms; }
 
