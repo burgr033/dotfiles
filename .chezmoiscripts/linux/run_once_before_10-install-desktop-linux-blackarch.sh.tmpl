@@ -3,77 +3,14 @@ set -e # Exit on error
 {{- if eq .manualSetup "false" }}
 {{- if eq .isServer "false" }}
 {{- if eq .chezmoi.hostname "apophis" }}
-{{- if or (eq .chezmoi.osRelease.id "manjaro") (eq .chezmoi.osRelease.id "arch")}}
+{{- if or (eq .chezmoi.osRelease.id "manjaro") (eq .chezmoi.osRelease.id "arch") (eq .chezmoi.osRelease.id "athena")}}
 
 {{ $sudo := "sudo " -}}
 {{ if eq .chezmoi.username "root" -}}
 {{  $sudo = "" -}}
 {{ end -}}
 
-
-  if ! grep -q "\[archstrike\]" /etc/pacman.conf; then
-    echo "[archstrike]" | {{ $sudo }} tee -a /etc/pacman.conf
-    echo "Include = /etc/pacman.d/archstrike-mirrorlist" | {{ $sudo }} tee -a /etc/pacman.conf
-    echo "Server = https://mirror.archstrike.org/\$arch/\$repo" | {{ $sudo }} tee -a /etc/pacman.d/archstrike-mirrorlist
-  fi
-{{ $sudo }} pacman-key --init
-{{ $sudo }} dirmngr < /dev/null
-{{ $sudo }} pacman-key -r 9D5F1C051D146843CDA4858BDE64825E7CBC0D51
-{{ $sudo }} pacman-key --lsign-key 9D5F1C051D146843CDA4858BDE64825E7CBC0D51
-{{ $sudo }} pacman -Syy
-{{ $sudo }} pacman -S archstrike-keyring --noconfirm --needed
-{{ $sudo }} pacman -S archstrike-mirrorlist --noconfirm --needed
-
-
 {{ $pacman_packages := list
-        "feh"
-        "i3-wm"
-        "network-manager-applet"
-        "picom"
-        "ly"
-        "xclip"
-        "i3lock"
-        "make"
-        "xorg-xauth"
-        "gcc"
-        "base-devel"
-        "xss-lock"
-        "alacritty"
-        "dunst"
-        "rofi"
-        "firefox"
-        "gopass"
-        "git-credential-gopass"
-        "xorg-xkill"
-        "xorg-xev"
-        "xorg-xinput"
-        "xorg-xrdb"
-        "ranger"
-        "pacman-contrib"
-        "qutebrowser"
-        "polybar"
-        "zathura"
-        "ttf-jetbrains-mono-nerd"
-        "xorg-server"
-        "unclutter"
-        "arandr"
-        "pavucontrol"
-        "mpv"
-        "obsidian"
-        "networkmanager-openconnect"
-        "networkmanager-openvpn"
-        "networkmanager-pptp"
-        "networkmanager-vpnc"
-        "gtk-engines"
-        "gtk-engine-murrine"
-        "xarchiver"
-        "parole"
-        "tar"
-        "unrar"
-        "unzip"
-        "mousepad"
-        "ristretto"
-        "thunar-archive-plugin"
         "gobuster"
         "exploitdb"
         "mitmproxy"
@@ -83,7 +20,6 @@ set -e # Exit on error
         "radare2"
         "tcpdump"
         "wireshark-qt"
-        "seclists-git"
         "wpscan"
         "volatility3"
         "dirbuster"
