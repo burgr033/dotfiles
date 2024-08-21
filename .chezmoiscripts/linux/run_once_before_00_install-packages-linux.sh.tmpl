@@ -81,8 +81,7 @@ printf "this is no amd64 arch. Lazygit and delta missing! Install manually"
 
 #####################################################################
 
-{{ if eq .chezmoi.osRelease.id "arch" -}}
-
+{{- if or (eq .chezmoi.osRelease.id "arch") (eq .chezmoi.osRelease.id "athena")}}
 #ARCH
 
 {{ $packages_arch := list

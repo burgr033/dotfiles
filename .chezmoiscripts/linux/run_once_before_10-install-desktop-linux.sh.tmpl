@@ -75,6 +75,22 @@ set -e # Exit on error
     "hyprprop-git"
 -}}
 
+{{ $athena_packages := list
+        "gobuster"
+        "exploitdb"
+        "mitmproxy"
+        "nmap"
+        "mimikatz"
+        "metasploit"
+        "radare2"
+        "tcpdump"
+        "wireshark-qt"
+        "wpscan"
+        "volatility3"
+        "dirbuster"
+        "burpsuite"
+-}}
+
 {{ $sudo := "sudo " -}}
 {{ if eq .chezmoi.username "root" -}}
 {{  $sudo = "" -}}
@@ -100,6 +116,10 @@ if ! command -v yay &> /dev/null
 
 {{- if eq .isVirtual "true"  }}
     {{ $normal_packages = mustAppend $i3_packages $normal_packages -}}
+{{- end}}
+
+{{ if eq .chezmoi.osRelease.id "athena" -}}
+    {{ $normal_packages = mustAppend $athena_packages $normal_packages -}}
 {{- end}}
 
 printf '\nUpdating yay packages. Root privileges needed.\n'
