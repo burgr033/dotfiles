@@ -175,6 +175,7 @@
     "format": "{icon}",
     "format-alt": "{icon} {capacity}%",
     "format-icons": {
+      "full": "󰁹",
       "discharging": [
         "󰁺",
         "󰁻",
