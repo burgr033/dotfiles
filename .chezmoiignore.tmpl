@@ -1,11 +1,17 @@
+# repo related stuff
 README.md
-.github/
-LICENSE
-{{if ne .chezmoi.os "windows" -}}
+{{if ne .chezmoi.os "windows"}}
+  # if OS is not windows
   Documents/
   .glaze-wm/
   AppData/
+  {{ if ne .shell "fish" }}
+    # if the shell is not fish
+    .config/omf
+    .config/fish
+  {{ end }}
   {{- if eq .isServer "true" }}
+    # if this is a server
     .Xresources
     .config/alacritty
     .config/aerc
@@ -21,32 +27,34 @@ LICENSE
     .config/picom.conf
   {{- end}}
   {{- if eq .isVirtual "true"  }}
+    # if this is a virtual machine
     .config/hypr
     .config/hyprland-autoname-workspaces
     .config/waybar
     .config/swaync
   {{- end}}
   {{- if eq .isVirtual "false"  }}
+    # if this is a physical machine
     .Xresources
     .config/dunst
     .config/polybar
     .config/picom.conf
     .config/i3
   {{- end}}
-
 {{- end}}
 {{if eq .chezmoi.os "windows" -}}
-  *
+  # if this is a windows machine
+  .config/*
+  .Xresources
+  .hushlogin
+  !.config/git
+  !.config/qutebrowser
+  !.config/starship.toml
   !Documents/
   !.glaze-wm/
   !AppData/
-  !.config/git
-  !.ideavimrc
 {{- end}}
-{{ if ne .shell "fish" }}
-  .config/omf
-  .config/fish
-{{ end }}
 
+# script related stuff
 .chezmoiscripts/*/**
 !.chezmoiscripts/{{ .chezmoi.os }}/**
