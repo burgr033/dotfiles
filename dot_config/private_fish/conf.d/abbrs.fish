@@ -1,4 +1,3 @@
-if not set -q fish_initialized
     abbr -a -- g git
     abbr -a -- mkdir 'mkdir -p -v'
     abbr -a -- mv 'mv -i'
@@ -22,5 +21,3 @@ if not set -q fish_initialized
     abbr --add -- pip-purge 'pip freeze --exclude-editable | xargs pip uninstall -y'
     abbr --add -- unset 'set --erase'
 
-    set -U fish_initialized
-end

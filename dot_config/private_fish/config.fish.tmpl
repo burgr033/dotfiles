@@ -6,6 +6,7 @@ if status is-interactive
     alias vi="nvim"
     alias vim="nvim"
     alias cat="bat --plain"
+    alias scratch="nvim -c Scratch"
     {{- if eq .isServer "false"}}
     set --export GPG_TTY $(tty)
     {{- end}}

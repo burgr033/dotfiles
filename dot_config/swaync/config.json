@@ -48,6 +48,12 @@
     "buttons-grid": {
       "actions": [
         {
+          "label": "󰂯",
+          "type": "toggle",
+          "active": false,
+          "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && bluetoothctl power on || bluetoothctl power off'"
+        },
+        {
           "label": "󰐨",
           "type": "toggle",
           "active": false,
