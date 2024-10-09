@@ -111,7 +111,7 @@ if ! command -v yay &> /dev/null
 
 {{- if eq .isVirtual "false"  }}
     {{ $normal_packages = mustAppend $hypr_packages $normal_packages -}}
-    {{ $normal_packages = mustAppend $hypr_packages $mobile_packages -}}
+    {{ $normal_packages = mustAppend $mobile_packages $normal_packages -}}
 {{- end}}
 {{- if eq .isVirtual "true"  }}
     {{ $normal_packages = mustAppend $i3_packages $normal_packages -}}
