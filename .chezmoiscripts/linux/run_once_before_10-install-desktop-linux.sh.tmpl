@@ -131,7 +131,7 @@ if ! command -v yay &> /dev/null
 {{- end}}
 
 printf '\nUpdating yay packages. Root privileges needed.\n'
-printf '{{ $normal_packages | join " " }}'
+printf '{{ $normal_packages | join "\n" }}'
 yay --noconfirm -S --needed {{ $normal_packages | join " " }}
 
 
