@@ -2,14 +2,12 @@
 {{- if eq .manualSetup "false" }}
 set -e # Exit on error
 {{- if eq .isServer "false" }}
-{{- if ne .chezmoi.hostname "apophis" }}
 {{- if eq .chezmoi.osRelease.id "arch"}}
 
 {{ $normal_packages := list
         "feh"
         "network-manager-applet"
         "ly"
-        "i3lock"
         "make"
         "gcc"
         "base-devel"
@@ -33,6 +31,7 @@ set -e # Exit on error
     "i3-wm"
     "picom"
     "xclip"
+    "i3lock"
     "xorg-xauth"
     "xss-lock"
     "dunst"
@@ -65,8 +64,6 @@ set -e # Exit on error
     "rofi-wayland"
     "xdg-desktop-portal-hyprland"
     "enpass-bin"
-    "easyroam-desktop-bin"
-    "hyprland-autoname-workspaces-git"
     "ncspot-bin"
     "grimblast-git"
     "hyprevents-git"
@@ -74,7 +71,9 @@ set -e # Exit on error
     "ttf-noto-nerd"
     "hyprprop-git"
 -}}
-
+{{ $mobile_packages := list
+    "easyroam-desktop-bin"        
+- }}
 {{ $athena_packages := list
         "gobuster"
         "exploitdb"
@@ -112,13 +111,19 @@ if ! command -v yay &> /dev/null
 
 {{- if eq .isVirtual "false"  }}
     {{ $normal_packages = mustAppend $hypr_packages $normal_packages -}}
+    {{ $normal_packages = mustAppend $hypr_packages $mobile_packages -}}
 {{- end}}
-
 {{- if eq .isVirtual "true"  }}
     {{ $normal_packages = mustAppend $i3_packages $normal_packages -}}
 {{- end}}
 
-{{ if eq .chezmoi.osRelease.id "athena" -}}
+{{- if eq .chezmoi.hostname "apophis" }}
+    echo "[athena]" | {{ $sudo }} tee -a /etc/pacman.conf
+    echo "Include = /etc/pacman.d/athena-mirrorlist" | {{ $sudo }} tee -a /etc/pacman.conf
+    echo "SigLevel = Optional TrustedOnly" | {{ $sudo }} tee -a /etc/pacman.conf
+    {{ $sudo }} curl https://raw.githubusercontent.com/Athena-OS/athena/main/packages/os-specific/athena-mirrorlist/athena-mirrorlist -o /etc/pacman.d/athena-mirrorlist
+    {{ $sudo }} pacman-key --recv-keys A3F78B994C2171D5 --keyserver keys.openpgp.org
+    {{ $sudo }} pacman-key --lsign A3F78B994C2171D5
     {{ $normal_packages = mustAppend $athena_packages $normal_packages -}}
 {{- end}}
 
@@ -137,5 +142,3 @@ printf 'You can add it in `run_onchange_install-packages.sh`.\n'
 {{ end -}}
 {{ end -}}
 {{ end -}}
-{{ end -}}
-
