@@ -41,39 +41,13 @@ if ! command -v zellij &> /dev/null
 {{else}}
 printf "this is no amd64 arch. Lazygit and delta missing! Install manually"
 {{end}}
-{{ $packages_ubuntu := list
-     "bat"
-     "curl"
-     "man"
-     "direnv"
-     "fd-find"
-     "thefuck"
-     "ansible"
-     "git-lfs"
-     "jq"
-     "ripgrep"
-     "fzf"
-     "fish"
-     "htop"
-     "python3-dev"
-     "python3-pip"
-     "python3-setuptools"
-     "bat"
-     "virtualenvwrapper"
-     "gdu"
-     "tree"
-     "units"
-     -}}
-	 
-{{ $classicSnaps := list
-	"nvim" -}}
 
 {{ $sudo }}apt-get update
-{{ $sudo }}apt-get install -y {{ $packages_ubuntu | join " " }}
+{{ $sudo }}apt-get install -y {{ .packages.linux.ubuntu.apt | join " " }}
 
 {{ if lookPath "snap" }}
 {{   range $classicSnaps }}
-{{ $sudo }}snap install --classic {{ . }}
+{{ $sudo }}snap install --classic {{ .packages.linux.ubuntu.snap | join " " }}
 {{   end }}
 {{ end }}
 
@@ -84,43 +58,7 @@ printf "this is no amd64 arch. Lazygit and delta missing! Install manually"
 {{- if or (eq .chezmoi.osRelease.id "arch") (eq .chezmoi.osRelease.id "athena")}}
 #ARCH
 
-{{ $packages_arch := list
-     "bat"
-     "starship"
-     "curl"
-     "direnv"
-     "fd"
-     "man"
-     "git-lfs"
-     "inetutils"
-     "zellij"
-     "git"
-     "exa"
-     "go"
-     "unzip"
-     "git-delta"
-     "jq"
-     "neovim"
-     "fish"
-     "ripgrep"
-     "fzf"
-     "htop"
-     "python"
-     "ansible-core"
-     "python-pip"
-     "python-virtualenvwrapper"
-     "thefuck"
-     "python-setuptools"
-     "bat"
-     "python-pynvim"
-     "gdu"
-     "tree"
-     "lazygit"
-     "bottom"
-     -}}
-
-
-{{ $sudo }}sudo pacman --needed --noconfirm -Sy {{ $packages_arch | join " " }}
+{{ $sudo }}sudo pacman --needed --noconfirm -Sy {{ .packages.linux.arch.common | join " " }}
 
 {{ end -}}
 

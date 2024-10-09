@@ -3,72 +3,15 @@
 
 $ErrorActionPreference = "Stop"
 
-winget install 9N0DX20HK701 --accept-package-agreements --accept-source-agreements
+winget install {{ .packages.windows.winget.packages | join " " }} --accept-package-agreements --accept-source-agreements
 
-scoop install git
+scoop install {{ .packages.windows.scoop.pre_packages | join " " }}
 
-scoop bucket add scoopBucket https://github.com/burgr033/burgrBucket
-scoop bucket add java
-scoop bucket add extras
-scoop bucket add nerd-fonts
+{{ range .packages.windows.scoop.buckets -}}
+scoop bucket add {{. | quote}}
+{{end -}}
 
-# Install essentials
-$scoop_packages = @(
-"chezmoi",
-"starship",
-"JetBrainsMono-NF"
-"7zip",
-"innounp",
-"fzf",
-"curl",
-"fd",
-"neovim",
-"glazewm",
-"gdu",
-"bat",
-"delta",
-"python"
-"powertoys",
-"bottom",
-"cacert",
-"code2rtf",
-"gzip",
-"lazygit",
-"less",
-"make",
-"mingw",
-"nodejs",
-"obsidian",
-"paint.net",
-"dark",
-"ffmpeg",
-"imhex",
-"openjdk",  
-"jdtls",
-"miktex",
-"pandoc",
-"perl",
-"pwsh",
-"pydfmerger",
-"ripgrep",
-"ruby",
-"rufus",
-"rustup",
-"screentogif",
-"sumatrapdf",
-"sysinternals",
-"todotxtui",
-"tree-sitter",
-"unzip",
-"wget",
-"windirstat",
-"winmerge",
-"yarn",
-"zig",
-"zotero"
-)
-
-foreach($package in $scoop_packages){scoop install $package}
+scoop install {{ .packages.windows.scoop.packages | join " " }}
 
 # Delete chezmoi binary from bootstrap
 Remove-Item ~/bin/chezmoi.exe -ErrorAction SilentlyContinue
