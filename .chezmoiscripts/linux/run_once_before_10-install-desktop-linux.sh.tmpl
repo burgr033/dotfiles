@@ -110,11 +110,11 @@ if ! command -v yay &> /dev/null
   fi
 
 {{- if eq .isVirtual "false"  }}
-    {{ $normal_packages = mustAppend $hypr_packages $normal_packages -}}
-    {{ $normal_packages = mustAppend $mobile_packages $normal_packages -}}
+    {{ $normal_packages = mustAppend $normal_packages $hypr_packages -}}
+    {{ $normal_packages = mustAppend $normal_packages $mobile_packages -}}
 {{- end}}
 {{- if eq .isVirtual "true"  }}
-    {{ $normal_packages = mustAppend $i3_packages $normal_packages -}}
+    {{ $normal_packages = mustAppend $normal_packages $i3_packages -}}
 {{- end}}
 
 {{- if eq .chezmoi.hostname "apophis" }}
@@ -127,7 +127,7 @@ if ! command -v yay &> /dev/null
         {{ $sudo }} pacman-key --recv-keys A3F78B994C2171D5 --keyserver keys.openpgp.org
         {{ $sudo }} pacman-key --lsign A3F78B994C2171D5
     fi
-    {{ $normal_packages = mustAppend $athena_packages $normal_packages -}}
+    {{ $normal_packages = mustAppend $normal_packages $athena_packages -}}
 {{- end}}
 
 printf '\nUpdating yay packages. Root privileges needed.\n'
