@@ -118,12 +118,15 @@ if ! command -v yay &> /dev/null
 {{- end}}
 
 {{- if eq .chezmoi.hostname "apophis" }}
-    echo "[athena]" | {{ $sudo }} tee -a /etc/pacman.conf
-    echo "Include = /etc/pacman.d/athena-mirrorlist" | {{ $sudo }} tee -a /etc/pacman.conf
-    echo "SigLevel = Optional TrustedOnly" | {{ $sudo }} tee -a /etc/pacman.conf
-    {{ $sudo }} curl https://raw.githubusercontent.com/Athena-OS/athena/main/packages/os-specific/athena-mirrorlist/athena-mirrorlist -o /etc/pacman.d/athena-mirrorlist
-    {{ $sudo }} pacman-key --recv-keys A3F78B994C2171D5 --keyserver keys.openpgp.org
-    {{ $sudo }} pacman-key --lsign A3F78B994C2171D5
+    if ! grep -Fxq "Include = /etc/pacman.d/athena.conf" /etc/pacman.conf; then
+        echo "Include = /etc/pacman.d/athena.conf" | {{ $sudo }} tee -a /etc/pacman.conf
+        echo "[athena]" | {{ $sudo }} tee /etc/pacman.d/athena.conf
+        echo "Include = /etc/pacman.d/athena-mirrorlist" | {{ $sudo }} tee -a /etc/pacman.d/athena.conf
+        echo "SigLevel = Optional TrustedOnly" | {{ $sudo }} tee -a /etc/pacman.d/athena.conf
+        {{ $sudo }} curl https://raw.githubusercontent.com/Athena-OS/athena/main/packages/os-specific/athena-mirrorlist/athena-mirrorlist -o /etc/pacman.d/athena-mirrorlist
+        {{ $sudo }} pacman-key --recv-keys A3F78B994C2171D5 --keyserver keys.openpgp.org
+        {{ $sudo }} pacman-key --lsign A3F78B994C2171D5
+    fi
     {{ $normal_packages = mustAppend $athena_packages $normal_packages -}}
 {{- end}}
 
