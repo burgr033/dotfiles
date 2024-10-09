@@ -131,7 +131,9 @@ if ! command -v yay &> /dev/null
 {{- end}}
 
 printf '\nUpdating yay packages. Root privileges needed.\n'
+printf {{ $normal_packages | join " " }}
 yay --noconfirm -S --needed {{ $normal_packages | join " " }}
+
 
 printf '\n installing ly as service\n'
 sudo systemctl enable ly.service
