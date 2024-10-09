@@ -46,7 +46,7 @@ printf "this is no amd64 arch. Lazygit and delta missing! Install manually"
 {{ $sudo }}apt-get install -y {{ .packages.linux.ubuntu.apt | join " " }}
 
 {{ if lookPath "snap" }}
-{{   range $classicSnaps }}
+{{   range .packages.linux.ubuntu.snap }}
 {{ $sudo }}snap install --classic {{ .packages.linux.ubuntu.snap | join " " }}
 {{   end }}
 {{ end }}
