@@ -3,7 +3,7 @@
 {{ $isMobile := false }}
 {{ $manualSetup := false }}
 {{ $shell := "fish" }}
-{{- $email := promptStringOnce . "email" "Email" "simon@burgr.io" }}
+{{- $email := promptStringOnce . "email" "Email" "burgr@posteo.de" }}
 {{- $name := promptStringOnce . "name" "Name" "sb" }}
 {{- $isVirtual := promptBoolOnce . "isVirtual" "is this a virtual machine (y/n)" }}
 {{- $isServer = promptBoolOnce . "isServer" "is this machine headless (y/n)" }}
