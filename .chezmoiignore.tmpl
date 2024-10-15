@@ -1,3 +1,4 @@
+# -*-mode:conf-toml-*- vim:ft=gitignore
 # repo related stuff
 README.md
 {{if ne .chezmoi.os "windows"}}
@@ -26,21 +27,20 @@ README.md
     .config/rofi
     .config/picom.conf
   {{- end}}
-  {{- if eq .isVirtual "true"  }}
-    # if this is a virtual machine
+  {{- if eq .ChassisType "vm"  }}
+    # if this is a virtual machine ignore these files...
     .config/hypr
     .config/hyprland-autoname-workspaces
     .config/waybar
     .config/swaync
-  {{- end}}
-  {{- if eq .isVirtual "false"  }}
+  {{-else -}}
     # if this is a physical machine
     .Xresources
     .config/dunst
     .config/polybar
     .config/picom.conf
     .config/i3
-  {{- end}}
+{{- end}}
 {{- end}}
 {{if eq .chezmoi.os "windows" -}}
   # if this is a windows machine

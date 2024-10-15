@@ -25,13 +25,12 @@ if ! command -v yay &> /dev/null
 
 printf '\nInstalling graphical common packages. Root privileges needed.\n'
 yay --noconfirm -S --needed {{ .packages.linux.arch.graphical.common | join " " }}
-{{- if eq .isVirtual "false"  }}
-    printf '\nInstalling hyprland packages. Root privileges needed.\n'
-    yay --noconfirm -S --needed {{ .packages.linux.arch.graphical.hypr | join " " }}
-{{- end}}
-{{- if eq .isVirtual "true"  }}
+{{- if eq .chassisType "vm"  }}
     printf '\nInstalling i3wm packages. Root privileges needed.\n'
     yay --noconfirm -S --needed {{ .packages.linux.arch.graphical.i3wm | join " " }}
+{{ else }}
+    printf '\nInstalling hyprland packages. Root privileges needed.\n'
+    yay --noconfirm -S --needed {{ .packages.linux.arch.graphical.hypr | join " " }}
 {{- end}}
 
 
