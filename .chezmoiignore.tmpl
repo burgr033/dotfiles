@@ -27,13 +27,13 @@ README.md
     .config/rofi
     .config/picom.conf
   {{- end}}
-  {{- if eq .ChassisType "vm"  }}
+  {{- if eq .chassisType "vm"  }}
     # if this is a virtual machine ignore these files...
     .config/hypr
     .config/hyprland-autoname-workspaces
     .config/waybar
     .config/swaync
-  {{-else -}}
+  {{- else -}}
     # if this is a physical machine
     .Xresources
     .config/dunst
