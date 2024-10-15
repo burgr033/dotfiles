@@ -206,8 +206,6 @@ exec --no-startup-id xset b off
 exec --no-startup-id gensystray
 exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/* -z
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -i ~/Pictures/i3lock/i3lock.png
-exec --no-startup-id picom -b --config $HOME/.config/picom.conf
-exec --no-startup-id xfce4-power-manager --daemon --sm-client-disable
 exec --no-startup-id autotiling
 exec --no-startup-id unclutter
 exec --no-startup-id nm-applet
