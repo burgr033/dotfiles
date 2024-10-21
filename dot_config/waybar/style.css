@@ -97,6 +97,9 @@ tooltip {
 #bluetooth.disabled {
     color: #4C566A;
 }
+#bluetooth.disabled {
+    color: #4C566A;
+}
 #battery {
     color: #a6e3a1;
 }

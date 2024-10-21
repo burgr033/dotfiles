@@ -11,6 +11,8 @@
     abbr -a -- ls exa
     abbr -a -- ll 'exa --long --all --group --git'
     abbr -a -- lt 'exa --long --all --group --header --tree --level'
+    abbr -a -- ltree 'exa --long --tree' 
+    abbr -a -- tree 'exa --tree' 
 
     # utilities
     abbr --add -- activate '. venv/bin/activate.fish'

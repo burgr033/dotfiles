@@ -19,11 +19,11 @@
     "custom/updates",
     "custom/vigiland",
     "custom/separator2",
-    "network",
     "bluetooth",
-    "battery",
     "pulseaudio#microphone",
     "pulseaudio",
+    "network",
+    "battery",
     "clock",
     "group/tray"
   ],

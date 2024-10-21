@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+event_fullscreen() {
+    # Get the output of hyprctl activewindow in JSON format
+    window_info=$(hyprctl activewindow -j)
+
+    # Extract the fullscreen status and class of the window using jq
+    fullscreen_status=$(echo "$window_info" | jq '.fullscreen')
+    window_class=$(echo "$window_info" | jq -r '.class')  # -r removes quotes from the class name
+
+    # Check if fullscreen is not 0 and the window class is "virtual machine"
+    if [ "$fullscreen_status" -ne 0 ] && [ "$window_class" = "VirtualBox Machine" ]; then
+        # If fullscreen is active, set the specific keymap using hyprctl
+        notify-send "VM Fullscreen keygrab enabled"
+        hyprctl dispatch submap grabOn
+      else
+        notify-send "VM Fullscreen keygrab disabled"
+        hyprctl dispatch submap reset
+    fi
+}
