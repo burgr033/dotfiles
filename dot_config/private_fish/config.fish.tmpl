@@ -5,16 +5,19 @@ if status is-interactive
     fish_add_path $HOME/.go/bin
     alias vi="nvim"
     alias vim="nvim"
-    alias apophis="virtualboxvm --startvm Apophis"
     alias cat="bat --plain"
+    alias apophis="virtualboxvm --startvm Apophis"
     alias scratch="nvim -c Scratch"
+    {{- if eq .isServer "false"}}
     set --export GPG_TTY $(tty)
+    {{- end}}
     set --export SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
-    
+    {{ if (eq .chezmoi.osRelease.id "ubuntu") -}}
+    {{else}}
     set --export EDITOR "nvim"
     set --export GOPATH "$HOME/.go"
     set --export VISUAL "nvim"
-    
+    {{end}}
     if not set -q DISPLAY
         if not set -q ZELLIJ                                                                                                                                                           
             if test "$ZELLIJ_AUTO_ATTACH" = "true"                                                                                                                                     
