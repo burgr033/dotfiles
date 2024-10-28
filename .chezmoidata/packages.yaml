@@ -24,7 +24,6 @@ packages:
         - "units"
       snap:
         - "nvim"
-
     arch:
       common:
         - "bat"
@@ -105,7 +104,6 @@ packages:
           - "hyprprop-git"
         i3wm:
           - "i3-wm"
-          - "picom"
           - "xclip"
           - "i3lock"
           - "xorg-xauth"
@@ -129,6 +127,7 @@ packages:
         - "mimikatz"
         - "metasploit"
         - "radare2"
+        - "iaito"
         - "tcpdump"
         - "wireshark-qt"
         - "wpscan"
@@ -177,7 +176,7 @@ packages:
         - "dark"
         - "ffmpeg"
         - "imhex"
-        - "openjdk"  
+        - "openjdk"
         - "jdtls"
         - "miktex"
         - "pandoc"
