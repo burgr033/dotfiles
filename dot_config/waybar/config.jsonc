@@ -216,7 +216,7 @@
     "tooltip-format": "{capacity}% - {time} remaining",
     "states": {
       "good": 95,
-      "warning": 30,
+      "warning": 45,
       "critical": 20
     }
   },
