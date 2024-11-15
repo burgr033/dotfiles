@@ -82,6 +82,9 @@ packages:
           - "obsidian"
           - "enpass-bin"
           - "easyroam-desktop-bin"
+          - "xdg-user-dirs"
+          - "gnome-keyring"
+
         hypr:
           - "brightnessctl"
           - "hypridle"
