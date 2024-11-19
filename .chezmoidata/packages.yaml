@@ -105,6 +105,7 @@ packages:
           - "hyprpicker"
           - "ttf-noto-nerd"
           - "hyprprop-git"
+          - "iio-hyprland"
         i3wm:
           - "i3-wm"
           - "xclip"

@@ -58,12 +58,6 @@
           "type": "toggle",
           "active": false,
           "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && vigiland || pkill vigiland'"
-        },
-        {
-          "label": "󰓷",
-          "type": "toggle",
-          "active": false,
-          "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] &&  hyprctl --batch \"keyword input:tablet:transform 1;keyword input:touchdevice:transform 1;keyword monitor eDP-1,transform,1\" || hyprctl --batch \"keyword input:tablet:transform 0;keyword input:touchdevice:transform 0;keyword monitor eDP-1,transform,0\"'"
         }
       ]
     },
