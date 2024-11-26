@@ -9,7 +9,7 @@
     grey: #dcdfe4;
     width: 600;
 
-  font: "JetBrains Mono Nerd Font 12";
+  font: "Maple Mono 12";
 }
 
 element-text, element-icon , mode-switcher {

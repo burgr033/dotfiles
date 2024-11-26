@@ -5,23 +5,23 @@ args = ["-l"]
 [window]
 startup_mode = "Windowed"
 title = "Alacritty"
-dynamic_title = true 
+dynamic_title = true
 decorations_theme_variant = "None"
 decorations = "Full"
 opacity = 1.00
-blur = false 
+blur = false
 
 [scrolling]
 history = 10000
 multiplier = 3
 
 [font]
-normal = { family = "JetBrains Mono Nerd Font" }
-italic = { family = "JetBrains Mono Nerd Font", style = "Italic" }
-bold = { family = "JetBrains Mono Nerd Font", style = "Bold" }
-bold_italic = { family = "JetBrains Mono Nerd Font", style = "Bold Italic" }
+normal = { family = "Maple Mono" }
+italic = { family = "Maple Mono", style = "Italic" }
+bold = { family = "Maple Mono", style = "Bold" }
+bold_italic = { family = "Maple Mono", style = "Bold Italic" }
 size = 12
-builtin_box_drawing = true 
+builtin_box_drawing = true
 
 [colors.primary]
 background = "#282c34"
@@ -78,7 +78,7 @@ hide_when_typing = false
 live_config_reload = true
 
 [[hints.enabled]]
-command = "xdg-open" # On Linux/BSD
+command = "xdg-open"                                                                                                                                      # On Linux/BSD
 hyperlinks = true
 post_processing = true
 persist = false

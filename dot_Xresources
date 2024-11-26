@@ -5,7 +5,7 @@ Xft.rgba:      rgb
 Xft.autohint:  false
 Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
-pmenu.font: JetBrains Mono Nerd Font
+pmenu.font: Maple Mono 
 
 ! special
 *.foreground:   #dcdfe4

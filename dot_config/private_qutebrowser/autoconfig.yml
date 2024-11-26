@@ -49,9 +49,9 @@ settings:
   downloads.location.prompt:
     global: false
   fonts.default_family:
-    global: JetBrains Mono Nerd Font
+    global: Maple Mono
   fonts.web.family.standard:
-    global: JetBrains Mono Nerd Font
+    global: Maple Mono
   input.insert_mode.auto_load:
     global: false
   statusbar.position:
