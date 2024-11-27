@@ -23,37 +23,46 @@ bold_italic = { family = "Maple Mono", style = "Bold Italic" }
 size = 12
 builtin_box_drawing = true
 
+# TokyoNight Alacritty Colors
+# Default colors
 [colors.primary]
-background = "#282c34"
-foreground = "#dcdfe4"
+background = '#222436'
+foreground = '#c8d3f5'
 
-[colors.search]
-matches = { foreground = "#181818", background = "#ac4242" }
-focused_match = { foreground = "#181818", background = "#f4bf75" }
+#[colors.cursor]
+#cursor = '#c8d3f5'
+#text = '#222436'
 
-[colors.hints]
-start = { foreground = "#181818", background = "#f4bf75" }
-end = { foreground = "#181818", background = "#ac4242" }
-
+# Normal colors
 [colors.normal]
-black = "#282c34"
-red = "#e06c75"
-green = "#98c379"
-yellow = "#e5c07b"
-blue = "#61afef"
-magenta = "#c678dd"
-cyan = "#56b6c2"
-white = "#dcdfe4"
+black = '#1b1d2b'
+red = '#ff757f'
+green = '#c3e88d'
+yellow = '#ffc777'
+blue = '#82aaff'
+magenta = '#c099ff'
+cyan = '#86e1fc'
+white = '#828bb8'
 
+# Bright colors
 [colors.bright]
-black = "#7f848e"
-red = "#e45649"
-green = "#50a14f"
-yellow = "#c18401"
-blue = "#0184bc"
-magenta = "#a626a4"
-cyan = "#0997b3"
-white = "#fafafa"
+black = '#444a73'
+red = '#ff757f'
+green = '#c3e88d'
+yellow = '#ffc777'
+blue = '#82aaff'
+magenta = '#c099ff'
+cyan = '#86e1fc'
+white = '#c8d3f5'
+
+# Indexed Colors
+[[colors.indexed_colors]]
+index = 16
+color = '#ff966c'
+
+[[colors.indexed_colors]]
+index = 17
+color = '#c53b53'
 
 [bell]
 animation = "Linear"

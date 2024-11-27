@@ -1,12 +1,12 @@
 * {
-    bg-col:  #282c34;
-    bg-col-light: #393d45;
-    border-col: #393d45;
-    selected-col: #61afef;
-    blue: #61afef;
-    fg-col: #dcdfe4;
-    fg-col2: #393d45;
-    grey: #dcdfe4;
+    bg-col:  #222436;
+    bg-col-light: #444a73;
+    border-col: #444a73;
+    selected-col: #c099ff;
+    blue: #c099ff;
+    fg-col: #c8d3f5;
+    fg-col2: #444a73;
+    grey: #c8d3f5;
     width: 600;
 
   font: "Maple Mono 12";
@@ -30,7 +30,8 @@ mainbox {
 }
 
 inputbar {
-    children: [prompt,entry];
+    children: [prompt,entry
+    ];
     background-color: @bg-col;
     border-radius: 5px;
     padding: 2px;
@@ -81,7 +82,7 @@ element selected {
 
 mode-switcher {
     spacing: 0;
-  }
+}
 
 button {
     padding: 10px;
