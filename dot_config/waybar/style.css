@@ -10,7 +10,7 @@ window#waybar, tooltip {
     color: #dcdfe4;
 }
 tooltip {
-    background-color: #282c34;
+    background-color: #222436;
     padding: 10px;
     margin: 10px;
     font-size: 15px;
@@ -45,7 +45,7 @@ tooltip {
   padding-right: 5px;
   padding-top: 5px;
   padding-bottom: 5px;
-  background-color: #282c34;
+  background-color: #222436;
   border-radius: 10px; 
   margin-top: 4px;
   margin-right: 4px;
@@ -56,7 +56,7 @@ tooltip {
   padding-right: 5px;
   padding-top: 5px;
   padding-bottom: 5px;
-  background-color: #282c34;
+  background-color: #222436;
   margin-top: 4px;
   margin-left: 4px;
   margin-bottom: 4px;
@@ -69,43 +69,43 @@ tooltip {
   min-height: 15px;
   margin: 5px;
   border-radius: 30px;
-  background-color: #dcdfe4;
+  background-color: #c8d3f5;
   transition: 100ms;
   animation: ws_normal 20s ease-out 10; }
 
 #workspaces button.empty {
   font-size: 0;
-  background-color: #4C566A; }
+  background-color: #444a73; }
 
 #workspaces button.active {
   min-width: 60px;
-  background-color: #61afef;
+  background-color: #c099ff;
   transition: 100ms; }
 
 #custom-separator,#custom-separator2 {
-    color: #4C566A;
+    color: #444a73;
 }
 #temperature.critical {
     color: #eba0ac;
 }
 #bluetooth {
-    color: #61afef;
+    color: #82aaff;
 }
 #bluetooth.off {
-    color: #4C566A;
+    color: #444a73;
 }
 #bluetooth.disabled {
-    color: #4C566A;
+    color: #444a73;
 }
 #bluetooth.disabled {
-    color: #4C566A;
+    color: #444a73;
 }
 #battery {
-    color: #a6e3a1;
+    color: #c3e88d;
 }
 #battery.warning {
-    color: #e5c07b;
+    color: #ffc777;
 }
 #battery.critical {
-    color: #e06c75;
+    color: #ff757f;
 }

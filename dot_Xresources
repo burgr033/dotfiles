@@ -7,39 +7,26 @@ Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 pmenu.font: Maple Mono 
 
-! special
-*.foreground:   #dcdfe4
-*.background:   #282c34
-*.cursorColor:  #dcdfe4
+! TokyoNight colors for Xresources
 
-! black
-*.color0:       #282c34
-*.color8:       #383a42
+*background: #222436
+*foreground: #c8d3f5
 
-! red
-*.color1:       #e06c75
-*.color9:       #e45649
+*color0: #1b1d2b
+*color1: #ff757f
+*color2: #c3e88d
+*color3: #ffc777
+*color4: #82aaff
+*color5: #c099ff
+*color6: #86e1fc
+*color7: #828bb8
 
-! green
-*.color2:       #98c379
-*.color10:      #50a14f
-
-! yellow
-*.color3:       #e5c07b
-*.color11:      #c18401
-
-! blue
-*.color4:       #61afef
-*.color12:      #0184bc
-
-! magenta
-*.color5:       #c678dd
-*.color13:      #a626a4
-
-! cyan
-*.color6:       #56b6c2
-*.color14:      #0997b3
-
-! white
-*.color7:       #dcdfe4
-*.color15:      #fafafa
+*color8: #444a73
+*color9: #ff757f
+*color10: #c3e88d
+*color11: #ffc777
+*color12: #82aaff
+*color13: #c099ff
+*color14: #86e1fc
+*color15: #c8d3f5
+ 

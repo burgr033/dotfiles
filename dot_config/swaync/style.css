@@ -3,14 +3,14 @@
  */
 
 @define-color noti-border-color rgba(255, 255, 255, 0.15);
-@define-color noti-bg-alt #282c34;
-@define-color noti-bg #4C566A;
-@define-color noti-fg #dcdfe4;
-@define-color noti-bg-hover #61afef;
-@define-color noti-bg-focus #98c379;
+@define-color noti-bg-alt #222436;
+@define-color noti-bg #444a73;
+@define-color noti-fg #c8d3f5;
+@define-color noti-bg-hover #828bb8;
+@define-color noti-bg-focus #c3e88d;
 @define-color noti-close-bg rgba(255, 255, 255, 0.1);
 @define-color noti-close-bg-hover rgba(255, 255, 255, 0.15);
-@define-color noti-urgent #e06c75;
+@define-color noti-urgent #ff757f;
 
 
 *{

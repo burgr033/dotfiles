@@ -1,11 +1,9 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema-preview",
-    "actions": 
-    [
+    "actions": [
         {
-            "command": 
-            {
+            "command": {
                 "action": "copy",
                 "singleLine": false
             },
@@ -16,8 +14,7 @@
             "keys": "ctrl+v"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "splitPane",
                 "split": "auto",
                 "splitMode": "duplicate"
@@ -32,21 +29,17 @@
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{6d3eb2d2-4469-4543-999b-ceec8189d3b9}",
-    "newTabMenu": 
-    [
+    "newTabMenu": [
         {
             "type": "remainingProfiles"
         }
     ],
-    "profiles": 
-    {
-        "defaults": 
-        {
+    "profiles": {
+        "defaults": {
             "adjustIndistinguishableColors": "indexed",
             "colorScheme": "One Half Dark",
             "experimental.retroTerminalEffect": false,
-            "font": 
-            {
+            "font": {
                 "face": "JetBrainsMono Nerd Font",
                 "size": 10.0,
                 "weight": "normal"
@@ -55,8 +48,7 @@
             "opacity": 100,
             "useAcrylic": true
         },
-        "list": 
-        [
+        "list": [
             {
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe /nologo",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
@@ -91,8 +83,7 @@
             }
         ]
     },
-    "schemes": 
-    [
+    "schemes": [
         {
             "background": "#0C0C0C",
             "black": "#0C0C0C",
@@ -115,6 +106,29 @@
             "selectionBackground": "#FFFFFF",
             "white": "#CCCCCC",
             "yellow": "#C19C00"
+        },
+        {
+            "background": "#222436",
+            "black": "#1b1d2b",
+            "blue": "#82aaff",
+            "brightBlack": "#444a73",
+            "brightBlue": "#82aaff",
+            "brightCyan": "#86e1fc",
+            "brightGreen": "#c3e88d",
+            "brightPurple": "#fca7ea",
+            "brightRed": "#ff757f",
+            "brightWhite": "#c8d3f5",
+            "brightYellow": "#ffc777",
+            "cursorColor": "#c8d3f5",
+            "cyan": "#86e1fc",
+            "foreground": "#c8d3f5",
+            "green": "#c3e88d",
+            "name": "Tokyo Night Moon",
+            "purple": "#c099ff",
+            "red": "#ff757f",
+            "selectionBackground": "#2d3f76",
+            "white": "#828bb8",
+            "yellow": "#ffc777"
         },
         {
             "background": "#012456",
@@ -224,7 +238,7 @@
             "cyan": "#56B6C2",
             "foreground": "#DCDFE4",
             "green": "#98C379",
-            "name": "One Half Dark",
+            "name": "Tokyo Night Moon",
             "purple": "#C678DD",
             "red": "#E06C75",
             "selectionBackground": "#FFFFFF",

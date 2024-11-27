@@ -8,11 +8,11 @@
 
     abbr -a -- find fd
 
-    abbr -a -- ls exa
-    abbr -a -- ll 'exa --long --all --group --git'
-    abbr -a -- lt 'exa --long --all --group --header --tree --level'
-    abbr -a -- ltree 'exa --long --tree' 
-    abbr -a -- tree 'exa --tree' 
+    abbr -a -- ls eza
+    abbr -a -- ll 'eza --long --all --group --git'
+    abbr -a -- lt 'eza --long --all --group --header --tree'
+    abbr -a -- ltree 'eza --long --tree' 
+    abbr -a -- tree 'eza --tree' 
 
     # utilities
     abbr --add -- activate '. venv/bin/activate.fish'
