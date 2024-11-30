@@ -65,13 +65,10 @@
   "hyprland/workspaces": {
     "format": "{name}",
     "tooltip": false,
-    "all-outputs": false,
+    "all-outputs": true,
     "sort-by-number": true,
-    "persistent-workspaces": {
-      "*": 9
-    },
     "format-icons": {
-      "1": "",
+      "1": "{name}",
       "2": "",
       "3": "",
       "4": "",
