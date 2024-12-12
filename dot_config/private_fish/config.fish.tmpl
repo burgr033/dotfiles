@@ -11,7 +11,7 @@ if status is-interactive
     {{- if eq .isServer "false"}}
     set --export GPG_TTY $(tty)
     {{- end}}
-    set --export SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
+    set --export SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/gcr/ssh"
     {{ if (eq .chezmoi.osRelease.id "ubuntu") -}}
     {{else}}
     set --export EDITOR "nvim"
