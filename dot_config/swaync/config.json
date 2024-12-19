@@ -32,6 +32,7 @@
   "widgets": [
     "buttons-grid",
     "backlight",
+    "menubar#label",
     "backlight#KB",
     "volume",
     "mpris",
