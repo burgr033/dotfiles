@@ -29,7 +29,10 @@ format = '[$modified](red)'
 [character]
 success_symbol = '\$'
 error_symbol = '[\$](red)'
-
+vimcmd_symbol = "[N](bold blue)"
+vimcmd_visual_symbol = "[V](bold purple)"
+vimcmd_replace_symbol = "[R](bold red)"
+vimcmd_replace_one_symbol = "[r](bold red)"
 
 [golang]
 symbol = '  '

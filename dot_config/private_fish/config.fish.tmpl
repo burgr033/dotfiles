@@ -17,6 +17,7 @@ if status is-interactive
     set --export EDITOR "nvim"
     set --export GOPATH "$HOME/.go"
     set --export VISUAL "nvim"
+    set -g fish_key_bindings fish_vi_key_bindings
     {{end}}
     if not set -q DISPLAY
         if not set -q ZELLIJ                                                                                                                                                           
