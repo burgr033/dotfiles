@@ -1,6 +1,6 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = """╭─[$username$hostname](green) $directory([❮](yellow)$git_branch$git_status[❯](yellow))$rust$docker_context$terraform$golang$python
+format = """╭─[$username$hostname](green) $directory([❮](yellow)$git_branch$git_status$git_state[❯](yellow))$rust$docker_context$terraform$golang$python
 ╰─$character"""
 
 scan_timeout = 10
@@ -23,8 +23,7 @@ style = 'bold blue'
 format = '[$branch](yellow)'
 
 [git_status]
-modified = '●'
-format = '[$modified](red)'
+format = '[$all_status](red)'
 
 [character]
 success_symbol = '\$'

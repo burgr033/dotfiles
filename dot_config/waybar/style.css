@@ -73,14 +73,17 @@ tooltip {
   transition: 100ms;
   animation: ws_normal 20s ease-out 10; }
 
+#workspaces button.urgent {
+  background-color: #ffffff
+}
+
 #workspaces button.empty {
-  font-size: 0;
   background-color: #444a73; }
 
 #workspaces button.active {
   min-width: 60px;
   background-color: #c099ff;
-  transition: 100ms; }
+}
 
 #custom-separator,#custom-separator2 {
     color: #444a73;
