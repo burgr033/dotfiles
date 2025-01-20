@@ -49,16 +49,25 @@
     "buttons-grid": {
       "actions": [
         {
-          "label": "󰂯",
+          "label": " ",
           "type": "toggle",
           "active": false,
-          "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && bluetoothctl power on || bluetoothctl power off'"
+          "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && nmcli radio wifi on || nmcli radio wifi off'",
+          "update-command": "sh -c '[[ $(nmcli radio wifi) == \"enabled\" ]] && echo true || echo false'"
+        },
+        {
+          "label": "󰂯",
+          "type": "toggle",
+          "active": true,
+          "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && bluetoothctl power on || bluetoothctl power off'",
+          "update-command": "sh -c '[[ $(bluetoothctl show | grep -oP \"(?<=Powered: ).*\") == \"yes\" ]] && echo true || echo false'"
         },
         {
           "label": "󰐨",
           "type": "toggle",
           "active": false,
-          "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && vigiland || pkill vigiland'"
+          "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && vigiland || pkill vigiland'",
+          "update-command": "sh -c '[[ $(pgrep vigiland) ]] && echo true || echo false'"
         }
       ]
     },

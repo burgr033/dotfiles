@@ -74,8 +74,9 @@ tooltip {
   animation: ws_normal 20s ease-out 10; }
 
 #workspaces button.urgent {
-  background-color: #ffffff
+  background-color: #eba0ac
 }
+
 
 #workspaces button.empty {
   background-color: #444a73; }
