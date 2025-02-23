@@ -1,29 +1,20 @@
 # my personal dotfiles
 
-![screenshot](https://github.com/burgr033/dotfiles/blob/main/.github/screenshot.png)
-
 dotfiles generated with **[chezmoi](https://github.com/twpayne/chezmoi)**
 
 Configs include:
 
-* Linux
-  * alacritty
-  * bat
-  * swaync
-  * hyprland
-  * waybar
-  * qutebrowser
-  * ranger
-  * rofi
-* Windows
-  * Windows PowerShell
-  * Windows Terminal
-  * GlazeWM
-* both
-  * Neovim
-  * Git
-
-(i have my old i3 dotfiles still in here for virtual machines and such)
+- Linux
+  - Gnome
+  - ghostty
+  - bat
+  - fish
+- Windows
+  - Windows PowerShell
+  - Windows Terminal
+- both
+  - Neovim
+  - Git
 
 ## applying my dotfiles
 
@@ -36,26 +27,26 @@ Configs include:
 
 1. get chezmoi
 
-    ```shell
-    sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply burgr033
-    ```
+   ```shell
+   sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply burgr033
+   ```
 
 ### Steps (windows)
 
 1. Install (the best package manager for windows) **[scoop](https://scoop.sh)**
 
-    ```shell
-    irm get.scoop.sh | iex
-    ```
+   ```shell
+   irm get.scoop.sh | iex
+   ```
 
 2. Install Chezmoi through scoop
 
-    ```shell
-    scoop install chezmoi
-    ```
+   ```shell
+   scoop install chezmoi
+   ```
 
 3. init & apply dotfiles
 
-    ```shell
-    chezmoi init burgr033 --apply
-    ```
+   ```shell
+   chezmoi init burgr033 --apply
+   ```
