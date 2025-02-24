@@ -3,7 +3,7 @@
 set -euo pipefail
 
 BASENAME=$(basename "$0")
-KEYFILE_TEMPLATE=$(chezmoi source-path)/.keyfiles/dconf_overrides.keyfile.tmpl
+KEYFILE_TEMPLATE=$(systemd-path user-shared)/chezmoi/.keyfiles/dconf_overrides.keyfile.tmpl
 DCONF_PROFILE_DIR=$(systemd-path user-configuration)/dconf
 
 if [ $# -lt 1 ]; then
