@@ -5,8 +5,9 @@ if status is-interactive
     fish_add_path $HOME/.go/bin
     alias vi="nvim"
     alias vim="nvim"
+    alias dig="dog"
+    alias nslookup="dog"
     alias cat="bat --plain"
-    alias apophis="virtualboxvm --startvm Apophis"
     alias scratch="nvim -c Scratch"
     {{- if eq .isServer "false"}}
     set --export GPG_TTY $(tty)
@@ -17,19 +18,19 @@ if status is-interactive
     set --export EDITOR "nvim"
     set --export GOPATH "$HOME/.go"
     set --export VISUAL "nvim"
+    set ZELLIJ_AUTO_ATTACH true
+    set ZELLIJ_AUTO_EXIT true
     set -g fish_key_bindings fish_vi_key_bindings
     {{end}}
-    if not set -q DISPLAY
-        if not set -q ZELLIJ                                                                                                                                                           
-            if test "$ZELLIJ_AUTO_ATTACH" = "true"                                                                                                                                     
-                zellij attach -c                                                                                                                                                       
-            else                                                                                                                                                                       
-                zellij                                                                                                                                                                 
-            end                                                                                                                                                                        
-            if test "$ZELLIJ_AUTO_EXIT" = "true"                                                                                                                                       
-                kill $fish_pid                                                                                                                                                         
-            end                                                                                                                                                                        
-        end
+    if not set -q ZELLIJ                                                                                                                                                           
+        if test "$ZELLIJ_AUTO_ATTACH" = "true"                                                                                                                                     
+            zellij attach -c                                                                                                                                                       
+        else                                                                                                                                                                       
+            zellij                                                                                                                                                                 
+        end                                                                                                                                                                        
+        if test "$ZELLIJ_AUTO_EXIT" = "true"                                                                                                                                       
+            kill $fish_pid                                                                                                                                                         
+        end                                                                                                                                                                        
     end
 end
 starship init fish | source
