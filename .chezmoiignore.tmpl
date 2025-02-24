@@ -1,58 +1,24 @@
 # -*-mode:conf-toml-*- vim:ft=gitignore
 # repo related stuff
 README.md
+.github
+{{if eq .chezmoi.os "windows"}}
+# if OS is windows ignore...
+.config/*
+.local/*
+# allow explicit
+!.config/bat
+!.config/git
+!.config/lazygit
+!.config/starship.toml
+{{- end}}
 {{if ne .chezmoi.os "windows"}}
-  # if OS is not windows
-  Documents/
-  .glaze-wm/
-  AppData/
-  {{ if ne .shell "fish" }}
-    # if the shell is not fish
-    .config/omf
-    .config/fish
-  {{ end }}
-  {{- if eq .isServer "true" }}
-    # if this is a server
-    .Xresources
-    .config/alacritty
-    .config/aerc
-    .config/swaync
-    .config/hypr
-    .config/hyprland-autoname-workspaces
-    .config/dunst
-    .config/waybar
-    .config/i3
-    .config/polybar
-    .config/qutebrowser
-    .config/rofi
-  {{- end}}
-  {{- if eq .chassisType "vm"  }}
-    # if this is a virtual machine ignore these files...
-    .config/hypr
-    .config/hyprland-autoname-workspaces
-    .config/waybar
-    .config/swaync
-  {{- else -}}
-    # if this is a physical machine
-    .Xresources
-    .config/dunst
-    .config/polybar
-    .config/i3
-{{- end}}
-{{- end}}
-{{if eq .chezmoi.os "windows" -}}
-  # if this is a windows machine
-  .config/*
-  .Xresources
-  .hushlogin
-  !.config/git
-  !.config/qutebrowser
-  !.config/starship.toml
-  !Documents/
-  !.glaze-wm/
-  !AppData/
+# if OS is NOT windows ignore:
+Documents/*
+Appdata/*
 {{- end}}
 
 # script related stuff
 .chezmoiscripts/*/**
 !.chezmoiscripts/{{ .chezmoi.os }}/**
+.keyfiles

@@ -182,7 +182,6 @@ keybinds {
         bind "Ctrl b" { SwitchToMode "Tmux"; }
     }
 }
-
 plugins {
     tab-bar { path "tab-bar"; }
     status-bar { path "status-bar"; }
@@ -219,7 +218,7 @@ plugins {
 //   - true (default)
 //   - false
 //
-// pane_frames true
+pane_frames false
 
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:
@@ -267,7 +266,7 @@ theme "tokyonight_moon"
 // Examples:
 //
 // copy_command "xclip -selection clipboard" // x11
-// copy_command "wl-copy"                    // wayland
+copy_command "wl-copy"                    // wayland
 // copy_command "pbcopy"                     // osx
 
 // Choose the destination for copied text
@@ -277,7 +276,7 @@ theme "tokyonight_moon"
 //   - system (default)
 //   - primary
 //
-// copy_clipboard "primary"
+copy_clipboard "system"
 
 // Enable or disable automatic copy (and clear) of selection when releasing mouse
 // Default: true
@@ -302,4 +301,4 @@ theme "tokyonight_moon"
 
 // The folder in which Zellij will look for themes
 //
-// theme_dir "/path/to/my/theme_dir"
+// theme_dir "$HOME/.config/zellij/themes"

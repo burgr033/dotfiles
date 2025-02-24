@@ -1,7 +1,12 @@
 # -*-mode:conf-toml-*- vim:ft=toml
 {{- $isServer := false -}}
 {{- $manualSetup := false -}}
+
 {{- $shell := "fish" -}}
+{{if ne .chezmoi.os "linux" -}}
+{{ $shell = "pwsh"  }}
+{{- end}}
+
 {{- $chassisType := "desktop" -}}
 
 {{- if eq .chezmoi.os "linux" -}}
@@ -17,10 +22,6 @@
 {{- $isWorkMachine := promptBoolOnce . "isWorkMachine" "is this a work machine (y/n)" -}}
 
 {{- $manualSetup = promptBoolOnce . "manualSetup" "Do you want to setup this machine manually (no packages installed) (y/n)" -}}
-
-{{if ne .chezmoi.os "linux" -}}
-        {{ $shell = "pwsh"  }}
-{{- end}}
 
 [edit]
         command = "nvim"
