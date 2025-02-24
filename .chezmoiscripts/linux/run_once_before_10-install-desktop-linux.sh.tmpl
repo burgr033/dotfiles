@@ -50,7 +50,6 @@ sudo systemctl enable gdm.service
 {{ else -}}
 
 printf '\nPackage installation is not implemented yet on `' {{ .chezmoi.osRelease.id }} '`.\n'
-printf 'You can add it in `run_onchange_install-packages.sh`.\n'
 
 {{ end -}}
 {{ end -}}

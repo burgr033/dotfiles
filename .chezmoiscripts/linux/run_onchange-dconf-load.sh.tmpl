@@ -1,4 +1,4 @@
 #!/bin/bash
 
-# dconf.ini hash: {{ include "gnome.ini" | sha256sum }}
-dconf load / < {{ joinPath .chezmoi.sourceDir "gnome.ini" | quote }}
+# dconf.ini hash: {{ include (joinPath .chezmoi.sourceDir ".keyfiles" "dconf_overrides.keyfile.tmpl") | sha256sum }}
+chezmoi-helper-dconf apply
