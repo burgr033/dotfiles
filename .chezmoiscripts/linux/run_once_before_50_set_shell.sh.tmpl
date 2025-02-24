@@ -13,6 +13,7 @@ if [ "$SHELL" != "$SHELL_PATH" ]; then
     # change default shell
     sudo chsh -s "$SHELL_PATH" "$(whoami)"
     echo "${USER}'s shell has been changed to ${SHELL_PATH}"
+    exit 
 else
     echo "${USER}'s shell is already changed."
 fi
