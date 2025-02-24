@@ -1,3 +1,4 @@
+# -*-mode:conf-toml-*- vim:ft=toml
 {{if eq .chezmoi.os "windows" -}}
 ["Appdata/Local/nvim"]
 type = "git-repo"
@@ -6,6 +7,7 @@ exact = true
 stripComponents = 1
 refreshPeriod = "168h"
 {{end}}
+
 {{if ne .chezmoi.os "windows" -}}
 [".config/nvim"]
 type = "git-repo"
@@ -15,7 +17,7 @@ stripComponents = 1
 refreshPeriod = "168h"
 {{- if eq .isServer "false" }}
 
-["Pictures/wallpapers"]
+[".local/share/backgrounds"]
 type = "archive"
 url = "https://github.com/burgr033/wallpapers/archive/main.tar.gz"
 exact = true

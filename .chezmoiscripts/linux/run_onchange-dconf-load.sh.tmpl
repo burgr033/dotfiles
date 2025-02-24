@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# dconf.ini hash: {{ include "gnome.ini" | sha256sum }}
+dconf load / < {{ joinPath .chezmoi.sourceDir "gnome.ini" | quote }}

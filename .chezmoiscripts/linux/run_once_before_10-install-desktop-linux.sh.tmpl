@@ -25,13 +25,8 @@ if ! command -v yay &> /dev/null
 
 printf '\nInstalling graphical common packages. Root privileges needed.\n'
 yay --noconfirm -S --needed {{ .packages.linux.arch.graphical.common | join " " }}
-{{- if eq .chassisType "vm"  }}
-    printf '\nInstalling i3wm packages. Root privileges needed.\n'
-    yay --noconfirm -S --needed {{ .packages.linux.arch.graphical.i3wm | join " " }}
-{{ else }}
-    printf '\nInstalling hyprland packages. Root privileges needed.\n'
-    yay --noconfirm -S --needed {{ .packages.linux.arch.graphical.hypr | join " " }}
-{{- end}}
+printf '\nInstalling gnome packages. Root privileges needed.\n'
+yay --noconfirm -S --needed {{ .packages.linux.arch.graphical.desktop | join " " }}
 
 
 {{- if eq .chezmoi.hostname "apophis" }}
@@ -48,9 +43,9 @@ yay --noconfirm -S --needed {{ .packages.linux.arch.graphical.common | join " " 
     yay --noconfirm -S --needed {{ .packages.linux.arch.pentesting | join " " }}
 {{- end}}
 
-printf '\n installing ly as service\n'
-sudo systemctl enable ly.service
-printf '\n Packages are up to date!\n'
+
+printf '\n installing gdm as service\n'
+sudo systemctl enable gdm.service
 
 {{ else -}}
 
