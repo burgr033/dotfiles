@@ -1,11 +1,9 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": 
-    [
+    "actions": [
         {
-            "command": 
-            {
+            "command": {
                 "action": "copy",
                 "singleLine": false
             },
@@ -18,8 +16,7 @@
             "keys": "ctrl+v"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "splitPane",
                 "split": "auto",
                 "splitMode": "duplicate"
@@ -36,31 +33,26 @@
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{6d3eb2d2-4469-4543-999b-ceec8189d3b9}",
-    "newTabMenu": 
-    [
+    "newTabMenu": [
         {
             "type": "remainingProfiles"
         }
     ],
-    "profiles": 
-    {
-        "defaults": 
-        {
+    "profiles": {
+        "defaults": {
             "adjustIndistinguishableColors": "indexed",
             "colorScheme": "Tokyo Night Moon",
             "experimental.retroTerminalEffect": false,
-            "font": 
-            {
-                "face": "JetBrainsMono Nerd Font",
-                "size": 12,
+            "font": {
+                "face": "Maple Mono NF",
+                "size": 11,
                 "weight": "normal"
             },
             "intenseTextStyle": "all",
             "opacity": 100,
             "useAcrylic": true
         },
-        "list": 
-        [
+        "list": [
             {
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe /nologo",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
@@ -95,8 +87,7 @@
             }
         ]
     },
-    "schemes": 
-    [
+    "schemes": [
         {
             "background": "#1E1E2E",
             "black": "#45475A",
