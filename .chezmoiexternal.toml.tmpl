@@ -1,22 +1,21 @@
 # -*-mode:conf-toml-*- vim:ft=toml
-{{if eq .chezmoi.os "windows" -}}
+{{- if eq .chezmoi.os "windows"}}
 ["Appdata/Local/nvim"]
 type = "git-repo"
 url = "https://github.com/burgr033/nvim-config"
 exact = true
 stripComponents = 1
 refreshPeriod = "168h"
-{{end}}
-
-{{if ne .chezmoi.os "windows" -}}
+{{- end}}
+{{- if ne .chezmoi.os "windows"}}
 [".config/nvim"]
 type = "git-repo"
 url = "https://github.com/burgr033/nvim-config"
 exact = true
 stripComponents = 1
 refreshPeriod = "168h"
-{{- if eq .isServer "false" }}
 
+{{- if eq .isServer "false" }}
 [".local/share/backgrounds"]
 type = "archive"
 url = "https://github.com/burgr033/wallpapers/archive/main.tar.gz"
