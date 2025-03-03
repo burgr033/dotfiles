@@ -16,8 +16,5 @@ scoop install {{ .packages.windows.scoop.packages | join " " }}
 # Delete chezmoi binary from bootstrap
 Remove-Item ~/bin/chezmoi.exe -ErrorAction SilentlyContinue
 
-# Add Starship to Profile
-echo "Invoke-Expression (&starship init powershell)" >> $PROFILE
-
 {{- end }}
 {{- end }}
