@@ -13,7 +13,6 @@ $wantedPackages = @(
 
 # Find packages that are not installed
 $missingPackages = $wantedPackages | Where-Object { $_ -notin $installedPackages.Name }
-echo $installedPackages
 if ($missingPackages)
 {
   Write-Output "Installing missing packages:"
