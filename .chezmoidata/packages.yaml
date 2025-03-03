@@ -179,7 +179,7 @@ packages:
         - "nerd-fonts"
       packages:
         - "7zip"
-        - "Maple-Mono"
+        - "Maple-Mono-NF"
         - "bat"
         - "bottom"
         - "cacert"

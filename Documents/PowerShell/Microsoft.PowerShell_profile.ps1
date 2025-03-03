@@ -1,5 +1,3 @@
-using namespace System.Management.Automation
-
 Register-ArgumentCompleter -CommandName ssh,scp,sftp -Native -ScriptBlock {
   param($wordToComplete, $commandAst, $cursorPosition)
 
@@ -65,7 +63,12 @@ function activate_venv()
   .\venv\scripts\activate
 }
 
-function Scratch()
+if (Get-Command eza -ErrorAction SilentlyContinue)
+{
+  Set-Alias -Name "ls" -Value "eza"
+}
+
+function Scratch
 {
   nvim -c Scratch
 }
