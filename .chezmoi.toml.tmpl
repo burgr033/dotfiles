@@ -1,5 +1,5 @@
 # -*-mode:conf-toml-*- vim:ft=toml
-{{- $isServer := false -}}
+{{ $isServer := false -}}
 {{- $manualSetup := false -}}
 
 {{- $shell := "fish" -}}
@@ -25,14 +25,18 @@
 
 
 [edit]
-        command = "nvim"
+command = "nvim"
+{{- if lookPath "delta" }}
+[diff]
+pager = delta
+{{end}}
 [cd]
-        command = "{{$shell}}"
+command = "{{$shell}}"
 [data]
-        name =  "{{ $name }}"
-        email = "{{ $email }}"
-        shell = "{{ $shell }}"
-        isServer = "{{ $isServer }}"
-        isWorkMachine = "{{ $isWorkMachine }}"
-        manualSetup = "{{ $manualSetup }}"
-        chassisType = "{{ $chassisType }}"
+name =  "{{ $name }}"
+email = "{{ $email }}"
+shell = "{{ $shell }}"
+isServer = "{{ $isServer }}"
+isWorkMachine = "{{ $isWorkMachine }}"
+manualSetup = "{{ $manualSetup }}"
+chassisType = "{{ $chassisType }}"

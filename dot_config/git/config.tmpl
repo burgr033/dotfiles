@@ -15,12 +15,12 @@ clean = git-lfs clean -- %f
 smudge = git-lfs smudge -- %f
 
 [credential]
-{{if eq .chezmoi.os "windows" -}}
-helper = manager
-{{end -}}
-{{if ne .chezmoi.os "windows" -}}
+{{- if eq .chezmoi.os "windows" }}
+helper = manager-core
+{{- end }}
+{{- if ne .chezmoi.os "windows" }}
 helper = cache
-{{end -}}
+{{- end}}
 
 [commit]
 gpgsign = true
@@ -29,21 +29,20 @@ gpgsign = true
 excludesfile = ~/.config/git/ignore
 commitGraph = true
 editor = nvim
-{{ if lookPath "delta" }}
+{{- if lookPath "delta" }}
 pager = delta
-{{end}}
+{{- end}}
 
 [gpg]
-{{if ne .chezmoi.os "windows" -}}
+{{- if ne .chezmoi.os "windows"}}
 program = gpg2
-{{end -}}
-{{if eq .chezmoi.os "windows" -}}
+{{- end}}
+{{- if eq .chezmoi.os "windows"}}
 program = {{ lookPath "gpg.exe" | replace "\\" "\\\\" }}
-
-{{end -}}
+{{- end}}
 
 [interactive]
-{{ if lookPath "delta" }}
+{{- if lookPath "delta" }}
 diffFilter = delta --color-only
 
 [delta]
@@ -57,7 +56,7 @@ conflictstyle = diff3
 
 [diff]
 colorMoved = default
-{{end}}
+{{- end}}
 
 [Include]
 path = includes/static
