@@ -1,3 +1,5 @@
 #!/bin/sh
 COMMIT_MSG_FILE=$1
-autoCommit.exe $COMMIT_MSG_FILE
+COMMIT_MSG_HEADER="This is an auotmated commit message"
+COMMIT_MSG_FOOTER="This is an auotmated commit message"
+autoCommit.exe $COMMIT_MSG_FILE $COMMIT_MSG_HEADER $COMMIT_MSG_FOOTER
