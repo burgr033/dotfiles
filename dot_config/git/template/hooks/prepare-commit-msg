@@ -1,3 +1,0 @@
-#!/bin/sh
-COMMIT_MSG_FILE=$1
-autoCommit.exe $COMMIT_MSG_FILE "# This is an auto generated commit message" 
