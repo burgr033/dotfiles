@@ -227,3 +227,6 @@ packages:
         - "zig"
         - "vlc"
         - "zotero"
+  go:
+    packages:
+      - "github.com/burgr033/autoCommit@latest"
