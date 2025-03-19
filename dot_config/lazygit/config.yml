@@ -1,6 +1,3 @@
-git:
-  skipHookPrefix: ""
-
 gui:
   nerdFontsVersion: "3"
   theme:

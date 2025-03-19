@@ -2,7 +2,6 @@
     abbr -a -- mkdir 'mkdir -p -v'
     abbr -a -- mv 'mv -i'
     abbr -a -- tree 'tree -dirsfirst -F'
-
     
     abbr -a -- grep rg
 
@@ -23,3 +22,4 @@
     abbr --add -- pip-purge 'pip freeze --exclude-editable | xargs pip uninstall -y'
     abbr --add -- unset 'set --erase'
 
+    abbr --add dotdot --regex '^\.\.+$' --function multicd

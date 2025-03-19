@@ -1,8 +1,7 @@
 set fish_greeting
+fish_add_path $HOME/.local/bin
+fish_add_path $HOME/.go/bin
 if status is-interactive
-    # Commands to run in interactive sessions can go here
-    fish_add_path $HOME/.local/bin
-    fish_add_path $HOME/.go/bin
     alias vi="nvim"
     alias vim="nvim"
     alias dig="dog"
@@ -24,6 +23,7 @@ if status is-interactive
     set --export GOPATH "$HOME/.go"
     set --export VISUAL "nvim"
     set -g fish_key_bindings fish_vi_key_bindings
+    bind --mode insert delete delete-char
     if not set -q DISPLAY
         set ZELLIJ_AUTO_ATTACH true
         set ZELLIJ_AUTO_EXIT true
