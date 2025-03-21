@@ -47,7 +47,7 @@ set -eufo pipefail
       echo "[athena]" | {{- $sudo }} tee /etc/pacman.d/athena.conf
       echo "Include = /etc/pacman.d/athena-mirrorlist" | {{ $sudo }} tee -a /etc/pacman.d/athena.conf
       echo "SigLevel = Optional TrustedOnly" | {{ $sudo }} tee -a /etc/pacman.d/athena.conf
-      {{ $sudo }} curl https://raw.githubusercontent.com/Athena-OS/athena/main/packages/os-specific/athena-mirrorlist/athena-mirrorlist -o /etc/pacman.d/athena-mirrorlist
+      {{ $sudo }} curl https://raw.githubusercontent.com/Athena-OS/athena/packages/os-specific/system/athena-mirrorlist/athena-mirrorlist -o /etc/pacman.d/athena-mirrorlist
       {{ $sudo }} pacman-key --recv-keys A3F78B994C2171D5 --keyserver keys.openpgp.org
       {{ $sudo }} pacman-key --lsign A3F78B994C2171D5
   fi
