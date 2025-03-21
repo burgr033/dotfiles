@@ -2,6 +2,6 @@
 echo ""
 set -eufo pipefail
 mkdir -p $HOME/{Downloads,Projects}
-{{- if eq .isServer "false" }}
+{{- if eq .isServer false }}
     mkdir -p $HOME/{Pictures,Documents}
 {{- end}}
