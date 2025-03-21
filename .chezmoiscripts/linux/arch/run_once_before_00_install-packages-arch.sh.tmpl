@@ -59,7 +59,7 @@ set -eufo pipefail
 {{- if has "desktop" .packageCategory }}
   gnome-extensions-cli -F install {{ .packages.linux.arch.gnome_extensions | join " " }}
   printf '\n installing gdm as service\n'
-  {{- $sudo }} systemctl enable gdm.service
+  {{ $sudo }} systemctl enable gdm.service
 {{- end }}
 
 {{- end }}

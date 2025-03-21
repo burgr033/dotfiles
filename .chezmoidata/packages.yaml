@@ -77,7 +77,7 @@ packages:
         - "firefox"
         - "wl-clipboard"
         - "wev"
-        - "ttf-maple-beta"
+        - "ttf-maple-beta-nf"
         - "bibata-cursor-theme-bin"
         - "enpass-bin"
         - "gvfs"
@@ -193,7 +193,7 @@ packages:
         - "nerd-fonts"
       packages:
         - "7zip"
-        - "Maple-Mono-NF"
+        - "Maple-Mono-NF-beta"
         - "bat"
         - "bottom"
         - "cacert"
