@@ -56,7 +56,7 @@ set -eufo pipefail
 
   yay --noconfirm -Syu --needed {{ $combinedList | join " " }}
 
-{{ if eq env "XDG_SESSION_TYPE" "tty"}}
+{{ if eq (env "XDG_SESSION_TYPE") "tty" }}
 {{- $GEC_PARAM := "-F"}}
 {{end}}
 {{ if has "desktop" .packageCategory }}
