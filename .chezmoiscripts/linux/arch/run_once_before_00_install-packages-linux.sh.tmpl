@@ -21,9 +21,6 @@ set -eufo pipefail
           rm -rf /tmp/yay-bin/
       {{- end}}
     fi
-  {{- if has "common" .packageCategory }}
-    {{ $sudo }}sudo pacman --needed --noconfirm -Sy {{ .packages.linux.arch.common | join " " }}
-  {{ end -}}
  
   {{- $combinedList := list -}}
   {{- if has "desktop" .packageCategory }}
