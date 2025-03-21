@@ -55,16 +55,17 @@ command = {{- $shell | quote }}
 name =  {{-  $name | quote }}
 email = {{-  $email | quote }}
 shell = {{-  $shell | quote }}
-{{- if and (eq (len $packageCategory) 1) (in $packageCategory "common") }}
-isServer = true 
-{{- else }}
-isServer = false 
-{{- end}}
 {{- if eq $gpgkeyAnswer "work"}}
 gpgkey = "83297FC845136CEC5D204EAB2FC883E6A65782EC"
 {{- else}}
 gpgkey = "BDE652404B6095EB4FE11A1A1707363660BFF7D7"
 {{- end}}
+{{- end}}
 packageCategory = {{- $packageAnswer | toToml | default "[]" }}
+{{- if and (eq (len .packageCategory) 1) (in .packageCategory "common") }}
+isServer = true 
+{{- else }}
+isServer = false 
+{{- end}}
 manualSetup = {{-  $manualSetup | quote }}
 chassisType = {{-  $chassisType | quote }}
