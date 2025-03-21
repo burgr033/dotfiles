@@ -23,7 +23,6 @@
 
 {{- $email := promptStringOnce . "email" "Email" "burgr@posteo.de"}}
 {{- $name := promptStringOnce . "name" "Name" "sb"}}
-{{- $isServer = promptBoolOnce . "isServer" "should this this machine be headless (no GUI?) (y/n)"}}
 {{- $gpgkeyList := list "personal" "work" -}}
 {{- $gpgkeyAnswer := promptChoiceOnce . "gpgkey" "What GPG should we install?" $gpgkeyList}}
 {{- $packageAnswer := promptMultichoiceOnce . "packageCategory" "What package categories should be intalled" $packageChoices (list "common") -}}
@@ -56,7 +55,11 @@ command = {{- $shell | quote }}
 name =  {{-  $name | quote }}
 email = {{-  $email | quote }}
 shell = {{-  $shell | quote }}
-isServer = {{-  $isServer }}
+{{- if and (eq (len $packageCategory) 1) (in $packageCategory "common") }}
+isServer = true 
+{{- else }}
+isServer = false 
+{{- end}}
 {{- if eq $gpgkeyAnswer "work"}}
 gpgkey = "83297FC845136CEC5D204EAB2FC883E6A65782EC"
 {{- else}}
