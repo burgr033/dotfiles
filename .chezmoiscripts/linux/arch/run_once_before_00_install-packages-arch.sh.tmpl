@@ -58,9 +58,9 @@ set -eufo pipefail
 
 {{ if eq env "XDG_SESSION_TYPE" "tty"}}
 {{- $GEC_PARAM := "-F"}}
-
+{{end}}
 {{ if has "desktop" .packageCategory }}
-  gnome-extensions-cli {{$GEC_PARAB}} install {{ .packages.linux.arch.gnome_extensions | join " " }}
+  gnome-extensions-cli {{$GEC_PARAM}} install {{ .packages.linux.arch.gnome_extensions | join " " }}
   printf '\n installing gdm as service\n'
   {{ $sudo }} systemctl enable gdm.service
 {{- end }}
