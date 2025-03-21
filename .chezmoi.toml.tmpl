@@ -61,7 +61,7 @@ gpgkey = "83297FC845136CEC5D204EAB2FC883E6A65782EC"
 gpgkey = "BDE652404B6095EB4FE11A1A1707363660BFF7D7"
 {{- end}}
 packageCategory = {{- $packageAnswer | toToml | default "[]" }}
-{{- if and (eq (len .packageCategory) 1) (has "common" .packageCategory) }}
+{{- if and (eq (len $packageCategory) 1) (has "common" $packageCategory) }}
 isServer = true 
 {{- else }}
 isServer = false 
