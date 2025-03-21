@@ -54,7 +54,7 @@ set -eufo pipefail
   {{- $combinedList = concat $combinedList .packages.linux.arch.pentesting }}
   {{- end }}
 
-  yay --noconfirm -S --needed {{ $combinedList | join " " }}
+  yay --noconfirm -Syu --needed {{ $combinedList | join " " }}
 
 {{- if has "desktop" .packageCategory }}
   gnome-extensions-cli install {{ .packages.linux.arch.gnome_extensions | join " " }}
