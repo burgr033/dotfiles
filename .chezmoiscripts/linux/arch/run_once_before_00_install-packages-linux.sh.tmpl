@@ -2,13 +2,13 @@
 echo ""
 set -eufo pipefail
 {{- if eq .manualSetup false }}
-  {{ $sudo := "sudo " -}}
-  {{ if eq .chezmoi.username "root" -}}
-    {{   $sudo = "" -}}
-  {{ end -}}
+  {{- $sudo := "sudo " }}
+  {{- if eq .chezmoi.username "root" }}
+    {{-   $sudo = "" }}
+  {{- end }}
   {{- if has "common" .packageCategory }}
-    {{ $sudo }}sudo pacman --needed --noconfirm -Sy {{ .packages.linux.arch.common | join " " }}
-  {{ end -}}
+    {{- $sudo }}sudo pacman --needed --noconfirm -Sy {{ .packages.linux.arch.common | join " " }}
+  {{- end }}
   if ! command -v yay &> /dev/null
     then
       echo ""
@@ -22,38 +22,38 @@ set -eufo pipefail
       {{- end}}
     fi
  
-  {{- $combinedList := list -}}
+  {{- $combinedList := list }}
   {{- if has "desktop" .packageCategory }}
-  {{- $combinedList = concat $combinedList .packages.linux.arch.desktop -}}
-  {{ end -}}
+  {{- $combinedList = concat $combinedList .packages.linux.arch.desktop }}
+  {{- end }}
   {{- if has "virtualization" .packageCategory }}
-  {{- $combinedList = concat $combinedList .packages.linux.arch.virtualization -}}
-  {{ end -}}
+  {{- $combinedList = concat $combinedList .packages.linux.arch.virtualization }}
+  {{- end }}
   {{- if has "media" .packageCategory }}
-  {{- $combinedList = concat $combinedList .packages.linux.arch.media -}}
-  {{ end -}}
+  {{- $combinedList = concat $combinedList .packages.linux.arch.media }}
+  {{- end }}
   {{- if has "comms" .packageCategory }}
-  {{- $combinedList = concat $combinedList .packages.linux.arch.comms -}}
-  {{ end -}}
+  {{- $combinedList = concat $combinedList .packages.linux.arch.comms }}
+  {{- end }}
   {{- if has "studywork" .packageCategory }}
-  {{- $combinedList = concat $combinedList .packages.linux.arch.studywork -}}
-  {{ end -}}
+  {{- $combinedList = concat $combinedList .packages.linux.arch.studywork }}
+  {{- end }}
   {{- if has "opensnitch" .packageCategory }}
-  {{- $combinedList = concat $combinedList .packages.linux.arch.opensnitch -}}
-  {{ end -}}
+  {{- $combinedList = concat $combinedList .packages.linux.arch.opensnitch }}
+  {{- end }}
   {{- if has "pentesting" .packageCategory }}
   if ! grep -Fxq "Include = /etc/pacman.d/athena.conf" /etc/pacman.conf; then
-      echo "Include = /etc/pacman.d/athena.conf" | {{ $sudo }} tee -a /etc/pacman.conf
-      echo "[athena]" | {{ $sudo }} tee /etc/pacman.d/athena.conf
-      echo "Include = /etc/pacman.d/athena-mirrorlist" | {{ $sudo }} tee -a /etc/pacman.d/athena.conf
-      echo "SigLevel = Optional TrustedOnly" | {{ $sudo }} tee -a /etc/pacman.d/athena.conf
-      {{ $sudo }} curl https://raw.githubusercontent.com/Athena-OS/athena/main/packages/os-specific/athena-mirrorlist/athena-mirrorlist -o /etc/pacman.d/athena-mirrorlist
-      {{ $sudo }} pacman-key --recv-keys A3F78B994C2171D5 --keyserver keys.openpgp.org
-      {{ $sudo }} pacman-key --lsign A3F78B994C2171D5
+      echo "Include = /etc/pacman.d/athena.conf" | {{- $sudo }} tee -a /etc/pacman.conf
+      echo "[athena]" | {{- $sudo }} tee /etc/pacman.d/athena.conf
+      echo "Include = /etc/pacman.d/athena-mirrorlist" | {{- $sudo }} tee -a /etc/pacman.d/athena.conf
+      echo "SigLevel = Optional TrustedOnly" | {{- $sudo }} tee -a /etc/pacman.d/athena.conf
+      {{- $sudo }} curl https://raw.githubusercontent.com/Athena-OS/athena/main/packages/os-specific/athena-mirrorlist/athena-mirrorlist -o /etc/pacman.d/athena-mirrorlist
+      {{- $sudo }} pacman-key --recv-keys A3F78B994C2171D5 --keyserver keys.openpgp.org
+      {{- $sudo }} pacman-key --lsign A3F78B994C2171D5
   fi
-  {{- $combinedList = concat $combinedList .packages.linux.arch.pentesting -}}
-  {{ end -}}
+  {{- $combinedList = concat $combinedList .packages.linux.arch.pentesting }}
+  {{- end }}
 
-  yay --noconfirm -S --needed {{ $combinedList | join " " }}
+  yay --noconfirm -S --needed {{- $combinedList | join " " }}
 
-{{ end -}}
+{{- end }}
