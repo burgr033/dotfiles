@@ -12,10 +12,10 @@ if status is-interactive
     alias cat="bat --plain"
     {{- end}}
     alias scratch="nvim -c Scratch"
-    {{- if eq .isServer false}}
+    {{- if eq .isHeadless false}}
     set --export GPG_TTY $(tty)
     {{- end}}
-    {{- if eq .isServer true}}
+    {{- if eq .isHeadless true}}
     set --export NVIM_SLIM "1"
     {{- end}}
     set --export SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/gcr/ssh"

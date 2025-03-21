@@ -54,9 +54,9 @@ gpgkey = "BDE652404B6095EB4FE11A1A1707363660BFF7D7"
 {{- end}}
 packageCategory = {{- $packageAnswer | toToml | default "[]" }}
 {{- if and (eq (len $packageAnswer) 1) (ne (index $packageAnswer 0) "") (eq (index $packageAnswer 0) "common") }}
-isServer = true 
+isHeadless = true 
 {{- else }}
-isServer = false 
+isHeadless = false 
 {{- end}}
 {{- if eq (len $packageAnswer) 0}}
 manualSetup = true 
