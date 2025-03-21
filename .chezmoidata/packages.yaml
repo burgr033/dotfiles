@@ -22,6 +22,7 @@ packages:
         - "tree"
         - "units"
       snap:
+        - "zellij"
         - "nvim"
     arch:
       common:
