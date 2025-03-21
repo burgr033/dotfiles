@@ -1,7 +1,7 @@
 #!/bin/bash
 echo ""
 set -eufo pipefail
-{{- if eq .manualSetup false }}
+{{ if eq .manualSetup false }}
   {{- $sudo := "sudo " }}
   {{- if eq .chezmoi.username "root" }}
     {{-   $sudo = "" }}
