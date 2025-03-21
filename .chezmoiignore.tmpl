@@ -22,5 +22,10 @@ AppData
 
 # script related stuff
 .chezmoiscripts/*/**
+{{if eq .chezmoi.os "windows"}}
 !.chezmoiscripts/{{ .chezmoi.os }}/**
+{{else}}
+!.chezmoiscripts/{{ .chezmoi.os }}/*
+!.chezmoiscripts/{{ .chezmoi.os }}/{{.chezmoi.osRelease.id}}/**
+{{end}}
 .keyfiles

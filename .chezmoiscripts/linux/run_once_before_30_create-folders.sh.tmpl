@@ -1,10 +1,10 @@
 #!/bin/bash
 echo ""
 set -eufo pipefail
-{{- if eq .manualSetup "false" }}
-        mkdir -p $HOME/{Downloads,Projects}
-    {{- if eq .isServer "false" }}
-        mkdir -p $HOME/{Pictures,Documents}
-    {{- end}}
+mkdir -p $HOME/{Downloads,Projects}
+{{- if eq .isHeadless false }}
+    mkdir -p $HOME/{Pictures,Documents}
 {{- end}}
-
+{{- if has "pentesting" .packageCategory }}
+    mkdir -p $HOME/Wordlists
+{{- end}}

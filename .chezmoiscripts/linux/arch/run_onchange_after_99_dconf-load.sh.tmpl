@@ -1,8 +1,5 @@
 #!/bin/bash
-{{- if eq .isServer "false" }}
-{{- if eq .chezmoi.osRelease.id "arch"}}
-
+{{- if has "desktop" .packageCategory }}
 # dconf.ini hash: {{ include (joinPath .chezmoi.sourceDir ".keyfiles" "dconf_overrides.keyfile.tmpl") | sha256sum }}
 ~/.local/bin/chezmoi-helper-dconf apply
-{{- end}}
 {{- end}}
