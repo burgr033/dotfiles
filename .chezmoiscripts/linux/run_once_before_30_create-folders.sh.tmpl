@@ -5,3 +5,6 @@ mkdir -p $HOME/{Downloads,Projects}
 {{- if eq .isHeadless false }}
     mkdir -p $HOME/{Pictures,Documents}
 {{- end}}
+{{- if has "pentesting" .packageCategory }}
+    mkdir -p $HOME/Wordlists
+{{- end}}
