@@ -47,23 +47,10 @@ printf "this is no amd64 arch. Lazygit and delta missing! Install manually"
 
 {{ if lookPath "snap" }}
 {{ $sudo }}snap install --classic {{ .packages.linux.ubuntu.snap | join " " }}
+{{else}}
+printf "snap not found"
 {{ end }}
 
-{{ end -}}
-
-#####################################################################
-
-{{- if or (eq .chezmoi.osRelease.id "arch") (eq .chezmoi.osRelease.id "athena")}}
-#ARCH
-
-{{ $sudo }}sudo pacman --needed --noconfirm -Sy {{ .packages.linux.arch.common | join " " }}
-
-{{ end -}}
-
-#####################################################################
-
-{{ if eq .chezmoi.osRelease.id "rhel" -}}
-#CENTOS
 {{ end -}}
 {{ end -}}
 {{ end -}}

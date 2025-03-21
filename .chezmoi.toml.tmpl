@@ -1,26 +1,32 @@
 # -*-mode:conf-toml-*- vim:ft=toml
-{{- $isServer := false}}
 {{- $manualSetup := false}}
-
 {{- $shell := "fish"}}
 {{- if ne .chezmoi.os "linux" -}}
     {{- $shell = "pwsh" }}
 {{- end}}
-
+{{- $packageChoices := list "common" -}}
 {{- $chassisType := "desktop"}}
+{{- $gpgkeyAnswer := "personal" }}
 
 {{- if eq .chezmoi.os "linux"}}
     {{- $chassisType = (output "hostnamectl" "--json=short" | mustFromJson).Chassis}}
-    {{- else if eq .chezmoi.os "windows"}}
+    {{ if eq .chezmoi.osRelease.id "ubuntu" -}}
+        {{- $packageChoices = list "common" -}}
+    {{- end}}
+    {{- if eq .chezmoi.osRelease.id "arch"}}
+    {{- $packageChoices = list "common" "desktop" "opensnitch" "studywork" "virtualization" "media" "comms" "pentesting" -}}
+        {{- $packageChoices = list "common" -}}
+    {{- end}}
+{{- else if eq .chezmoi.os "windows"}}
     {{- $chassisType = (output "powershell.exe" "-NoProfile" "-NonInteractive" "-Command" "if ((Get-CimInstance -Class Win32_Battery | Measure-Object).Count -gt 0) { Write-Output 'laptop' } else { Write-Output 'desktop' }") | trim }}
 {{- end}}
 
 {{- $email := promptStringOnce . "email" "Email" "burgr@posteo.de"}}
 {{- $name := promptStringOnce . "name" "Name" "sb"}}
-
 {{- $isServer = promptBoolOnce . "isServer" "should this this machine be headless (no GUI?) (y/n)"}}
-{{- $isWorkMachine := promptBoolOnce . "isWorkMachine" "is this a work machine (y/n)"}}
-
+{{- $gpgkeyList := list "personal" "work" -}}
+{{- $gpgkeyAnswer := promptChoiceOnce . "gpgkey" "What GPG should we install?" $gpgkeyList}}
+{{- $packageAnswer := promptMultichoiceOnce . "packageCategory" "What package categories should be intalled" $packageChoices (list "common") -}}
 {{- $manualSetup = promptBoolOnce . "manualSetup" "Do you want to setup this machine manually (no packages installed) (y/n)"}}
 
 [edit]
@@ -44,13 +50,18 @@ args = [
 {{- end}}
 
 [cd]
-command = "{{- $shell}}"
+command = {{- $shell | quote }}
 
 [data]
-name =  "{{-  $name }}"
-email = "{{-  $email }}"
-shell = "{{-  $shell }}"
-isServer = "{{-  $isServer }}"
-isWorkMachine = "{{-  $isWorkMachine }}"
-manualSetup = "{{-  $manualSetup }}"
-chassisType = "{{-  $chassisType }}"
+name =  {{-  $name | quote }}
+email = {{-  $email | quote }}
+shell = {{-  $shell | quote }}
+isServer = {{-  $isServer }}
+{{- if eq $gpgkeyAnswer "work"}}
+gpgkey = "83297FC845136CEC5D204EAB2FC883E6A65782EC"
+{{- else}}
+gpgkey = "BDE652404B6095EB4FE11A1A1707363660BFF7D7"
+{{- end}}
+packageCategory = {{- $packageAnswer | toToml | default "[]" }}
+manualSetup = {{-  $manualSetup | quote }}
+chassisType = {{-  $chassisType | quote }}

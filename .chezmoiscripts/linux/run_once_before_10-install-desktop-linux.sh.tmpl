@@ -2,7 +2,6 @@
 echo ""
 set -eufo pipefail
 {{- if eq .manualSetup "false" }}
-{{- if eq .isServer "false" }}
 {{- if eq .chezmoi.osRelease.id "arch"}}
 
 {{ $sudo := "sudo " -}}
@@ -52,6 +51,5 @@ sudo systemctl enable gdm.service
 
 printf '\nPackage installation is not implemented yet on `' {{ .chezmoi.osRelease.id }} '`.\n'
 
-{{ end -}}
 {{ end -}}
 {{ end -}}

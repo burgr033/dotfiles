@@ -1,12 +1,7 @@
 [user]
 name = {{ .name | quote }}
 email = {{ .email | quote }}
-{{- if eq .isWorkMachine "false"}}
-signingkey = BDE652404B6095EB4FE11A1A1707363660BFF7D7
-{{- end}}
-{{- if eq .isWorkMachine "true"}}
-signingkey = 83297FC845136CEC5D204EAB2FC883E6A65782EC
-{{- end}}
+signingkey = {{.gpgkey | quote }}
 
 [filter "lfs"]
 process = git-lfs filter-process
