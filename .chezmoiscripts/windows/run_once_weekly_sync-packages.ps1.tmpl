@@ -1,7 +1,7 @@
 # {{ div now.YearDay 7 }}
 
 {{- if eq .chezmoi.os "windows" }}
-{{- if eq .manualSetup "false" }}
+{{- if eq .manualSetup false }}
 $ErrorActionPreference = "Stop"
 
 # Get the list of installed packages
