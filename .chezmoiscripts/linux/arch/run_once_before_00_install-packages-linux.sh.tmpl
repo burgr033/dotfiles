@@ -2,14 +2,11 @@
 echo ""
 set -eufo pipefail
 {{- if eq .manualSetup "false" }}
-  {{- if eq .chezmoi.os "linux" }}
-    {{ $sudo := "sudo " -}}
-    {{ if eq .chezmoi.username "root" -}}
-      {{   $sudo = "" -}}
-    {{ end -}}
-    {{- if or (eq .chezmoi.osRelease.id "arch")}}
-    {{- if has "common" .packageCategory }}
-     {{ $sudo }}sudo pacman --needed --noconfirm -Sy {{ .packages.linux.arch.common | join " " }}
-    {{ end -}}
+  {{ $sudo := "sudo " -}}
+  {{ if eq .chezmoi.username "root" -}}
+    {{   $sudo = "" -}}
+  {{ end -}}
+  {{- if has "common" .packageCategory }}
+    {{ $sudo }}sudo pacman --needed --noconfirm -Sy {{ .packages.linux.arch.common | join " " }}
   {{ end -}}
 {{ end -}}
