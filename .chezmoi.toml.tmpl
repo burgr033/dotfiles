@@ -22,7 +22,7 @@
 {{- $name := promptStringOnce . "name" "Name" "sb"}}
 {{- $gpgkeyList := list "personal" "work" -}}
 {{- $gpgkeyAnswer := promptChoiceOnce . "gpgkey" "What GPG should we install?" $gpgkeyList}}
-{{- $packageAnswer := promptMultichoiceOnce . "packageCategory" "What package categories should be intalled" $packageChoices -}}
+{{- $packageAnswer := promptMultichoiceOnce . "packageCategory" "What package categories should be intalled" $packageChoices nil -}}
 
 [edit]
 command = "nvim"
