@@ -77,7 +77,7 @@ packages:
         - "firefox"
         - "wl-clipboard"
         - "wev"
-        - "ttf-maple-beta-nf"
+        - "maplemono-ttf-autohint"
         - "bibata-cursor-theme-bin"
         - "enpass-bin"
         - "gvfs"
