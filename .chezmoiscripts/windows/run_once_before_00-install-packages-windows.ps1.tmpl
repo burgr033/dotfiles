@@ -5,13 +5,36 @@ $ErrorActionPreference = "Stop"
 
 winget install {{ .packages.windows.winget.packages | join " " }} --accept-package-agreements --accept-source-agreements
 
-scoop install {{ .packages.windows.scoop.pre_packages | join " " }}
+scoop install {{ .packages.windows.scoop.pre.packages | join " " }}
 
-{{ range .packages.windows.scoop.buckets -}}
-scoop bucket add {{. | quote}}
-{{end -}}
+{{- $combinedScoopBuckets := list }}
+{{- $combinedScoopPackages := list }}
 
-scoop install {{ .packages.windows.scoop.packages | join " " }}
+{{- if has "desktop" .profiles }}
+{{- $combinedScoopBuckets = concat $combinedScoopBuckets .packages.windows.scoop.desktop.buckets }}
+{{- $combinedScoopPackages = concat $combinedScoopPackages .packages.windows.scoop.desktop.packages }}
+{{- end }}
+
+{{- if has "studywork" .profiles }}
+{{- $combinedScoopBuckets = concat $combinedScoopBuckets .packages.windows.scoop.studywork.buckets }}
+{{- $combinedScoopPackages = concat $combinedScoopPackages .packages.windows.scoop.studywork.packages }}
+{{- end }}
+
+{{- if has "office" .profiles }}
+{{- $combinedScoopBuckets = concat $combinedScoopBuckets .packages.windows.scoop.office.buckets }}
+{{- $combinedScoopPackages = concat $combinedScoopPackages .packages.windows.scoop.office.packages }}
+{{- end }}
+
+{{- if has "gaming" .profiles }}
+{{- $combinedScoopBuckets = concat $combinedScoopBuckets .packages.windows.scoop.gaming.buckets }}
+{{- $combinedScoopPackages = concat $combinedScoopPackages .packages.windows.scoop.gaming.packages }}
+{{- end }}
+
+{{- range $combinedScoopBuckets }}
+scoop bucket add {{ . | quote }}
+{{- end }}
+
+scoop install {{ $combinedScoopPackages | join " " }}
 
 # Delete chezmoi binary from bootstrap
 Remove-Item ~/bin/chezmoi.exe -ErrorAction SilentlyContinue

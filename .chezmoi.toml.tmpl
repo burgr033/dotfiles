@@ -4,34 +4,32 @@
 {{- if ne .chezmoi.os "linux" -}}
     {{- $shell = "pwsh" }}
 {{- end}}
-{{- $packageChoices := list "common" -}}
 {{- $chassisType := "desktop"}}
 {{- $gpgkeyAnswer := "personal" }}
+{{- $allProfiles := list "common" -}}
 {{- if eq .chezmoi.os "linux"}}
     {{- $chassisType = (output "hostnamectl" "--json=short" | mustFromJson).Chassis}}
     {{ if eq .chezmoi.osRelease.id "ubuntu" -}}
-        {{- $packageChoices = list "common" -}}
+        {{- $allProfiles = list "common" -}}
     {{- end}}
     {{- if eq .chezmoi.osRelease.id "arch"}}
-    {{- $packageChoices = list "common" "desktop" "opensnitch" "studywork" "virtualization" "media" "comms" "pentesting" -}}
+    {{- $allProfiles = list "common" "desktop" "opensnitch" "studywork" "virtualization" "media" "comms" "pentesting" -}}
     {{- end}}
 {{- else if eq .chezmoi.os "windows"}}
+    {{- $allProfiles = list "desktop" "studywork" "office" "gaming" -}}
     {{- $chassisType = (output "powershell.exe" "-NoProfile" "-NonInteractive" "-Command" "if ((Get-CimInstance -Class Win32_Battery | Measure-Object).Count -gt 0) { Write-Output 'laptop' } else { Write-Output 'desktop' }") | trim }}
 {{- end}}
-{{- $email := promptStringOnce . "email" "Email" "burgr@posteo.de"}}
-{{- $name := promptStringOnce . "name" "Name" "sb"}}
-{{- $gpgkeyList := list "personal" "work" -}}
-{{- $gpgkeyAnswer := promptChoiceOnce . "gpgkey" "What GPG should we install?" $gpgkeyList}}
-{{- $packageAnswer := promptMultichoice "What package categories should be intalled" $packageChoices (list "common") -}}
 
 [edit]
 command = "nvim"
 {{- if lookPath "delta" }}
+
 [diff]
 command = "delta"
 pager = "delta"
 {{- end}}
 {{- if lookPath "nvim" }}
+
 [merge]
 command = "nvim"
 args = [
@@ -41,24 +39,31 @@ args = [
     {{ printf "%q" "{{ .Target }}" }},
 ]
 {{- end}}
+
 [cd]
 command = {{- $shell | quote }}
+
 [data]
+{{- $name := promptStringOnce . "name" "Name" "sb"}}
+{{- $email := promptStringOnce . "email" "Email" "burgr@posteo.de"}}
 name =  {{-  $name | quote }}
 email = {{-  $email | quote }}
 shell = {{-  $shell | quote }}
+{{-  $profiles := promptMultichoiceOnce . "profiles" "What profiles should be enabled" $allProfiles }}
+profiles = {{- $profiles | toToml -}}
+{{- $gpgkeyList := list "personal" "work" -}}
+{{- $gpgkeyAnswer := promptChoiceOnce . "gpgkey" "What GPG should we install?" $gpgkeyList}}
 {{- if eq $gpgkeyAnswer "work"}}
 gpgkey = "83297FC845136CEC5D204EAB2FC883E6A65782EC"
 {{- else}}
 gpgkey = "BDE652404B6095EB4FE11A1A1707363660BFF7D7"
 {{- end}}
-packageCategory = {{- $packageAnswer | toToml | default "[]" }}
-{{- if and (eq (len $packageAnswer) 1) (ne (index $packageAnswer 0) "") (eq (index $packageAnswer 0) "common") }}
+{{- if and (eq (len $profiles) 1) (ne (index $profiles 0) "") (eq (index $profiles 0) "common") }}
 isHeadless = true 
 {{- else }}
 isHeadless = false 
 {{- end}}
-{{- if eq (len $packageAnswer) 0}}
+{{- if eq (len $profiles) 0}}
 manualSetup = true 
 {{- else }}
 manualSetup = false 

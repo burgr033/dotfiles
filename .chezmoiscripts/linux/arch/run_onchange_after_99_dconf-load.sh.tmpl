@@ -1,5 +1,5 @@
 #!/bin/bash
-{{- if has "desktop" .packageCategory }}
+{{- if has "desktop" .profiles }}
 # dconf.ini hash: {{ include (joinPath .chezmoi.sourceDir ".keyfiles" "dconf_overrides.keyfile.tmpl") | sha256sum }}
 ~/.local/bin/chezmoi-helper-dconf apply
 {{- end}}

@@ -6,7 +6,7 @@ set -eufo pipefail
   {{- if eq .chezmoi.username "root" }}
     {{-   $sudo = "" }}
   {{- end }}
-  {{- if has "common" .packageCategory }}
+  {{- if has "common" .profiles }}
     {{- $sudo }}sudo pacman --needed --noconfirm -Sy {{ .packages.linux.arch.common | join " " }}
   {{- end }}
   if ! command -v yay &> /dev/null
@@ -23,25 +23,25 @@ set -eufo pipefail
     fi
  
   {{- $combinedList := list }}
-  {{- if has "desktop" .packageCategory }}
+  {{- if has "desktop" .profiles }}
   {{- $combinedList = concat $combinedList .packages.linux.arch.desktop }}
   {{- end }}
-  {{- if has "virtualization" .packageCategory }}
+  {{- if has "virtualization" .profiles }}
   {{- $combinedList = concat $combinedList .packages.linux.arch.virtualization }}
   {{- end }}
-  {{- if has "media" .packageCategory }}
+  {{- if has "media" .profiles }}
   {{- $combinedList = concat $combinedList .packages.linux.arch.media }}
   {{- end }}
-  {{- if has "comms" .packageCategory }}
+  {{- if has "comms" .profiles }}
   {{- $combinedList = concat $combinedList .packages.linux.arch.comms }}
   {{- end }}
-  {{- if has "studywork" .packageCategory }}
+  {{- if has "studywork" .profiles }}
   {{- $combinedList = concat $combinedList .packages.linux.arch.studywork }}
   {{- end }}
-  {{- if has "opensnitch" .packageCategory }}
+  {{- if has "opensnitch" .profiles }}
   {{- $combinedList = concat $combinedList .packages.linux.arch.opensnitch }}
   {{- end }}
-  {{- if has "pentesting" .packageCategory }}
+  {{- if has "pentesting" .profiles }}
   if ! grep -Fxq "Include = /etc/pacman.d/athena.conf" /etc/pacman.conf; then
       echo "Include = /etc/pacman.d/athena.conf" | {{ $sudo }} tee -a /etc/pacman.conf
       echo "[athena]" | {{- $sudo }} tee /etc/pacman.d/athena.conf
@@ -56,7 +56,7 @@ set -eufo pipefail
 
   yay --noconfirm -Syu --needed {{ $combinedList | join " " }}
 
-{{ if has "desktop" .packageCategory }}
+{{ if has "desktop" .profiles }}
   # HACK: This doesnt work
   printf "gnome-extensions-cli install {{ .packages.linux.arch.gnome_extensions | join " " }}"
   printf '\n installing gdm as service\n'
