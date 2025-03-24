@@ -66,11 +66,11 @@ set -eufo pipefail
 
 {{ if has "desktop" .profiles }}
   # HACK: This doesnt work
-if [[ -t 0 ]]; then
-  gnome-extensions-cli -F install {{ .packages.linux.arch.gnome_extensions.extensions | join " " }}
-else 
-  gnome-extensions-cli install {{ .packages.linux.arch.gnome_extensions.extensions | join " " }}
-fi
+## if [[ -t 0 ]]; then
+##   gnome-extensions-cli -F install {{ .packages.linux.arch.gnome_extensions.extensions | join " " }}
+## else 
+##   gnome-extensions-cli install {{ .packages.linux.arch.gnome_extensions.extensions | join " " }}
+## fi
 {{- end }}
 
 
