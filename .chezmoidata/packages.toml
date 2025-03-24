@@ -180,7 +180,7 @@ packages = ["virtualbox-guest-utils"]
 services = ["vboxservice"]
 
 [packages.linux.arch.opensnitch]
-packages = ["opensnitch-ebpf-module-git", "opensnitch-git"]
+packages = ["opensnitch-ebpf-module", "opensnitch-git"]
 services = ["opensnitchd"]
 
 [packages.linux.arch.pentesting]
