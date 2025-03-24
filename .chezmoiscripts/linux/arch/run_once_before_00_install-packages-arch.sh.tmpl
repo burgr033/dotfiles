@@ -7,7 +7,7 @@ set -eufo pipefail
     {{-   $sudo = "" }}
   {{- end }}
   {{- if has "common" .profiles }}
-    {{- $sudo }}sudo pacman --needed --noconfirm -Sy {{ .packages.linux.arch.common | join " " }}
+    {{- $sudo }}sudo pacman --needed --noconfirm -Sy {{ .packages.linux.arch.common.packages | join " " }}
   {{- end }}
   if ! command -v yay &> /dev/null
     then
@@ -59,7 +59,7 @@ set -eufo pipefail
       {{ $sudo }} pacman-key --recv-keys A3F78B994C2171D5 --keyserver keys.openpgp.org
       {{ $sudo }} pacman-key --lsign A3F78B994C2171D5
   fi
-  {{- $combinedPackages = concat $combinedPackages .packages.linux.arch.pentesting }}
+  {{- $combinedPackages = concat $combinedPackages .packages.linux.arch.pentesting.packages }}
   {{- end }}
 
   yay --noconfirm -Syu --needed {{ $combinedPackages | join " " }}
@@ -71,7 +71,6 @@ if [[ -t 0 ]]; then
 else 
   gnome-extensions-cli install {{ .packages.linux.arch.gnome_extensions.extensions | join " " }}
 fi
-print '\n installing {{.}} as service\n'
 {{- end }}
 
 
