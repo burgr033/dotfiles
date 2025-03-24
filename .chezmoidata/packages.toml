@@ -135,6 +135,7 @@ packages = [
     "xdg-utils",
     "gnome-extensions-cli",
 ]
+services = ["gdm"]
 
 [packages.linux.arch.gnome_extensions]
 extensions = [
@@ -174,8 +175,13 @@ packages = [
     "zotero-bin",
 ]
 
+[packages.linux.arch.virtualguest]
+packages = ["virtualbox-guest-utils"]
+services = ["vboxservice"]
+
 [packages.linux.arch.opensnitch]
 packages = ["opensnitch-ebpf-module-git", "opensnitch-git"]
+services = ["opensnitchd"]
 
 [packages.linux.arch.pentesting]
 packages = [

@@ -22,24 +22,32 @@ set -eufo pipefail
       {{- end}}
     fi
  
-  {{- $combinedList := list }}
+  {{- $combinedPackages := list }}
+  {{- $combinedServices := list }}
   {{- if has "desktop" .profiles }}
-  {{- $combinedList = concat $combinedList .packages.linux.arch.desktop }}
+  {{- $combinedPackages = concat $combinedPackages .packages.linux.arch.desktop.packages }}
+  {{- $combinedServices = concat $combinedServices .packages.linux.arch.desktop.services }}
   {{- end }}
   {{- if has "virtualization" .profiles }}
-  {{- $combinedList = concat $combinedList .packages.linux.arch.virtualization }}
+  {{- $combinedPackages = concat $combinedPackages .packages.linux.arch.virtualization.packages }}
   {{- end }}
   {{- if has "media" .profiles }}
-  {{- $combinedList = concat $combinedList .packages.linux.arch.media }}
+  {{- $combinedPackages = concat $combinedPackages .packages.linux.arch.media.packages }}
   {{- end }}
   {{- if has "comms" .profiles }}
-  {{- $combinedList = concat $combinedList .packages.linux.arch.comms }}
+  {{- $combinedPackages = concat $combinedPackages .packages.linux.arch.comms.packages }}
+  {{- $combinedServices = concat $combinedServices .packages.linux.arch.desktop.services }}
   {{- end }}
   {{- if has "studywork" .profiles }}
-  {{- $combinedList = concat $combinedList .packages.linux.arch.studywork }}
+  {{- $combinedPackages = concat $combinedPackages .packages.linux.arch.studywork.packages }}
   {{- end }}
   {{- if has "opensnitch" .profiles }}
-  {{- $combinedList = concat $combinedList .packages.linux.arch.opensnitch }}
+  {{- $combinedPackages = concat $combinedPackages .packages.linux.arch.opensnitch.packages }}
+  {{- $combinedServices = concat $combinedServices .packages.linux.arch.opensnitch.services }}
+  {{- end }}
+  {{- if has "virtualguest" .profiles }}
+  {{- $combinedPackages = concat $combinedPackages .packages.linux.arch.virtualguest.packages }}
+  {{- $combinedServices = concat $combinedServices .packages.linux.arch.virtualguest.services }}
   {{- end }}
   {{- if has "pentesting" .profiles }}
   if ! grep -Fxq "Include = /etc/pacman.d/athena.conf" /etc/pacman.conf; then
@@ -51,16 +59,26 @@ set -eufo pipefail
       {{ $sudo }} pacman-key --recv-keys A3F78B994C2171D5 --keyserver keys.openpgp.org
       {{ $sudo }} pacman-key --lsign A3F78B994C2171D5
   fi
-  {{- $combinedList = concat $combinedList .packages.linux.arch.pentesting }}
+  {{- $combinedPackages = concat $combinedPackages .packages.linux.arch.pentesting }}
   {{- end }}
 
-  yay --noconfirm -Syu --needed {{ $combinedList | join " " }}
+  yay --noconfirm -Syu --needed {{ $combinedPackages | join " " }}
 
 {{ if has "desktop" .profiles }}
   # HACK: This doesnt work
-  printf "gnome-extensions-cli install {{ .packages.linux.arch.gnome_extensions | join " " }}"
-  printf '\n installing gdm as service\n'
-  {{ $sudo }} systemctl enable gdm.service
+if [[ -t 0 ]]; then
+  gnome-extensions-cli -F install {{ .packages.linux.arch.gnome_extensions.extensions | join " " }}
+else 
+  gnome-extensions-cli install {{ .packages.linux.arch.gnome_extensions.extensions | join " " }}
+fi
+print '\n installing {{.}} as service\n'
 {{- end }}
+
+
+{{- range $combinedServices }}
+printf '\n installing {{.}} as service\n'
+{{ $sudo }} systemctl enable {{.}}
+{{- end }}
+
 
 {{- end }}
