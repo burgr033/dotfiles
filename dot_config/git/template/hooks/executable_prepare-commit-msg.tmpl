@@ -6,7 +6,7 @@ CUSTOM_FOOTER="# powered by github.com/burgr033/autoCommit"
 
 if [[ -z "$COMMIT_SOURCE" ]]; then
 {{- if eq .chezmoi.os "windows" }}
-    autoCommit.exe $COMMIT_MSG_FILE "$CUSTOM_HEADER" $CUSTOM_FOOTER"
+    autoCommit.exe $COMMIT_MSG_FILE "$CUSTOM_HEADER" "$CUSTOM_FOOTER"
 {{- end }}
 {{- if ne .chezmoi.os "windows" }}
     autoCommit $COMMIT_MSG_FILE "$CUSTOM_HEADER" "$CUSTOM_FOOTER"
