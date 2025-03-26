@@ -1,14 +1,12 @@
 [apps/seahorse/listing]
 item-filter='any'
-keyrings-selected=['openssh:///home/{{.name}}/.ssh']
+keyrings-selected=['openssh:///home/{{.chezmoi.username}}/.ssh']
 
 [org/gnome/desktop/background]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/{{.name}}/.local/share/backgrounds/wallpaper2.jpg'
-picture-uri-dark='file:///home/{{.name}}/.local/share/backgrounds/wallpaper2.jpg'
-primary-color='#000000000000'
-secondary-color='#000000000000'
+picture-uri='file:///home/{{.chezmoi.username}}/.local/share/backgrounds/wallpaper1.jpg'
+picture-uri-dark='file:///home/{{.chezmoi.username}}/.local/share/backgrounds/wallpaper1.jpg'
 
 [org/gnome/desktop/input-sources]
 sources=[('xkb', 'de')]
@@ -22,8 +20,12 @@ color-scheme='default'
 cursor-theme='Bibata-Modern-Ice'
 enable-animations=true
 enable-hot-corners=false
+font-antialiasing='grayscale'
+icon-theme='MoreWaita'
 monospace-font-name='Maple Mono 10'
 show-battery-percentage=false
+text-scaling-factor=1.0
+toolkit-accessibility=false
 
 [org/gnome/desktop/peripherals/touchpad]
 two-finger-scrolling-enabled=true
@@ -31,9 +33,7 @@ two-finger-scrolling-enabled=true
 [org/gnome/desktop/screensaver]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/{{.name}}/.local/share/backgrounds/wallpaper2.jpg'
-primary-color='#000000000000'
-secondary-color='#000000000000'
+picture-uri='file:///home/{{.chezmoi.username}}/.local/share/backgrounds/wallpaper1.jpg'
 
 [org/gnome/desktop/session]
 idle-delay=uint32 180
@@ -75,6 +75,7 @@ resize-with-right-button=false
 attach-modal-dialogs=true
 center-new-windows=false
 edge-tiling=true
+experimental-features=['scale-monitor-framebuffer', 'xwayland-native-scaling']
 workspaces-only-on-primary=true
 
 [org/gnome/mutter/keybindings]
@@ -102,6 +103,8 @@ binding='<Super>Return'
 command='xdg-terminal-exec'
 name='Terminal'
 
+[org/gnome/shell/extensions/app-hider]
+hidden-apps=['bssh.desktop', 'electron34.desktop', 'avahi-discover.desktop', 'cmake-gui.desktop', 'fish.desktop', 'org.letsconnect-vpn.client.desktop', 'jconsole-java-openjdk.desktop', 'jshell-java-openjdk.desktop', 'assistant.desktop', 'qdbusviewer.desktop', 'linguist.desktop', 'chrome-Webmail.desktop', 'zellij.desktop', 'ranger.desktop', 'designer.desktop', 'qvidcap.desktop', 'qv4l2.desktop', 'mpv.desktop', 'org.mozilla.Thunderbird.desktop', 'htop.desktop', 'bvnc.desktop', 'nvim.desktop']
 [org/gnome/settings-daemon/plugins/power]
 idle-dim=true
 sleep-inactive-ac-timeout=1800
@@ -131,21 +134,21 @@ legacy-tray-enabled=true
 
 [org/gnome/shell/extensions/arch-update]
 check-cmd='/usr/bin/checkupdates-with-aur'
+update-cmd='ghostty -e "yay -Syu ; echo Done - Press enter to exit; read _"'
 
 [org/gnome/shell/extensions/caffeine]
+indicator-position-max=0
 toggle-state=false
 user-enabled=false
 
 [org/gnome/shell/extensions/dash-to-dock]
 always-center-icons=true
 apply-custom-theme=true
-background-opacity=0.80000000000000004
 custom-theme-shrink=false
 dash-max-icon-size=43
 disable-overview-on-startup=true
 dock-position='BOTTOM'
 extend-height=false
-height-fraction=0.90000000000000002
 hot-keys=false
 multi-monitor=true
 preferred-monitor=-2
@@ -167,11 +170,9 @@ extension-position='Left'
 label-width=uint32 300
 show-control-icons=false
 
-
 [org/gnome/shell/extensions/nightthemeswitcher/time]
 manual-schedule=false
 nightthemeswitcher-ondemand-keybinding=['<Shift><Super>t']
-
 
 [org/gnome/shell/extensions/top-bar-organizer]
 center-box-order=['dateMenu']
