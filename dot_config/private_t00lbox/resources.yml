@@ -1,0 +1,341 @@
+resources:
+  - name: "Fish Shell"
+    description: "A smart and user-friendly command line shell."
+    recommended: true
+    categories: ["Shell", "Command Line"]
+    level: 1
+    software: true
+    docs: |
+      # Fish Shell
+
+      ## Common Usage
+
+      - `ls` – List files and directories.
+      - `cd <dir>` – Change directory.
+      - `set <var> <value>` – Set a variable.
+      - `set -Ux <var> <value>` – Set a universal variable.
+      - `function <name>` – Define a function.
+      - `alias ll="ls -al"` – Define aliases.
+
+      ## Features
+
+      - Syntax highlighting
+      - Autosuggestions
+      - Tab completions
+
+      ## Tips
+
+      - Use `fish_config` to launch the configuration GUI in the browser.
+      - Use `functions` to list all functions.
+
+  - name: "Git"
+    description: "A distributed version control system."
+    recommended: true
+    categories: ["Version Control", "Development"]
+    level: 1
+    software: true
+    docs: |
+      # Git
+
+      ## Common Commands
+
+    
+      - `git init` – Initialize a new repo.
+      - `git clone <url>` – Clone an existing repo.
+      - `git add <file>` – Stage changes.
+      - `git commit -m "msg"` – Commit staged changes.
+      - `git status` – Show working tree status.
+      - `git log` – Show commit logs.
+      - `git branch` – List branches.
+      - `git checkout <branch>` – Switch branches.
+      - `git merge <branch>` – Merge branches.
+
+  - name: "awk"
+    description: "A text-processing language and command-line tool."
+    recommended: true
+    categories: ["Text Processing", "Command Line"]
+    level: 2
+    software: true
+    docs: |
+      # awk
+
+      ## Basic Syntax
+
+      - `awk '{print $1}' file` – Print first column.
+      - `awk -F: '{print $1}' file` – Use ':' as delimiter.
+      - `awk '/pattern/ {action}' file` – Match pattern and perform action.
+
+      ## Usage Examples
+
+      - `awk '{sum+=$1} END {print sum}' file` – Sum first column.
+      - `awk 'NR==1,NR==5' file` – Print lines 1 through 5.
+      - `awk '{print $1, $NF}' file` – Print first and last columns.
+  - name: "sed"
+    description: "A stream editor for filtering and transforming text."
+    recommended: true
+    categories: ["Text Processing", "Command Line"]
+    level: 2
+    software: true
+    docs: |
+      # sed
+
+      `sed` is a powerful stream editor used for parsing and transforming text in a data stream or file.
+
+      ## Common Usage
+
+      - `sed 's/foo/bar/' file` – Replace first occurrence of 'foo' with 'bar' per line.
+      - `sed 's/foo/bar/g' file` – Replace all occurrences.
+      - `sed -n '2,4p' file` – Print lines 2 to 4.
+      - `sed '/pattern/d' file` – Delete lines matching 'pattern'.
+      - `sed -i 's/foo/bar/g' file` – In-place substitution (modifies file).
+
+      ## Tips
+
+      - Combine multiple commands: `sed -e 's/foo/bar/' -e 's/baz/qux/' file`
+      - Use `&` to refer to matched string: `sed 's/[0-9]\+/<&>/'`
+
+  - name: "grep"
+    description: "A powerful pattern-matching utility for searching text."
+    recommended: true
+    categories: ["Search", "Command Line"]
+    level: 1
+    software: true
+    docs: |
+      # grep
+
+      `grep` searches input for lines that match a given pattern and prints matching lines.
+
+      ## Common Usage
+
+      - `grep "pattern" file` – Search for "pattern" in file.
+      - `grep -i "pattern" file` – Case-insensitive search.
+      - `grep -r "pattern" dir/` – Recursive search in directory.
+      - `grep -n "pattern" file` – Show line numbers.
+      - `grep -v "pattern" file` – Invert match (show lines that don't match).
+      - `grep -E "foo|bar" file` – Extended regex (alternation).
+
+      ## Tips
+
+      - Use `grep .` to print non-empty lines.
+      - Combine with pipes: `ps aux | grep nginx`
+
+  - name: "curl"
+    description: "A command-line tool for transferring data with URLs."
+    recommended: true
+    categories: ["Networking", "Web", "Command Line"]
+    level: 1
+    software: true
+    docs: |
+      # curl
+
+      `curl` transfers data to or from a server using supported protocols (HTTP, FTP, etc.).
+
+      ## Common Usage
+
+      - `curl http://example.com` – Fetch page content.
+      - `curl -O http://example.com/file.zip` – Download file (save with original name).
+      - `curl -o newfile.zip http://example.com/file.zip` – Download with custom name.
+      - `curl -I http://example.com` – Fetch HTTP headers only.
+      - `curl -L http://short.url` – Follow redirects.
+      - `curl -d "key=value" -X POST http://example.com` – POST data.
+      - `curl -H "Authorization: Bearer token" http://api.example.com` – Add headers.
+
+      ## Tips
+
+      - Combine with JSON APIs:
+        ```bash
+        curl -H "Content-Type: application/json" -d '{"a":1}' http://api.example.com
+        ```
+
+  - name: "tar"
+    description: "A tool for archiving files and directories."
+    recommended: true
+    categories: ["Archiving", "Command Line"]
+    level: 1
+    software: true
+    docs: |
+      # tar
+
+      `tar` is used to archive and compress files and directories.
+
+      ## Common Usage
+
+      - `tar -cvf archive.tar dir/` – Create archive of `dir/`.
+      - `tar -xvf archive.tar` – Extract archive.
+      - `tar -tvf archive.tar` – List contents of archive.
+      - `tar -czvf archive.tar.gz dir/` – Create compressed archive with gzip.
+      - `tar -xzvf archive.tar.gz` – Extract compressed archive.
+      - `tar -C /target/dir -xvf archive.tar` – Extract to specific directory.
+
+      ## Tips
+
+      - Combine with `find` or `xargs` to archive specific files:
+        ```bash
+        find . -name "*.log" | tar -czvf logs.tar.gz -T -
+        ```
+  - name: "ripgrep"
+    description: "A fast search tool like grep, optimized for large codebases."
+    recommended: true
+    categories: ["Search", "Development", "Command Line"]
+    level: 1
+    software: true
+    docs: |
+      # ripgrep (rg)
+
+      `rg` is a line-oriented search tool that recursively searches your current directory for a regex pattern, skipping hidden and ignored files automatically (like .gitignore).
+
+      ## Common Usage
+
+      - `rg pattern` – Search for "pattern" in current directory.
+      - `rg -i pattern` – Case-insensitive search.
+      - `rg -w pattern` – Match whole words.
+      - `rg -n pattern` – Show line numbers.
+      - `rg -tjs pattern` – Limit search to JavaScript files.
+      - `rg pattern path/` – Search within specific directory or file.
+
+      ## Tips
+
+      - `rg foo | less` for paginated results.
+      - Works great with Neovim + Telescope for fuzzy search.
+
+  - name: "fd-find"
+    description: "A simple, fast, user-friendly alternative to find."
+    recommended: true
+    categories: ["File Management", "Command Line"]
+    level: 1
+    software: true
+    docs: |
+      # fd
+
+      `fd` is a modern replacement for `find`, with simpler syntax and colorized output.
+
+      ## Common Usage
+
+      - `fd` – List all files recursively (ignores .gitignore'd files).
+      - `fd txt` – Find all files matching 'txt' in name.
+      - `fd -e rs` – Find all `.rs` files.
+      - `fd foo src/` – Search within `src/` for 'foo'.
+      - `fd -x rm {}` – Run a command on results (e.g., delete).
+
+      ## Tips
+
+      - Use `--hidden` to include hidden files.
+      - Use `-uu` to ignore `.gitignore`.
+
+  - name: "rsync"
+    description: "A utility for fast, incremental file transfers."
+    recommended: true
+    categories: ["Syncing", "File Transfer", "Command Line"]
+    level: 2
+    software: true
+    docs: |
+      # rsync
+
+      `rsync` copies and synchronizes files and directories between local and remote systems efficiently.
+
+      ## Common Usage
+
+      - `rsync -av src/ dest/` – Archive mode, verbose, copy contents of `src/` to `dest/`.
+      - `rsync -av --delete src/ dest/` – Delete files in dest that are no longer in src.
+      - `rsync -avz user@host:/remote/dir/ ./local/` – Sync remote to local with compression.
+      - `rsync -n -av src/ dest/` – Dry-run mode.
+
+      ## Tips
+
+      - Use `--progress` to show file transfer progress.
+      - Great for backups and remote file transfers.
+
+  - name: "jq"
+    description: "A lightweight and flexible command-line JSON processor."
+    recommended: true
+    categories: ["JSON", "Scripting", "Command Line"]
+    level: 2
+    software: true
+    docs: |
+      # jq
+
+      `jq` is used to slice, filter, map, and transform JSON.
+
+      ## Common Usage
+
+      - `jq . file.json` – Pretty-print JSON.
+      - `jq '.key' file.json` – Extract value of 'key'.
+      - `jq '.[]' file.json` – Iterate over array elements.
+      - `jq '.[0]' file.json` – First item in an array.
+      - `curl ... | jq '.'` – Pipe JSON from curl to parse.
+
+      ## Filters
+
+      - `.foo` – Select 'foo' key.
+      - `.[1:4]` – Array slicing.
+      - `map(.price)` – Map array of objects to 'price'.
+
+      ## Tips
+
+      - Combine with `--compact-output` (`-c`) for scripting.
+      - Use `-r` to strip quotes for raw output.
+
+  - name: "Neovim (Search, Replace, Keymaps)"
+    description: "Neovim basics for search, replace, and commonly used key mappings."
+    recommended: true
+    categories: ["Editor", "Neovim", "Text Editing"]
+    level: 1
+    software: true
+    docs: |
+      # Neovim
+
+      ## Search
+
+      - `/pattern` – Search forward.
+      - `?pattern` – Search backward.
+      - `n` / `N` – Next / Previous match.
+      - `*` – Search word under cursor forward.
+      - `#` – Search word under cursor backward.
+
+      ## Replace (substitution)
+
+      - `:s/foo/bar/` – Replace first 'foo' on current line.
+      - `:s/foo/bar/g` – Replace all on current line.
+      - `:%s/foo/bar/g` – Replace all in file.
+      - `:%s/foo/bar/gc` – Replace all with confirmation.
+
+      ## Replace With Regex
+
+      - `:%s/\\vword(\\d+)/replacement/g` – Use `\\v` for "very magic" regex.
+      - `:%s/\\<word\\>/replacement/g` – Replace whole word only.
+
+      ## Key Mappings (Normal Mode)
+
+      - `:w` – Save file
+      - `:q` – Quit
+      - `:wq` – Save and quit
+      - `:noh` – Remove search highlights
+      - `dd` – Delete line
+      - `yy` – Yank (copy) line
+      - `p` – Paste below
+      - `P` – Paste above
+      - `u` – Undo
+      - `Ctrl + r` – Redo
+      - `gg` – Go to top of file
+      - `G` – Go to bottom of file
+      - `/pattern` – Search forward
+
+      ## Insert Mode
+
+      - `i` – Insert at cursor
+      - `I` – Insert at beginning of line
+      - `a` – Append after cursor
+      - `A` – Append at end of line
+      - `Esc` – Exit insert mode
+
+      ## Visual Mode
+
+      - `v` – Start visual mode
+      - `V` – Linewise visual
+      - `Ctrl + v` – Block visual mode
+
+      ## Tips
+
+      - Use `:help` followed by any command for full docs, e.g. `:help :s`
+      - Learn motions like `w`, `b`, `e` for efficient movement.
+

@@ -282,4 +282,7 @@ buckets = ["games"]
 packages = ["battlenet", "epic-games-launcher", "prismlauncher", "steam"]
 
 [packages.go]
-packages = ["github.com/burgr033/autoCommit@latest"]
+packages = [
+    "github.com/burgr033/autoCommit@latest",
+    "github.com/burgr033/t00lbox@latest",
+]
