@@ -80,7 +80,7 @@ packages = [
     "firefox",
     "wl-clipboard",
     "wev",
-    "maplemono-ttf-autohint",
+    "maplemono-nf",
     "bibata-cursor-theme-bin",
     "enpass-bin",
     "gvfs",
