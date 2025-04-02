@@ -154,7 +154,7 @@ extensions = [
 ]
 
 [packages.linux.arch.virtualization]
-packages = ["vmware-workstation"]
+packages = ["gnome-boxes"]
 
 [packages.linux.arch.media]
 packages = ["pocket-casts-linux-bin"]
@@ -176,8 +176,8 @@ packages = [
 ]
 
 [packages.linux.arch.virtualguest]
-packages = ["virtualbox-guest-utils"]
-services = ["vboxservice"]
+packages = ["spice-vdagent"]
+services = ["spice-vdagent"]
 
 [packages.linux.arch.opensnitch]
 packages = ["opensnitch-ebpf-module", "opensnitch-git"]
@@ -284,5 +284,5 @@ packages = ["battlenet", "epic-games-launcher", "prismlauncher", "steam"]
 [packages.go]
 packages = [
     "github.com/burgr033/autoCommit@latest",
-    "github.com/burgr033/t00lbox@latest",
+    "github.com/burgr033/t00lbox/cmd/t00lbox@latest",
 ]
