@@ -44,6 +44,7 @@ packages = [
     "fastfetch",
     "neovim",
     "fish",
+    "github-cli",
     "ripgrep",
     "fzf",
     "htop",
@@ -166,6 +167,8 @@ packages = ["signal-desktop", "fractal", "discord"]
 packages = [
     "texlab",
     "typst",
+    "glab",
+    "glim",
     "tectonic",
     "easyroam-desktop-bin",
     "rustdesk-bin",
