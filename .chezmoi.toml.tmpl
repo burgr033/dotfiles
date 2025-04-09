@@ -7,19 +7,20 @@
 {{- $chassisType := "desktop"}}
 {{- $gpgkeyAnswer := "personal" }}
 {{- $allProfiles := list "common" -}}
-{{- if eq .chezmoi.os "linux"}}
-    {{- $chassisType = (output "hostnamectl" "--json=short" | mustFromJson).Chassis}}
-    {{ if eq .chezmoi.osRelease.id "ubuntu" -}}
-        {{- $allProfiles = list "common" -}}
-    {{- end}}
-    {{- if eq .chezmoi.osRelease.id "arch"}}
-    {{- $allProfiles = list "common" "desktop" "opensnitch" "studywork" "media" "comms" "pentesting" "virtualiziation" "virtualguest" -}}
-    {{- end}}
-{{- else if eq .chezmoi.os "windows"}}
-    {{- $allProfiles = list "desktop" "studywork" "office" "gaming" -}}
-    {{- $chassisType = (output "powershell.exe" "-NoProfile" "-NonInteractive" "-Command" "if ((Get-CimInstance -Class Win32_Battery | Measure-Object).Count -gt 0) { Write-Output 'laptop' } else { Write-Output 'desktop' }") | trim }}
-{{- end}}
+{{- if eq .chezmoi.os "linux" }}
+    {{- $chassisType := (output "hostnamectl" "--json=short" | mustFromJson).Chassis }}
+    {{- if eq $chassisType "container" }}
+        {{- $allProfiles = list "common" }}
+    {{- else if eq .chezmoi.osRelease.id "ubuntu" }}
+        {{- $allProfiles = list "common" }}
+    {{- else if eq .chezmoi.osRelease.id "arch" }}
+        {{- $allProfiles = list "common" "desktop" "opensnitch" "studywork" "media" "comms" "pentesting" "virtualization" "virtualguest" }}
+    {{- end }}
 
+{{- else if eq .chezmoi.os "windows" }}
+    {{- $allProfiles = list "desktop" "studywork" "office" "gaming" }}
+    {{- $chassisType := (output "powershell.exe" "-NoProfile" "-NonInteractive" "-Command" "if ((Get-CimInstance -Class Win32_Battery | Measure-Object).Count -gt 0) { Write-Output 'laptop' } else { Write-Output 'desktop' }") | trim }}
+{{- end }}
 [edit]
 command = "nvim"
 {{- if lookPath "delta" }}
