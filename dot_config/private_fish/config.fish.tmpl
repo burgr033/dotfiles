@@ -24,15 +24,13 @@ if status is-interactive
     set --export VISUAL "nvim"
     set -g fish_key_bindings fish_vi_key_bindings
     bind --mode insert delete delete-char
+    bind \cz 'fg 2>/dev/null; commandline -f repaint'
+    bind --mode insert \cz 'fg 2>/dev/null; commandline -f repaint'
     if not set -q DISPLAY
         set ZELLIJ_AUTO_ATTACH true
         set ZELLIJ_AUTO_EXIT true
         if not set -q ZELLIJ                                                                                                                                                           
-            if test "$ZELLIJ_AUTO_ATTACH" = "true"                                                                                                                                     
-            zellij a main || zellij -s main || zellij
-            else                                                                                                                                                                       
-                zellij                                                                                                                                                                 
-            end                                                                                                                                                                        
+            zellij                                                                                                                                                                 
             if test "$ZELLIJ_AUTO_EXIT" = "true"                                                                                                                                       
                 kill $fish_pid                                                                                                                                                         
             end                                                                                                                                                                        
