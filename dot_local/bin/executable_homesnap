@@ -1,0 +1,42 @@
+#!/bin/bash
+
+SNAPSHOT_NAME=$1
+MODE=$2 # "before" or "after"
+HOME_DIR="$HOME"
+SNAPSHOT_DIR="$HOME/.homesnap"
+mkdir -p "$SNAPSHOT_DIR"
+
+SNAPSHOT_BEFORE="$SNAPSHOT_DIR/${SNAPSHOT_NAME}-before.txt"
+SNAPSHOT_AFTER="$SNAPSHOT_DIR/${SNAPSHOT_NAME}-after.txt"
+
+# 🔥 List of folders or patterns to exclude
+EXCLUDES=(
+  ".cache"
+  ".homesnap"
+  ".thumbnails"
+  "node_modules"
+  ".git"
+  ".go"
+  ".config/nvim"
+  ".local/share/chezmoi"
+  ".local/share/Trash"
+)
+
+# Build fd exclusion flags
+EXCLUDE_FLAGS=()
+for ex in "${EXCLUDES[@]}"; do
+  EXCLUDE_FLAGS+=(--exclude "$ex")
+done
+
+if [ "$MODE" == "before" ]; then
+    fd . "$HOME_DIR" --type f --type d --hidden "${EXCLUDE_FLAGS[@]}" | sort > "$SNAPSHOT_BEFORE"
+    echo "📸 Snapshot taken: ${SNAPSHOT_NAME}-before"
+elif [ "$MODE" == "after" ]; then
+    fd . "$HOME_DIR" --type f --type d --hidden "${EXCLUDE_FLAGS[@]}" | sort > "$SNAPSHOT_AFTER"
+    echo "📸 Snapshot taken: ${SNAPSHOT_NAME}-after"
+
+    echo "🔍 Differences (added files/dirs):"
+    comm -13 "$SNAPSHOT_BEFORE" "$SNAPSHOT_AFTER"
+else
+    echo "❌ Usage: $0 <snapshot-name> <before|after>"
+fi
