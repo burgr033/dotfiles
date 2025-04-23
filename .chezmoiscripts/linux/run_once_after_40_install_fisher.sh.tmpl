@@ -1,0 +1,10 @@
+#!/bin/bash
+echo ""
+set -eufo pipefail
+{{if eq .shell "fish"}}
+if [[ ! -f "$HOME/.config/fish/fish_plugins" ]];then
+  fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
+  fish -c "fisher install {{ .packages.linux.fisher.packages | join " " }}"
+fi
+fish -c "fisher update"
+{{end}}

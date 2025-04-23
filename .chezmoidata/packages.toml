@@ -203,6 +203,15 @@ packages = [
     "dirbuster",
     "burpsuite",
 ]
+[packages.linux.fisher]
+packages = [
+    "jorgebucaran/fisher",
+    "halostatue/fish-chezmoi",
+    "patrickf1/fzf.fish",
+    "nickeb96/puffer-fish",
+    "edc/bass",
+    "jorgebucaran/autopair.fish",
+]
 
 [packages.windows.winget]
 packages = ["9N0DX20HK701"]
