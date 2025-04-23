@@ -1,5 +1,4 @@
 # -*-mode:conf-toml-*- vim:ft=toml
-{{- $manualSetup := false}}
 {{- $shell := "fish"}}
 {{- if ne .chezmoi.os "linux" -}}
     {{- $shell = "pwsh" }}
@@ -59,6 +58,11 @@ gpgkey = "83297FC845136CEC5D204EAB2FC883E6A65782EC"
 {{- else}}
 gpgkey = "BDE652404B6095EB4FE11A1A1707363660BFF7D7"
 {{- end}}
+{{- if ( and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft")) }}
+isWSL = true
+{{- else }}
+isWSL = false
+{{- end }}
 {{- if and (eq (len $profiles) 1) (ne (index $profiles 0) "") (eq (index $profiles 0) "common") }}
 isHeadless = true 
 {{- else }}

@@ -209,6 +209,7 @@ packages = [
     "halostatue/fish-chezmoi",
     "patrickf1/fzf.fish",
     "nickeb96/puffer-fish",
+    "jethrokuan/z",
     "edc/bass",
     "jorgebucaran/autopair.fish",
 ]

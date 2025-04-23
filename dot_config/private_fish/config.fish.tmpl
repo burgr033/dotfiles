@@ -6,35 +6,28 @@ if status is-interactive
     alias vim="nvim"
     alias dig="dog"
     alias nslookup="dog"
+    alias scratch="nvim -c Scratch"
     {{- if eq .chezmoi.osRelease.id "ubuntu"}}
     alias cat="batcat --plain"
     {{- else}}
     alias cat="bat --plain"
     {{- end}}
-    alias scratch="nvim -c Scratch"
     {{- if eq .isHeadless false}}
-    set --export GPG_TTY $(tty)
+    set --export SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/gcr/ssh"
     {{- end}}
     {{- if eq .isHeadless true}}
+    set --export SSH_AUTH_SOCK $XDG_RUNTIME_DIR/ssh-agent.socket
+    {{- if eq .isWSL false}}
     set --export NVIM_SLIM "1"
     {{- end}}
-    set --export SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/gcr/ssh"
+    {{- end}}
+    set --export GPG_TTY $(tty)
     set --export EDITOR "nvim"
     set --export GOPATH "$HOME/.go"
     set --export VISUAL "nvim"
     set -g fish_key_bindings fish_vi_key_bindings
     bind --mode insert delete delete-char
-    bind \cz 'fg 2>/dev/null; commandline -f repaint'
     bind --mode insert \cz 'fg 2>/dev/null; commandline -f repaint'
-    if not set -q DISPLAY
-        set ZELLIJ_AUTO_ATTACH true
-        set ZELLIJ_AUTO_EXIT true
-        if not set -q ZELLIJ                                                                                                                                                           
-            zellij                                                                                                                                                                 
-            if test "$ZELLIJ_AUTO_EXIT" = "true"                                                                                                                                       
-                kill $fish_pid                                                                                                                                                         
-            end                                                                                                                                                                        
-        end
-    end
+    bind \cz 'fg 2>/dev/null; commandline -f repaint'
+    starship init fish | source
 end
-starship init fish | source
