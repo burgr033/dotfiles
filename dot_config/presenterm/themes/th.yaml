@@ -1,18 +1,15 @@
----
 default:
   margin:
     percent: 2
   colors:
     foreground: "5e5e5e"
     background: "ffffff"
-
 slide_title:
   alignment: left
   colors:
     foreground: "00a1e3"
   bold: true
   font_size: 2
-
 code:
   alignment: left
   minimum_size: 50
@@ -22,7 +19,6 @@ code:
   padding:
     horizontal: 2
     vertical: 1
-
 execution_output:
   colors:
     foreground: "5e5e5e"
@@ -36,11 +32,9 @@ execution_output:
       foreground: "b94421"
     not_started:
       foreground: "00a1e3"
-
 inline_code:
   colors:
     foreground: "649140"
-
 intro_slide:
   title:
     alignment: center
@@ -69,7 +63,6 @@ intro_slide:
     colors:
       foreground: "5e5e5e"
   footer: false
-
 headings:
   h1:
     prefix: "⟩"
@@ -84,14 +77,12 @@ headings:
     prefix: "⟩⟩⟩"
     colors:
       foreground: "66c7ee"
-
 block_quote:
   prefix: "▍ "
   colors:
     foreground: "5e5e5e"
     background: "e9e9e9"
     prefix: "00a1e3"
-
 alert:
   prefix: "▍ "
   base_colors:
@@ -108,25 +99,22 @@ alert:
       color: "cd9237"
     caution:
       color: "d4310f"
-
 typst:
   colors:
     foreground: "5e5e5e"
     background: "ffffff"
-
 footer:
   style: template
-  left: "{date}"
+  left: "{event} @ {date}"
   center: "{current_slide} / {total_slides}"
-  right: "{event} @ {location}"
-  height: 1
+  right:
+    image: "images/th-logo.png"
+  height: 3
   colors:
     foreground: "9e9e9e"
-
 modals:
   selection_colors:
     foreground: "9e9e9e"
-
 mermaid:
   background: transparent
   theme: dark
