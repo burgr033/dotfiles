@@ -1,24 +1,23 @@
+---
 default:
   margin:
     percent: 2
   colors:
     foreground: "5e5e5e"
     background: "ffffff"
+
 slide_title:
   alignment: left
   colors:
     foreground: "00a1e3"
   bold: true
-  font_size: 2
+  font_size: 1
 code:
-  alignment: left
+  alignment: center
   minimum_size: 50
   minimum_margin:
     percent: 8
-  theme_name: InspiredGitHub
-  padding:
-    horizontal: 2
-    vertical: 1
+  theme_name: OneHalfLight
 execution_output:
   colors:
     foreground: "5e5e5e"
@@ -117,4 +116,4 @@ modals:
     foreground: "9e9e9e"
 mermaid:
   background: transparent
-  theme: dark
+  theme: default

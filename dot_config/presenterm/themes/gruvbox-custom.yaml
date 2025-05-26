@@ -11,17 +11,14 @@ slide_title:
   colors:
     foreground: "fabd2f"
   bold: true
-  font_size: 2
+  font_size: 1
 
 code:
-  alignment: left
+  alignment: center
   minimum_size: 50
   minimum_margin:
     percent: 8
   theme_name: gruvbox-dark
-  padding:
-    horizontal: 2
-    vertical: 1
 
 execution_output:
   colors:
@@ -83,18 +80,6 @@ headings:
     prefix: "⟩⟩⟩"
     colors:
       foreground: "83a598"
-  h4:
-    prefix: "⟩⟩⟩⟩"
-    colors:
-      foreground: "fb4934"
-  h5:
-    prefix: "⟩⟩⟩⟩⟩"
-    colors:
-      foreground: "b8bb26"
-  h6:
-    prefix: "⟩⟩⟩⟩⟩⟩"
-    colors:
-      foreground: "fe8019"
 
 block_quote:
   prefix: "▍ "
@@ -126,11 +111,10 @@ typst:
     background: "3c3836"
 
 footer:
-
   style: template
-  left: "{date}"
+  left: "{title}"
   center: "{current_slide} / {total_slides}"
-  right: "{event} @ {location}"
+  right: "{event}"
   height: 1
   colors:
     foreground: "a89984"
@@ -141,4 +125,4 @@ modals:
 
 mermaid:
   background: transparent
-  theme: dark
+  theme: forest

@@ -1,6 +1,6 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = """╭─[$username$hostname](green) $directory([❮](yellow)$git_branch$git_status$git_state[❯](yellow))$rust$docker_context$terraform$golang$python$jobs
+format = """╭─[$username$hostname](green) $directory([❮](yellow)$git_branch$git_status$git_state[❯](yellow))$rust$docker_context$terraform$golang$python$conda$jobs
 ╰─$character"""
 
 scan_timeout = 10
@@ -44,6 +44,10 @@ format = '[$symbol](red)$version'
 [python]
 symbol = '  '
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )](yellow)'
+
+[conda]
+symbol = ' 🐍 '
+format = '[$symbol$environment](yellow)'
 
 [docker_context]
 symbol = '  '
