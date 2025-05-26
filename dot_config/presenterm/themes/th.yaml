@@ -1,11 +1,9 @@
----
 default:
   margin:
     percent: 2
   colors:
     foreground: "5e5e5e"
     background: "ffffff"
-
 slide_title:
   alignment: left
   colors:
@@ -91,7 +89,7 @@ alert:
     note:
       color: "66c7ee"
     tip:
-      color: "9e9e9e"
+      color: "649140"
     important:
       color: "365a5e"
     warning:
