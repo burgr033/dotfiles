@@ -43,10 +43,12 @@ printf "this is no amd64 arch. Lazygit and delta missing! Install manually"
 {{end}}
 
 {{ $sudo }}apt-get update
-{{ $sudo }}apt-get install -y {{ .packages.linux.ubuntu.apt | join " " }}
+{{ $sudo }}apt-get install -y {{ .packages.linux.ubuntu.apt.packages | join " " }}
 
 {{ if lookPath "snap" }}
-{{ $sudo }}snap install --classic {{ .packages.linux.ubuntu.snap | join " " }}
+{{ range .packages.linux.ubuntu.snap.packages -}}
+{{ $sudo }}snap install --classic {{ . }}
+{{ end }}
 {{else}}
 printf "snap not found"
 {{ end }}
