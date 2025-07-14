@@ -139,7 +139,7 @@ packages = [
 services = ["gdm"]
 
 
-[packages.linux.arch.light-desktop]
+[packages.linux.arch.light_desktop]
 packages = [
     "ghostty",
     "firefox",
