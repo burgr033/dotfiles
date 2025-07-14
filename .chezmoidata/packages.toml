@@ -138,6 +138,25 @@ packages = [
 ]
 services = ["gdm"]
 
+
+[packages.linux.arch.light-desktop]
+packages = [
+    "ghostty",
+    "firefox",
+    "wl-clipboard",
+    "wev",
+    "maplemono-nf",
+    "enpass-bin",
+    "wireshark-qt",
+    "obsidian",
+    "network-manager-applet",
+    "networkmanager",
+    "labwc",
+    "ly",
+]
+services = ["ly"]
+
+
 [packages.linux.arch.gnome_extensions]
 extensions = [
     "windowIsReady_Remover@nunofarruca@gmail.com",

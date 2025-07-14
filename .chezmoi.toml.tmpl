@@ -13,7 +13,7 @@
     {{- else if eq .chezmoi.osRelease.id "ubuntu" }}
         {{- $allProfiles = list "common" }}
     {{- else if eq .chezmoi.osRelease.id "arch" }}
-        {{- $allProfiles = list "common" "desktop" "opensnitch" "studywork" "media" "comms" "pentesting" "virtualization" "virtualguest" }}
+        {{- $allProfiles = list "common" "desktop" "light-desktop" "opensnitch" "studywork" "media" "comms" "pentesting" "virtualization" "virtualguest" }}
     {{- end }}
 
 {{- else if eq .chezmoi.os "windows" }}
