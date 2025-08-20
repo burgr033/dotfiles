@@ -28,6 +28,10 @@ set -eufo pipefail
   {{- $combinedPackages = concat $combinedPackages .packages.linux.arch.desktop.packages }}
   {{- $combinedServices = concat $combinedServices .packages.linux.arch.desktop.services }}
   {{- end }}
+  {{- if has "light_desktop" .profiles }}
+  {{- $combinedPackages = concat $combinedPackages .packages.linux.arch.light_desktop.packages }}
+  {{- $combinedServices = concat $combinedServices .packages.linux.arch.light_desktop.services }}
+  {{- end }}
   {{- if has "virtualization" .profiles }}
   {{- $combinedPackages = concat $combinedPackages .packages.linux.arch.virtualization.packages }}
   {{- end }}
