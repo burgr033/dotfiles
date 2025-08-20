@@ -1,6 +1,6 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = """╭─[$username$hostname](green) $directory([❮](yellow)$git_branch$git_status$git_state[❯](yellow))$rust$docker_context$terraform$golang$python$conda$jobs
+format = """╭─[$username$hostname](green) $directory$fill ([❮](yellow)$git_branch$git_status$git_state[❯](yellow)) $cmd_duration$rust$docker_context$terraform$golang$python$conda$jobs
 ╰─$character"""
 
 scan_timeout = 10
@@ -32,6 +32,9 @@ vimcmd_symbol = "[N](bold blue)"
 vimcmd_visual_symbol = "[V](bold purple)"
 vimcmd_replace_symbol = "[R](bold red)"
 vimcmd_replace_one_symbol = "[r](bold red)"
+
+[fill]
+symbol = "·"
 
 [golang]
 symbol = '  '
