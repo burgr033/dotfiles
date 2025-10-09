@@ -15,12 +15,11 @@ function _fzf_view_projects
     end
 
     if test -n "$repos"
-        cd "$repos"
+        pushd "$repos"
         commandline -f repaint 
         if test "$PROJECTS_AUTO_OPEN_EDITOR" = "true"
             eval "$EDITOR ."
         end
-
     end
 end
 
