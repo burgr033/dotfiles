@@ -33,6 +33,9 @@ vimcmd_visual_symbol = "[V](bold purple)"
 vimcmd_replace_symbol = "[R](bold red)"
 vimcmd_replace_one_symbol = "[r](bold red)"
 
+[fill]
+symbol = "·"
+
 [golang]
 symbol = '  '
 format = '[$symbol](cyan)$version'
