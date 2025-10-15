@@ -1,0 +1,31 @@
+#!/bin/bash
+set -euo pipefail
+
+# Generate declared package list from chezmoi template
+declared_packages=$(cat ~/.local/share/chezmoi/.chezmoitemplates/list-packages-arch.tmpl | chezmoi execute-template)
+current_packages=$(pacman -Qeq)
+
+# Convert to sorted lists
+declared_sorted=$(echo "$declared_packages" | sort -u)
+current_sorted=$(echo "$current_packages" | sort -u)
+
+# Find differences
+to_install=$(comm -23 <(echo "$declared_sorted") <(echo "$current_sorted"))
+to_remove=$(comm -13 <(echo "$declared_sorted") <(echo "$current_sorted"))
+
+if [[ -n "$to_install" ]]; then
+  echo "Installing missing packages:"
+  echo "$to_install"
+else
+  echo "✅ No missing packages to install."
+fi
+
+echo "---------------"
+
+
+if [[ -n "$to_remove" ]]; then
+  echo "Removing undeclared packages:"
+  echo "$to_remove"
+else
+  echo "✅ No extra packages to remove."
+fi
