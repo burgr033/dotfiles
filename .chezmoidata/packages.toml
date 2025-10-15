@@ -28,11 +28,11 @@ packages = ["zellij", "nvim"]
 [packages.linux.arch.common]
 packages = [
     "bat",
-    "starship",
     "curl",
+    "man-db",
+    "starship",
     "direnv",
     "fd",
-    "man",
     "git-lfs",
     "inetutils",
     "zellij",
