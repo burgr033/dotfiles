@@ -119,6 +119,9 @@ services = ["ly"]
 [packages.linux.arch.media]
 packages = ["pocket-casts-linux-bin"]
 
+[packages.linux.arch.wsl]
+packages = ["win32yank-bin", "wsl-open"]
+
 [packages.linux.arch.studywork]
 packages = [
     "texlab",
