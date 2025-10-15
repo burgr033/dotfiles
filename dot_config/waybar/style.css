@@ -1,0 +1,69 @@
+* {
+  font-family: "Maple Mono NF", monospace;
+  font-size: 11pt;
+  border: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+}
+
+window#waybar {
+  background: #222222;
+  color: #ffffff;
+}
+
+/* Workspaces */
+#workspaces button {
+  padding: 0 6px;
+  color: #ffffff;
+  background: transparent;
+  border-radius: 0;
+  margin: 0;
+  box-shadow: none;
+}
+
+#workspaces button.active {
+  background: #285577;
+  border-radius: 0;
+}
+
+#workspaces button:hover {
+  background: #285577;
+  border-radius: 0;
+}
+
+/* Window title */
+#window {
+  padding: 0 10px;
+}
+
+/* Right-side modules */
+#clock,
+#battery,
+#network,
+#pulseaudio,
+#tray {
+  padding: 0 10px;
+  border-radius: 0;
+  margin: 0;
+}
+
+/* Battery colors */
+#battery.warning {
+  color: #fdd835;
+}
+
+#battery.critical {
+  color: #ff5555;
+}
+
+/* System tray */
+#tray {
+  padding: 0 5px;
+  background: #222222;
+  border-radius: 0;
+}
+
+#tray > * {
+  margin: 0 2px;
+}

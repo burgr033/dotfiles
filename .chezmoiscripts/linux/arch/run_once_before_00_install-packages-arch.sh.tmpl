@@ -68,16 +68,6 @@ set -eufo pipefail
 
   yay --noconfirm -Syu --needed {{ $combinedPackages | join " " }}
 
-{{ if has "desktop" .profiles }}
-  # HACK: This doesnt work
-## if [[ -t 0 ]]; then
-##   gnome-extensions-cli -F install {{ .packages.linux.arch.gnome_extensions.extensions | join " " }}
-## else 
-##   gnome-extensions-cli install {{ .packages.linux.arch.gnome_extensions.extensions | join " " }}
-## fi
-{{- end }}
-
-
 {{- range $combinedServices }}
 printf '\n installing {{.}} as service\n'
 {{ $sudo }} systemctl enable {{.}}

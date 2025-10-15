@@ -1,0 +1,25 @@
+output "XEC MFG34C5Q Unknown" {
+  mode 3440x1440@165.0000
+  position 0,0
+  scale 1.25
+  alias $HOME
+}
+
+output "Lenovo Group Limited 0x41A0 Unknown" {
+  scale 1.25
+  mode 1920x1200@60.0000
+  position 0,0
+  alias $INTERNAL
+}
+
+profile home {
+  output $INTERNAL disable
+  output $HOME enable
+  exec hyprctl reload
+}
+
+profile internal {
+  output $INTERNAL enable
+  exec hyprctl reload
+}
+
