@@ -6,7 +6,7 @@ output "XEC MFG34C5Q Unknown" {
 }
 
 output "Lenovo Group Limited 0x41A0 Unknown" {
-  scale 1.25
+  scale 1.0
   mode 1920x1200@60.0000
   position 0,0
   alias $INTERNAL
