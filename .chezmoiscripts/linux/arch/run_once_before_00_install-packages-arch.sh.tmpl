@@ -66,7 +66,7 @@ set -eufo pipefail
   {{- $combinedPackages = concat $combinedPackages .packages.linux.arch.pentesting.packages }}
   {{- end }}
 
-  yay --noconfirm -Syu --needed {{ $combinedPackages | join " " }}
+  yay -Syu --needed {{ $combinedPackages | join " " }}
 
 {{- range $combinedServices }}
 printf '\n installing {{.}} as service\n'
