@@ -273,7 +273,6 @@ load_plugins {
 // Choose the theme that is specified in the themes section.
 // Default: default
 // 
-theme "tokyonight_moon"
  
 // Choose the base input mode of zellij.
 // Default: normal
@@ -394,7 +393,7 @@ copy_clipboard "system"
 //   - true (default)
 //   - false
 // 
-// auto_layout false
+auto_layout true
  
 // Whether sessions should be serialized to the cache folder (including their tabs/panes, cwds and running commands) so that they can later be resurrected
 // Options:
