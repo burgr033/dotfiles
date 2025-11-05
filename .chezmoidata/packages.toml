@@ -23,14 +23,12 @@ packages = [
 ]
 
 [packages.linux.ubuntu.snap]
-packages = [
-    "zellij",
-    "nvim",
-]
+packages = ["zellij", "nvim"]
 
 [packages.linux.arch.common]
 packages = [
     "bat",
+    "chezmoi",
     "7zip",
     "just",
     "curl",
@@ -72,20 +70,25 @@ packages = [
     "reflector",
     "openbsd-netcat",
     "pacman-contrib",
+    "rsync",
     "yazi",
     "imagemagick",
     "man-db",
     "dog",
     "nmap",
+    "docker",
+    "docker-compose",
+    "lazydocker",
     "tailscale",
 ]
-services = []
+services = ["docker"]
 
 [packages.linux.arch.desktop]
 packages = [
     "brightnessctl",
     "hyprland",
     "mpv",
+    "feh",
     "hyprcursor",
     "hypridle",
     "hyprlock",
@@ -122,31 +125,26 @@ packages = [
     "xdg-utils",
     "xdg-desktop-portal-hyprland",
     "zathura",
+    "pcmanfm",
+    "pipewire",
+    "pipewire-alsa",
+    "pipewire-jack",
+    "pipewire-pulse",
+    "libpulse",
+    "wireplumber",
+    "pavucontrol",
+    "nwg-look",
+    "wlr-randr",
     "zathura-pdf-mupdf",
 ]
-services = [
-    "ly",
-]
+services = ["ly"]
 
 [packages.linux.arch.media]
-packages = [
-    "pocket-casts-linux-bin",
-    "pinta",
-]
+packages = ["pocket-casts-linux-bin", "pinta", "ncspot"]
 services = []
 
 [packages.linux.arch.wsl]
-packages = [
-    "win32yank-bin",
-    "wsl-open",
-]
-services = []
-
-[packages.linux.arch.unsorted]
-packages = [
-    "python-tomli-w",
-    "jq",
-]
+packages = ["win32yank-bin", "wsl-open"]
 services = []
 
 [packages.linux.arch.studywork]
@@ -160,22 +158,14 @@ packages = [
     "easyroam-desktop-bin",
     "rustdesk-bin",
     "xournalpp",
-    "thunderbird",
     "onlyoffice-bin",
     "zotero-bin",
 ]
 services = []
 
 [packages.linux.arch.mobile]
-packages = [
-    "tlp",
-    "tlpui",
-    "tlp-rdw",
-    "powertop",
-]
-services = [
-    "tlp",
-]
+packages = ["tlp", "tlpui", "tlp-rdw", "powertop"]
+services = ["tlp"]
 
 [packages.linux.arch.pentesting]
 packages = [
@@ -208,20 +198,13 @@ packages = [
 ]
 
 [packages.windows.winget]
-packages = [
-    "9N0DX20HK701",
-]
+packages = ["9N0DX20HK701"]
 
 [packages.windows.scoop.pre]
-packages = [
-    "git",
-]
+packages = ["git"]
 
 [packages.windows.scoop.desktop]
-buckets = [
-    "extras",
-    "nerd-fonts",
-]
+buckets = ["extras", "nerd-fonts"]
 packages = [
     "7zip",
     "Maple-Mono-NF",
@@ -272,9 +255,7 @@ packages = [
 ]
 
 [packages.windows.scoop.studywork]
-buckets = [
-    "java",
-]
+buckets = ["java"]
 packages = [
     "sumatrapdf",
     "zotero",
@@ -288,21 +269,11 @@ packages = [
 
 [packages.windows.scoop.office]
 buckets = []
-packages = [
-    "onlyoffice-desktopeditors",
-    "thunderbird",
-]
+packages = ["onlyoffice-desktopeditors", "thunderbird"]
 
 [packages.windows.scoop.gaming]
-buckets = [
-    "games",
-]
-packages = [
-    "battlenet",
-    "epic-games-launcher",
-    "prismlauncher",
-    "steam",
-]
+buckets = ["games"]
+packages = ["battlenet", "epic-games-launcher", "prismlauncher", "steam"]
 
 [packages.go]
 packages = [

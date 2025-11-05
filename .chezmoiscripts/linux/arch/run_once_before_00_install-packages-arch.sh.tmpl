@@ -12,7 +12,9 @@ set -eufo pipefail
 
 # Install common packages first
 {{- if has "common" .profiles }}
-{{ $sudo }} pacman --needed --noconfirm -Sy {{ .packages.linux.arch.common.packages | join " " }}
+  printf "Installing packages:\n- {{ .packages.linux.arch.common.packages | join "\n- " }}"
+  echo ""
+  {{ $sudo }} pacman --needed --noconfirm -Sy {{ .packages.linux.arch.common.packages | join " " }}
 {{- end }}
 
 # Install yay if not present
@@ -59,8 +61,8 @@ fi
 
 # Install all combined packages
 if [ {{ len $combinedPackages }} -gt 0 ]; then
-  echo "Installing packages: {{ $combinedPackages | join " " }}"
-  yay -Syu --needed {{ $combinedPackages | join " " }}
+  printf "Installing packages:\n- {{ $combinedPackages | join "\n- " }}\n"
+  yay -Sy --needed {{ $combinedPackages | join " " }}
 fi
 
 # Enable all combined services
