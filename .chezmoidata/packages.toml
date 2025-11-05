@@ -28,6 +28,8 @@ packages = ["zellij", "nvim"]
 [packages.linux.arch.common]
 packages = [
     "bat",
+    "7zip",
+    "just",
     "curl",
     "man-db",
     "starship",
@@ -40,6 +42,7 @@ packages = [
     "eza",
     "go",
     "unzip",
+    "wget",
     "git-delta",
     "jq",
     "fastfetch",
@@ -66,7 +69,7 @@ packages = [
     "reflector",
     "openbsd-netcat",
     "pacman-contrib",
-    "ranger",
+    "yazi",
     "imagemagick",
     "man-db",
     "dog",
@@ -78,15 +81,16 @@ packages = [
 packages = [
     "brightnessctl",
     "hyprland",
+    "mpv",
     "hyprcursor",
     "hypridle",
     "hyprlock",
     "hyprpolkitagent",
     "hyprshot",
+    "hyprshot",
     "hyprsunset",
     "hyprutils",
     "kanshi",
-    "lf",
     "mako",
     "foot",
     "rofi",
@@ -104,23 +108,29 @@ packages = [
     "obsidian",
     "rygel",
     "swaybg",
+    "waybar",
     "xdg-desktop-portal-wlr",
     "snapshot",
-    "seahorse",
     "seahorse",
     "gnome-keyring",
     "network-manager-applet",
     "networkmanager",
     "xdg-user-dirs-gtk",
     "xdg-utils",
+    "xdg-desktop-portal-hyprland",
+    "zathura",
+    "zathura-pdf-mupdf",
 ]
 services = ["ly"]
 
 [packages.linux.arch.media]
-packages = ["pocket-casts-linux-bin"]
+packages = ["pocket-casts-linux-bin", "pinta"]
 
 [packages.linux.arch.wsl]
 packages = ["win32yank-bin", "wsl-open"]
+
+[packages.linux.arch.unsorted]
+packages = ["python-tomli-w"]
 
 [packages.linux.arch.studywork]
 packages = [
@@ -129,6 +139,7 @@ packages = [
     "glab",
     "glim",
     "tectonic",
+    "miniforge",
     "easyroam-desktop-bin",
     "rustdesk-bin",
     "xournalpp",
@@ -154,6 +165,7 @@ packages = [
     "dirbuster",
     "burpsuite",
 ]
+
 [packages.linux.fisher]
 packages = [
     "jorgebucaran/fisher",
@@ -167,7 +179,6 @@ packages = [
 
 [packages.windows.winget]
 packages = ["9N0DX20HK701"]
-
 
 [packages.windows.scoop.pre]
 packages = ["git"]
@@ -239,7 +250,6 @@ packages = [
 [packages.windows.scoop.office]
 buckets = []
 packages = ["onlyoffice-desktopeditors", "thunderbird"]
-
 
 [packages.windows.scoop.gaming]
 buckets = ["games"]
