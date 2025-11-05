@@ -12,9 +12,20 @@ output "Lenovo Group Limited 0x41A0 Unknown" {
   alias $INTERNAL
 }
 
+output "Philips Consumer Electronics Company PHL 329P1 *" {
+ scale 1.5
+ alias $WORK
+}
+
 profile home {
   output $INTERNAL disable
   output $HOME enable
+  exec hyprctl reload
+}
+
+profile work {
+  output $INTERNAL disable
+  output $WORK enable
   exec hyprctl reload
 }
 

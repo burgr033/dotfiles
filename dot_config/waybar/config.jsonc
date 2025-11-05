@@ -23,8 +23,10 @@
   "battery": {
     "format": "{icon} {capacity}%",
     "format-charging": " {capacity}%",
+    "tooltip-format": "about {time} left",
     "format-icons": ["", "", "", "", ""],
     "states": {
+      "good": 80,
       "warning": 30,
       "critical": 15,
     },
