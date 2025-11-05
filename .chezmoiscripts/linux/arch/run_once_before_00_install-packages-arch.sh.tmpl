@@ -1,77 +1,73 @@
 #!/bin/bash
 echo ""
 set -eufo pipefail
-{{ if eq .manualSetup false }}
-  {{- $sudo := "sudo " }}
-  {{- if eq .chezmoi.username "root" }}
-    {{-   $sudo = "" }}
-  {{- end }}
-  {{- if has "common" .profiles }}
-    {{- $sudo }}sudo pacman --needed --noconfirm -Sy {{ .packages.linux.arch.common.packages | join " " }}
-  {{- end }}
-  if ! command -v yay &> /dev/null
-    then
-      echo ""
-      {{- if eq .chezmoi.osRelease.id "arch" }}
-          pushd .
-          git clone https://aur.archlinux.org/yay-bin.git /tmp/yay-bin
-          cd /tmp/yay-bin
-          makepkg -si --noconfirm
-          popd
-          rm -rf /tmp/yay-bin/
-      {{- end}}
-    fi
- 
-  {{- $combinedPackages := list }}
-  {{- $combinedServices := list }}
-  {{- if has "desktop" .profiles }}
-  {{- $combinedPackages = concat $combinedPackages .packages.linux.arch.desktop.packages }}
-  {{- $combinedServices = concat $combinedServices .packages.linux.arch.desktop.services }}
-  {{- end }}
-  {{- if has "light_desktop" .profiles }}
-  {{- $combinedPackages = concat $combinedPackages .packages.linux.arch.light_desktop.packages }}
-  {{- $combinedServices = concat $combinedServices .packages.linux.arch.light_desktop.services }}
-  {{- end }}
-  {{- if has "virtualization" .profiles }}
-  {{- $combinedPackages = concat $combinedPackages .packages.linux.arch.virtualization.packages }}
-  {{- end }}
-  {{- if has "media" .profiles }}
-  {{- $combinedPackages = concat $combinedPackages .packages.linux.arch.media.packages }}
-  {{- end }}
-  {{- if has "comms" .profiles }}
-  {{- $combinedPackages = concat $combinedPackages .packages.linux.arch.comms.packages }}
-  {{- $combinedServices = concat $combinedServices .packages.linux.arch.desktop.services }}
-  {{- end }}
-  {{- if has "studywork" .profiles }}
-  {{- $combinedPackages = concat $combinedPackages .packages.linux.arch.studywork.packages }}
-  {{- end }}
-  {{- if has "opensnitch" .profiles }}
-  {{- $combinedPackages = concat $combinedPackages .packages.linux.arch.opensnitch.packages }}
-  {{- $combinedServices = concat $combinedServices .packages.linux.arch.opensnitch.services }}
-  {{- end }}
-  {{- if has "virtualguest" .profiles }}
-  {{- $combinedPackages = concat $combinedPackages .packages.linux.arch.virtualguest.packages }}
-  {{- $combinedServices = concat $combinedServices .packages.linux.arch.virtualguest.services }}
-  {{- end }}
-  {{- if has "pentesting" .profiles }}
-  if ! grep -Fxq "Include = /etc/pacman.d/athena.conf" /etc/pacman.conf; then
-      echo "Include = /etc/pacman.d/athena.conf" | {{ $sudo }} tee -a /etc/pacman.conf
-      echo "[athena]" | {{- $sudo }} tee /etc/pacman.d/athena.conf
-      echo "Include = /etc/pacman.d/athena-mirrorlist" | {{ $sudo }} tee -a /etc/pacman.d/athena.conf
-      echo "SigLevel = Optional TrustedOnly" | {{ $sudo }} tee -a /etc/pacman.d/athena.conf
-      {{ $sudo }} curl https://raw.githubusercontent.com/Athena-OS/athena/refs/heads/main/packages/os-specific/system/athena-mirrorlist/athena-mirrorlist -o /etc/pacman.d/athena-mirrorlist
-      {{ $sudo }} pacman-key --recv-keys A3F78B994C2171D5 --keyserver keys.openpgp.org
-      {{ $sudo }} pacman-key --lsign A3F78B994C2171D5
-  fi
-  {{- $combinedPackages = concat $combinedPackages .packages.linux.arch.pentesting.packages }}
-  {{- end }}
 
+{{- if eq .manualSetup false }}
+
+# Determine sudo prefix
+{{- $sudo := "sudo " }}
+{{- if eq .chezmoi.username "root" }}
+  {{- $sudo = "" }}
+{{- end }}
+
+# Install common packages first
+{{- if has "common" .profiles }}
+{{ $sudo }} pacman --needed --noconfirm -Sy {{ .packages.linux.arch.common.packages | join " " }}
+{{- end }}
+
+# Install yay if not present
+if ! command -v yay &> /dev/null; then
+  echo "Installing yay AUR helper..."
+  {{- if eq .chezmoi.osRelease.id "arch" }}
+  pushd .
+  git clone https://aur.archlinux.org/yay-bin.git /tmp/yay-bin
+  cd /tmp/yay-bin
+  makepkg -si --noconfirm
+  popd
+  rm -rf /tmp/yay-bin/
+  {{- end }}
+fi
+
+# Combine packages and services dynamically
+{{- $combinedPackages := list -}}
+{{- $combinedServices := list -}}
+{{- range .profiles }}
+  {{- $profile := . -}}
+  {{- with (index $.packages.linux.arch $profile) }}
+    {{- if .packages }}
+      {{- $combinedPackages = concat $combinedPackages .packages -}}
+    {{- end }}
+    {{- if .services }}
+      {{- $combinedServices = concat $combinedServices .services -}}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+# Handle special case: pentesting repo setup
+{{- if has "pentesting" .profiles }}
+if ! grep -Fxq "Include = /etc/pacman.d/athena.conf" /etc/pacman.conf; then
+    echo "Setting up Athena repository for pentesting..."
+    echo "Include = /etc/pacman.d/athena.conf" | {{ $sudo }} tee -a /etc/pacman.conf
+    echo "[athena]" | {{ $sudo }} tee /etc/pacman.d/athena.conf
+    echo "Include = /etc/pacman.d/athena-mirrorlist" | {{ $sudo }} tee -a /etc/pacman.d/athena.conf
+    echo "SigLevel = Optional TrustedOnly" | {{ $sudo }} tee -a /etc/pacman.d/athena.conf
+    {{ $sudo }} curl -sSL https://raw.githubusercontent.com/Athena-OS/athena/refs/heads/main/packages/os-specific/system/athena-mirrorlist/athena-mirrorlist -o /etc/pacman.d/athena-mirrorlist
+    {{ $sudo }} pacman-key --recv-keys A3F78B994C2171D5 --keyserver keys.openpgp.org
+    {{ $sudo }} pacman-key --lsign A3F78B994C2171D5
+fi
+{{- end }}
+
+# Install all combined packages
+if [ {{ len $combinedPackages }} -gt 0 ]; then
+  echo "Installing packages: {{ $combinedPackages | join " " }}"
   yay -Syu --needed {{ $combinedPackages | join " " }}
+fi
 
+# Enable all combined services
 {{- range $combinedServices }}
-printf '\n installing {{.}} as service\n'
-{{ $sudo }} systemctl enable {{.}}
+echo "Enabling service: {{ . }}"
+{{ $sudo }} systemctl enable {{ . }}
 {{- end }}
 
-
 {{- end }}
+

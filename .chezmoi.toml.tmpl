@@ -1,25 +1,36 @@
 # -*-mode:conf-toml-*- vim:ft=toml
 {{- $shell := "fish"}}
-{{- if ne .chezmoi.os "linux" -}}
-    {{- $shell = "pwsh" }}
-{{- end}}
-{{- $chassisType := "desktop"}}
+{{- $chassisType := "desktop" }}
 {{- $gpgkeyAnswer := "personal" }}
 {{- $allProfiles := list "common" -}}
 {{- if eq .chezmoi.os "linux" }}
-    {{- $chassisType := (output "hostnamectl" "--json=short" | mustFromJson).Chassis }}
+    {{- $chassisType = (output "hostnamectl" "--json=short" | mustFromJson).Chassis }}
     {{- if eq $chassisType "container" }}
         {{- $allProfiles = list "common" }}
     {{- else if eq .chezmoi.osRelease.id "ubuntu" }}
         {{- $allProfiles = list "common" }}
     {{- else if eq .chezmoi.osRelease.id "arch" }}
-        {{- $allProfiles = list "common" "desktop" "studywork" "media" "pentesting" }}
-    {{- end }}
+        {{- $allProfiles = append $allProfiles "desktop" }}
 
+        {{- if or (eq $chassisType "convertible") (eq $chassisType "laptop") }}
+            {{- $allProfiles = append $allProfiles "mobile" }}
+        {{- end}}
+
+        {{- $allProfiles = append $allProfiles "studywork" }}
+        {{- $allProfiles = append $allProfiles "media" }}
+        {{- $allProfiles = append $allProfiles "pentesting" }}
+    {{- end }}
 {{- else if eq .chezmoi.os "windows" }}
-    {{- $allProfiles = list "desktop" "studywork" "office" "gaming" }}
-    {{- $chassisType := (output "powershell.exe" "-NoProfile" "-NonInteractive" "-Command" "if ((Get-CimInstance -Class Win32_Battery | Measure-Object).Count -gt 0) { Write-Output 'laptop' } else { Write-Output 'desktop' }") | trim }}
+    {{- $shell = "pwsh" }}
+    {{- $chassisType = (output "powershell.exe" "-NoProfile" "-NonInteractive" "-Command" "if ((Get-CimInstance -Class Win32_Battery | Measure-Object).Count -gt 0) { Write-Output 'laptop' } else { Write-Output 'desktop' }") | trim }}
+    {{- $allProfiles = append $allProfiles "desktop" }}
+    {{- $allProfiles = append $allProfiles "studywork" }}
+    {{- $allProfiles = append $allProfiles "office" }}
+    {{- $allProfiles = append $allProfiles "gaming" }}
 {{- end }}
+
+# ----------------------------------------------------------------------------------
+
 [edit]
 command = "nvim"
 {{- if lookPath "delta" }}
@@ -41,16 +52,16 @@ args = [
 {{- end}}
 
 [cd]
-command = {{- $shell | quote }}
+command = {{ $shell | quote }}
 
 [data]
 {{- $name := promptStringOnce . "name" "Name" "sb"}}
 {{- $email := promptStringOnce . "email" "Email" "burgr@posteo.de"}}
-name =  {{-  $name | quote }}
-email = {{-  $email | quote }}
-shell = {{-  $shell | quote }}
+name =  {{  $name | quote }}
+email = {{  $email | quote }}
+shell = {{  $shell | quote }}
 {{-  $profiles := promptMultichoiceOnce . "profiles" "What profiles should be enabled" $allProfiles }}
-profiles = {{- $profiles | toToml -}}
+profiles = {{ $profiles | toToml }}
 {{- $gpgkeyList := list "personal" "work" -}}
 {{- $gpgkeyAnswer := promptChoiceOnce . "gpgkey" "What GPG should we install?" $gpgkeyList}}
 {{- if eq $gpgkeyAnswer "work"}}
