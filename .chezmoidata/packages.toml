@@ -28,7 +28,11 @@ packages = ["zellij", "nvim"]
 [packages.linux.arch.common]
 packages = [
     "bat",
+    "vim",
     "chezmoi",
+    "tree-sitter-cli",
+    "rustup",
+    "smartmontools",
     "7zip",
     "just",
     "curl",

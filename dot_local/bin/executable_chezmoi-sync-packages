@@ -3,31 +3,34 @@ set -euo pipefail
 
 # Generate declared package list from chezmoi template
 declared_packages=$(cat ~/.local/share/chezmoi/.chezmoitemplates/list-packages-arch.tmpl | chezmoi execute-template)
+ignored_packages=$(cat ~/.local/share/chezmoi/.chezmoitemplates/list-packages-arch.ignore)
 current_explicit_packages=$(pacman -Qeq)
 current_packages=$(pacman -Qq)
 
 # Convert to sorted lists
 declared_sorted=$(echo "$declared_packages" | sort -u)
 current_sorted=$(echo "$current_packages" | sort -u)
+ignored_sorted=$(echo "$ignored_packages" | sort -u)
 current_explicit_sorted=$(echo "$current_explicit_packages" | sort -u)
 
 # Find differences
 to_install=$(comm -23 <(echo "$declared_sorted") <(echo "$current_sorted"))
 to_remove=$(comm -13 <(echo "$declared_sorted") <(echo "$current_explicit_sorted"))
+to_remove=$(comm -13 <(echo "$ignored_sorted") <(echo "$to_remove"))
 
 if [[ -n "$to_install" ]]; then
-  echo "Installing missing packages:"
+  echo "missing declared packages:"
   echo "$to_install"
 else
-  echo "✅ No missing packages to install."
+  echo "✅ No delcared packages to install"
 fi
 
 echo "---------------"
 
 
 if [[ -n "$to_remove" ]]; then
-  echo "Removing undeclared packages:"
+  echo "undeclared packages:"
   echo "$to_remove"
 else
-  echo "✅ No extra packages to remove."
+  echo "✅ No undeclared packages."
 fi
