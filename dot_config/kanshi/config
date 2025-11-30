@@ -21,6 +21,8 @@ profile home {
   output $INTERNAL disable
   output $HOME enable
   exec hyprctl reload
+  exec hyprctl keyword general:layout master
+  exec pkill swaybg && swaybg -i ~/.local/share/backgrounds/worksforme.png -m center -c 2a373e &
 }
 
 profile work {
