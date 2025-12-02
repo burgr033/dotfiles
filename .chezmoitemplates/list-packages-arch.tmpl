@@ -1,8 +1,0 @@
-{{- $combinedPackages := list -}}
-{{- range .profiles }}
-  {{- $profile := . -}}
-  {{- with (index $.packages.linux.arch $profile) }}
-    {{- $combinedPackages = concat $combinedPackages .packages -}}
-  {{- end }}
-{{- end }}
-{{- join "\n" $combinedPackages }}
