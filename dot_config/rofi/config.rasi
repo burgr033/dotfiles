@@ -1,0 +1,12 @@
+configuration {
+  matching: "fuzzy";
+  timeout {
+      action: "kb-cancel";
+      delay:  0;
+  }
+  filebrowser {
+      directories-first: true;
+      sorting-method:    "name";
+  }
+}
+@theme "/usr/share/rofi/themes/glue_pro_blue.rasi"
