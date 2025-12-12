@@ -113,7 +113,6 @@ packages = [
     "enpass-bin",
     "gvfs",
     "gvfs-smb",
-    "gtk-engine-murrine",
     "gvfs-nfs",
     "wireshark-qt",
     "obsidian",

@@ -18,6 +18,8 @@ EXCLUDES=(
   ".git"
   ".go"
   ".config/nvim"
+  ".config/mozilla"
+  ".local/state"
   ".local/share/chezmoi"
   ".local/share/Trash"
 )
@@ -36,6 +38,8 @@ elif [ "$MODE" == "after" ]; then
     echo "📸 Snapshot taken: ${SNAPSHOT_NAME}-after"
 
     echo "🔍 Differences (added files/dirs):"
+    comm -13 "$SNAPSHOT_BEFORE" "$SNAPSHOT_AFTER"
+elif [ "$MODE" == "diff" ]; then
     comm -13 "$SNAPSHOT_BEFORE" "$SNAPSHOT_AFTER"
 else
     echo "❌ Usage: $0 <snapshot-name> <before|after>"
