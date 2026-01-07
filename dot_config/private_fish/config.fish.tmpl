@@ -37,7 +37,7 @@ if status is-interactive
     bind --mode insert \cz 'fg 2>/dev/null; commandline -f repaint'
     bind \cz 'fg 2>/dev/null; commandline -f repaint'
     for mode in default insert
-        bind --mode $mode \cp _fzf_view_projects
+        bind --mode $mode \cp p
     end
     starship init fish | source
 end

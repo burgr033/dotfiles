@@ -23,3 +23,4 @@
     abbr --add -- unset 'set --erase'
 
     abbr -a -- todo 'nvim -c ObsidianTodo'
+    abbr -a -- pacmansearch 'pacman -Slq | fzf --multi --preview "pacman -Si {1}" | xargs -ro sudo pacman -S'

@@ -140,7 +140,7 @@ packages = [
     "wlr-randr",
     "zathura-pdf-mupdf",
 ]
-services = ["ly"]
+services = ["ly@tty2.service"]
 
 [packages.linux.arch.media]
 packages = ["pocket-casts-linux-bin", "pinta", "ncspot"]
