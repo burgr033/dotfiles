@@ -5,8 +5,8 @@ dotfiles generated with **[chezmoi](https://github.com/twpayne/chezmoi)**
 Configs include:
 
 - Linux
-  - Gnome (dconf)
-  - ghostty
+  - hyprland
+  - foot
   - fish
   - eza
   - zellij
@@ -14,11 +14,11 @@ Configs include:
   - Windows PowerShell
   - Windows Terminal
 - both
-  - Git
+  - git
   - starship
   - bat
   - lazygit
-  - Neovim
+  - neovim
 
 ## applying my dotfiles
 
