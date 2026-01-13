@@ -42,5 +42,5 @@ elif [ "$MODE" == "after" ]; then
 elif [ "$MODE" == "diff" ]; then
     comm -13 "$SNAPSHOT_BEFORE" "$SNAPSHOT_AFTER"
 else
-    echo "❌ Usage: $0 <snapshot-name> <before|after>"
+    echo "❌ Usage: $0 <snapshot-name> <before|after|diff>"
 fi
