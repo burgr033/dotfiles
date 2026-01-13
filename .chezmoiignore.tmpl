@@ -3,7 +3,11 @@
 README.md
 .github
 
-{{if eq .chezmoi.os "windows"}}
+{{- if ne .chezmoi.osRelease.id "arch"}}
+.local/bin/chezmoi-sync-packages
+{{end}}
+
+{{- if eq .chezmoi.os "windows"}}
 # if OS is windows ignore...
 .config/*
 .local/bin/*
@@ -13,19 +17,24 @@ README.md
 !.config/lazygit
 !.config/starship.toml
 {{- end}}
-{{if ne .chezmoi.os "windows"}}
+{{- if ne .chezmoi.os "windows"}}
 # if OS is NOT windows ignore:
 Documents/*
 AppData/*
 AppData
+{{- if not (has "desktop" .profiles) }}
+.config/foot
+.config/hypr
+.config/kanshi
+.config/mako
+.config/waybar
 {{- end}}
-
+{{- end}}
 # script related stuff
 .chezmoiscripts/*/**
-{{if eq .chezmoi.os "windows"}}
+{{- if eq .chezmoi.os "windows"}}
 !.chezmoiscripts/{{ .chezmoi.os }}/**
-{{else}}
+{{- else}}
 !.chezmoiscripts/{{ .chezmoi.os }}/*
 !.chezmoiscripts/{{ .chezmoi.os }}/{{.chezmoi.osRelease.id}}/**
-{{end}}
-.keyfiles
+{{- end}}

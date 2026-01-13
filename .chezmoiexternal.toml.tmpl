@@ -8,12 +8,6 @@ exact = true
 stripComponents = 1
 refreshPeriod = "168h"
 
-[".local/bin/autoCommit.exe"]
-type = "archive-file"
-url = "https://github.com/burgr033/autoCommit/releases/latest/download/autoCommit_Windows_x86_64.zip"
-refreshPeriod = "168h"
-executable = true
-path = "autoCommit.exe"
 {{- end}}
 
 {{- if ne .chezmoi.os "windows"}}
@@ -25,18 +19,11 @@ exact = true
 stripComponents = 1
 refreshPeriod = "168h"
 
-[".local/bin/autoCommit"]
-type = "archive-file"
-url = "https://github.com/burgr033/autoCommit/releases/download/v1.0.3/autoCommit_Linux_x86_64.tar.gz"
-refreshPeriod = "168h"
-executable = true
-path = "autoCommit"
-
 {{- if eq .isHeadless false }}
 
 [".local/share/backgrounds"]
 type = "archive"
-url = "https://github.com/burgr033/wallpapers/archive/main.tar.gz"
+url = "https://github.com/burgr033/wallpapers/archive/wfm.tar.gz"
 exact = true
 stripComponents = 1
 refreshPeriod = "168h"

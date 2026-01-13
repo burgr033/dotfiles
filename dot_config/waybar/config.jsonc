@@ -1,0 +1,49 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 24,
+
+  "modules-left": ["hyprland/workspaces", "hyprland/submap"],
+  "modules-center": ["hyprland/window"],
+  "modules-right": ["network", "pulseaudio", "battery", "clock", "tray"],
+
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "format": "{name}",
+  },
+
+  "hyprland/window": {
+    "max-length": 50,
+  },
+
+  "clock": {
+    "format": " {:%Y-%m-%d %H:%M}",
+  },
+
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "tooltip-format": "about {time} left",
+    "format-icons": ["", "", "", "", ""],
+    "states": {
+      "good": 80,
+      "warning": 30,
+      "critical": 15,
+    },
+  },
+
+  "network": {
+    "format-wifi": " {essid}",
+    "format-ethernet": "󰈀 {ifname}",
+    "format-disconnected": "󰖪 Disconnected",
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰖁 muted",
+    "format-icons": ["", "", ""],
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
+  },
+}

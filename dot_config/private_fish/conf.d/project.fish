@@ -1,25 +1,29 @@
-function _fzf_view_projects
-    set -q PROJECTS_DIR; or set PROJECTS_DIR ~/Projects
-    set -q PROJECTS_AUTO_OPEN_EDITOR; or set PROJECTS_AUTO_OPEN_EDITOR true
-    set fzf_opts \
-        --height=40% \
-        --layout=reverse \
-        --border \
-        --preview="tree -L 1 {}" \
-        --preview-window=right:40% \
-        
-    if type -q fd
-        set repos (fd -t d -H '^\.git$' $PROJECTS_DIR -x dirname | sort -u | fzf --prompt="Project: " $fzf_opts)
+function p
+    set base ~/Projects
+
+    # List project dirs (no hidden, depth 1)
+    set projects (find $base -maxdepth 1 -mindepth 1 -type d)
+
+    # Preload search query if provided
+    if test (count $argv) -gt 0
+        set q $argv[1]
+        set selected (printf '%s\n' $projects | fzf \
+            --query "$q" \
+            --select-1 \
+            --exit-0 \
+            --reverse \
+            --border \
+            --height=40% \
+            --preview 'tree -L 2 -C {} 2>/dev/null')
     else
-        set repos (find $PROJECTS_DIR -name ".git" -type d -prune -printf '%h\n' | sort -u | fzf --prompt="Project: " $fzf_opts)
+        set selected (printf '%s\n' $projects | fzf \
+            --reverse \
+            --border \
+            --height=40% \
+            --preview 'tree -L 2 -C {} 2>/dev/null')
     end
 
-    if test -n "$repos"
-        pushd "$repos"
-        commandline -f repaint 
-        if test "$PROJECTS_AUTO_OPEN_EDITOR" = "true"
-            eval "$EDITOR ."
-        end
+    if test -n "$selected"
+        cd $selected
     end
 end
-

@@ -29,11 +29,15 @@ if status is-interactive
     set -gx PROJECTS_DIR ~/Projects
     set -gx PROJECTS_AUTO_OPEN_EDITOR true
     set -g fish_key_bindings fish_vi_key_bindings
+    {{ if isExecutable "/opt/miniforge/condabin/conda" }}
+    set -x CONDA_PATH /opt/miniforge/condabin/conda
+    fish_add_path /opt/miniforge/condabin
+    {{end}}
     bind --mode insert delete delete-char
     bind --mode insert \cz 'fg 2>/dev/null; commandline -f repaint'
     bind \cz 'fg 2>/dev/null; commandline -f repaint'
     for mode in default insert
-        bind --mode $mode \cp _fzf_view_projects
+        bind --mode $mode \cp p
     end
     starship init fish | source
 end

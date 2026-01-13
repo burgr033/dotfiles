@@ -1,0 +1,40 @@
+output "XEC MFG34C5Q Unknown" {
+  mode 3440x1440@165.0000
+  position 0,0
+  scale 1.25
+  alias $HOME
+}
+
+output "Lenovo Group Limited 0x41A0 Unknown" {
+  scale 1.0
+  mode 1920x1200@60.0000
+  position 0,0
+  alias $INTERNAL
+}
+
+output "Philips Consumer Electronics Company PHL 329P1 *" {
+ scale 1.5
+ alias $WORK
+}
+
+profile home {
+  output $INTERNAL disable
+  output $HOME enable
+  exec hyprctl reload
+  exec hyprctl keyword general:layout master
+  exec pkill swaybg && swaybg -i ~/.local/share/backgrounds/worksforme.png -m center -c 2a373e &
+}
+
+profile work {
+  output $INTERNAL disable
+  output $WORK enable
+  exec hyprctl reload
+  exec hyprctl keyword general:layout master
+  exec pkill swaybg && swaybg -i ~/.local/share/backgrounds/worksforme.png -m center -c 2a373e &
+}
+
+profile internal {
+  output $INTERNAL enable
+  exec hyprctl reload
+}
+
