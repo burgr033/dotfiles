@@ -5,7 +5,7 @@ output "XEC MFG34C5Q Unknown" {
   alias $HOME
 }
 
-output "Lenovo Group Limited 0x41A0 Unknown" {
+output eDP-1 {
   scale 1.0
   mode 1920x1200@60.0000
   position 0,0
@@ -18,12 +18,15 @@ output "Philips Consumer Electronics Company PHL 329P1 *" {
  alias $WORK
 }
 
+output HDMI-A-1 {
+  alias $PRESENT
+}
+
 profile home {
   output $INTERNAL disable
   output $HOME enable
   exec hyprctl reload
   exec hyprctl keyword general:layout master
-  exec pkill swaybg && swaybg -i ~/.local/share/backgrounds/worksforme.png -m center -c 2a373e &
 }
 
 profile work {
@@ -31,11 +34,17 @@ profile work {
   output $WORK enable
   exec hyprctl reload
   exec hyprctl keyword general:layout master
-  exec pkill swaybg && swaybg -i ~/.local/share/backgrounds/worksforme.png -m center -c 2a373e &
 }
+
 
 profile internal {
   output $INTERNAL enable
   exec hyprctl reload
+}
+
+profile present {
+  output $INTERNAL enable 
+  output $PRESENT enable 
+  exec hyprctl keyword monitor HDMI-A-1,preferred,auto,1,mirror,eDP-1
 }
 
