@@ -1,0 +1,21 @@
+#!/bin/python
+
+import hyprpy
+
+instance = hyprpy.Hyprland()
+
+# Get occupied workspaces
+workspaces = instance.get_workspaces()
+occupied_ids = sorted(ws.id for ws in workspaces)
+windows = instance.get_windows()
+
+expected_id = occupied_ids[0]
+
+for current_id in occupied_ids:
+    if current_id != expected_id:
+        for window in windows:
+            if window.workspace_id == current_id:
+                instance.dispatch(
+                    ["movetoworkspace", f"{expected_id},address:{window.address}"]
+                )
+    expected_id += 1

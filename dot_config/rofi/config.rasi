@@ -1,12 +1,12 @@
 configuration {
+  font: "Maple Mono NF 13";
+  modi: ["calc","drun","ssh","window"];
   matching: "fuzzy";
+  ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";
+  parse-known-hosts: false;
   timeout {
       action: "kb-cancel";
       delay:  0;
   }
-  filebrowser {
-      directories-first: true;
-      sorting-method:    "name";
-  }
 }
-@theme "/usr/share/rofi/themes/glue_pro_blue.rasi"
+@theme "/usr/share/rofi/themes/gruvbox-dark-soft.rasi"
