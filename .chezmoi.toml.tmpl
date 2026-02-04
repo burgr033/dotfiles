@@ -19,6 +19,7 @@
         {{- $allProfiles = append $allProfiles "studywork" }}
         {{- $allProfiles = append $allProfiles "media" }}
         {{- $allProfiles = append $allProfiles "pentesting" }}
+        {{- $allProfiles = append $allProfiles "docker" }}
     {{- end }}
 {{- else if eq .chezmoi.os "windows" }}
     {{- $shell = "pwsh" }}

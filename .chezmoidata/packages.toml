@@ -80,12 +80,9 @@ packages = [
     "man-db",
     "dog",
     "nmap",
-    "docker",
-    "docker-compose",
-    "lazydocker",
     "tailscale",
 ]
-services = ["docker"]
+services = []
 
 [packages.linux.arch.desktop]
 packages = [
@@ -120,7 +117,6 @@ packages = [
     "rygel",
     "swaybg",
     "waybar",
-    "snapshot",
     "seahorse",
     "gnome-keyring",
     "network-manager-applet",
@@ -147,6 +143,10 @@ services = ["ly@tty2.service"]
 [packages.linux.arch.media]
 packages = ["pocket-casts-linux-bin", "pinta", "ncspot"]
 services = []
+
+[packages.linux.arch.docker]
+packages = ["docker", "docker-compose", "lazydocker"]
+services = ["docker"]
 
 [packages.linux.arch.wsl]
 packages = ["win32yank-bin", "wsl-open"]
