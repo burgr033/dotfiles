@@ -95,8 +95,6 @@ packages = [
     "hyprlock",
     "hyprpolkitagent",
     "hyprshot",
-    "hyprshot",
-    "hyprsunset",
     "hyprutils",
     "kanshi",
     "mako",
@@ -134,14 +132,13 @@ packages = [
     "libpulse",
     "wireplumber",
     "pavucontrol",
-    "nwg-look",
     "wlr-randr",
     "zathura-pdf-mupdf",
 ]
 services = ["ly@tty2.service"]
 
 [packages.linux.arch.media]
-packages = ["pocket-casts-linux-bin", "pinta", "ncspot"]
+packages = ["pocket-casts-linux-bin", "pinta"]
 services = []
 
 [packages.linux.arch.docker]
@@ -157,8 +154,6 @@ packages = [
     "texlab",
     "typst",
     "glab",
-    "glim",
-    "tectonic",
     "miniforge",
     "easyroam-desktop-bin",
     "rustdesk-bin",
@@ -261,16 +256,7 @@ packages = [
 
 [packages.windows.scoop.studywork]
 buckets = ["java"]
-packages = [
-    "sumatrapdf",
-    "zotero",
-    "texlab",
-    "tectonic",
-    "typst",
-    "rustdesk",
-    "xournalpp",
-    "openjdk",
-]
+packages = ["sumatrapdf", "zotero", "typst", "rustdesk", "xournalpp", "openjdk"]
 
 [packages.windows.scoop.office]
 buckets = []
