@@ -8,6 +8,13 @@ exact = true
 stripComponents = 1
 refreshPeriod = "168h"
 
+["Appdata/Roaming/zed"]
+type = "git-repo"
+url = "https://github.com/burgr033/zed-config"
+exact = true
+stripComponents = 1
+refreshPeriod = "168h"
+
 {{- end}}
 
 {{- if ne .chezmoi.os "windows"}}
@@ -20,6 +27,14 @@ stripComponents = 1
 refreshPeriod = "168h"
 
 {{- if eq .isHeadless false }}
+
+[".config/zed"]
+type = "git-repo"
+url = "https://github.com/burgr033/zed-config"
+exact = true
+stripComponents = 1
+refreshPeriod = "168h"
+
 
 [".local/share/backgrounds"]
 type = "archive"
