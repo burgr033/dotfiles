@@ -282,6 +282,6 @@ packages = ["battlenet", "epic-games-launcher", "prismlauncher", "steam"]
 
 [packages.go]
 packages = [
-    "github.com/burgr033/autoCommit@latest",
+    "github.com/burgr033/autoCommit/cmd/autoCommit@latest",
     "github.com/burgr033/t00lbox/cmd/t00lbox@latest",
 ]
