@@ -68,4 +68,9 @@ echo "Enabling service: {{ . }}"
 {{ $sudo }} systemctl enable {{ . }}
 {{- end }}
 
+{{- range .packages.go.packages}}
+go install {{.}}
+{{- end}}
+
 {{- end }}
+
