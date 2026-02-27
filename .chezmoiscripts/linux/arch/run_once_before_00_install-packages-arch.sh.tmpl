@@ -59,7 +59,8 @@ fi
 
 # Install all combined packages
 if [ {{ len $combinedPackages }} -gt 0 ]; then
-  yay -Syu --needed {{ $combinedPackages | join " " }}
+  yay -Sy
+  yay -S --needed {{ $combinedPackages | join " " }}
 fi
 
 # Enable all combined services

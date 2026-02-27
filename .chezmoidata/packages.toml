@@ -29,6 +29,12 @@ packages = ["zellij", "nvim"]
 packages = [
     "bat",
     "vim",
+    "whois",
+    "sl",
+    "w3m",
+    "clang",
+    "cmake",
+    "expac",
     "chezmoi",
     "tree-sitter-cli",
     "rustup",
@@ -36,7 +42,6 @@ packages = [
     "7zip",
     "just",
     "curl",
-    "man-db",
     "starship",
     "direnv",
     "fd",
@@ -63,6 +68,8 @@ packages = [
     "python-setuptools",
     "python-pynvim",
     "gdu",
+    "snap-pac",
+    "zip",
     "tree",
     "lazygit",
     "bottom",
@@ -75,7 +82,6 @@ packages = [
     "openbsd-netcat",
     "pacman-contrib",
     "rsync",
-    "yazi",
     "imagemagick",
     "man-db",
     "dog",
@@ -89,10 +95,12 @@ packages = [
     "brightnessctl",
     "hyprland",
     "mpv",
+    "aerc",
     "feh",
     "hyprcursor",
     "hypridle",
     "hyprlock",
+    "hyprpicker",
     "hyprpolkitagent",
     "hyprshot",
     "hyprutils",
@@ -108,6 +116,7 @@ packages = [
     "maplemono-nf",
     "enpass-bin",
     "gvfs",
+    "cpio",
     "gvfs-smb",
     "gvfs-nfs",
     "wireshark-qt",
@@ -122,6 +131,7 @@ packages = [
     "xdg-user-dirs-gtk",
     "xdg-utils",
     "xdg-desktop-portal-hyprland",
+    "yt-dlp",
     "python-hyprpy",
     "zathura",
     "pcmanfm",
@@ -131,6 +141,7 @@ packages = [
     "pipewire-pulse",
     "libpulse",
     "wireplumber",
+    "gst-plugin-pipewire",
     "pavucontrol",
     "wlr-randr",
     "zathura-pdf-mupdf",
@@ -155,6 +166,7 @@ packages = [
     "typst",
     "glab",
     "miniforge",
+    "python-eduvpn-client",
     "easyroam-desktop-bin",
     "rustdesk-bin",
     "xournalpp",
@@ -164,7 +176,15 @@ packages = [
 services = []
 
 [packages.linux.arch.mobile]
-packages = ["tlp", "tlpui", "tlp-rdw", "powertop"]
+packages = [
+    "tlp",
+    "tlpui",
+    "tlp-rdw",
+    "powertop",
+    "fwupd",
+    "bluetui",
+    "wireless_tools",
+]
 services = ["tlp"]
 
 [packages.linux.arch.pentesting]
@@ -179,6 +199,7 @@ packages = [
     "iaito",
     "tcpdump",
     "wireshark-qt",
+
     "wpscan",
     "volatility3",
     "dirbuster",
