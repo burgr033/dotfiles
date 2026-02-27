@@ -56,7 +56,7 @@ TARGET_LIST=$(cat <<EOF | LC_ALL=C sort -u
 EOF
 )
 
-CURRENT_LIST=$(pacman -Qeq | LC_ALL=C sort -u)
+CURRENT_LIST=$(yay -Qeq | LC_ALL=C sort -u)
 
 # --- 4. Delta Calculation ---
 MISSING=$(LC_ALL=C comm -23 <(echo "$TARGET_LIST") <(echo "$CURRENT_LIST") | sed '/^$/d')
@@ -96,6 +96,6 @@ echo -e "------------------------------------------\n"
 echo -ne "\033[1;32m➜ sync packages? [y/N]: \033[0m"
 read -r confirm_in </dev/tty
 if [[ "$confirm_in" =~ ^[Yy]$ ]]; then
-    echo "$EXTRA" | xargs -r sudo pacman -Rs --noconfirm
+    echo "$EXTRA" | xargs -r sudo yay -Rs --noconfirm
     echo "$MISSING" | xargs -r yay -S --needed --noconfirm
 fi
