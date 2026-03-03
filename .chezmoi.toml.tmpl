@@ -7,6 +7,12 @@
     {{- $chassisType = (output "hostnamectl" "--json=short" | mustFromJson).Chassis }}
     {{- if eq $chassisType "container" }}
         {{- $allProfiles = list "common" }}
+	{{- if ( and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft")) }}
+        {{- $allProfiles = append $allProfiles "wsl" }}
+        {{- $allProfiles = append $allProfiles "work" }}
+        {{- end}}
+
+        {{- $allProfiles = append $allProfiles "docker" }}
     {{- else if eq .chezmoi.osRelease.id "ubuntu" }}
         {{- $allProfiles = list "common" }}
     {{- else if eq .chezmoi.osRelease.id "arch" }}
@@ -20,6 +26,7 @@
         {{- $allProfiles = append $allProfiles "media" }}
         {{- $allProfiles = append $allProfiles "pentesting" }}
         {{- $allProfiles = append $allProfiles "docker" }}
+        {{- $allProfiles = append $allProfiles "work" }}
     {{- end }}
 {{- else if eq .chezmoi.os "windows" }}
     {{- $shell = "pwsh" }}
@@ -75,7 +82,7 @@ isWSL = true
 {{- else }}
 isWSL = false
 {{- end }}
-{{- if and (eq (len $profiles) 1) (ne (index $profiles 0) "") (eq (index $profiles 0) "common") }}
+{{- if ( or (eq $chassisType "container") (eq $chassisType "vm")) }}
 isHeadless = true 
 {{- else }}
 isHeadless = false 
