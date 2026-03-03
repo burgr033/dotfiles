@@ -96,6 +96,6 @@ echo -e "------------------------------------------\n"
 echo -ne "\033[1;32m➜ sync packages? [y/N]: \033[0m"
 read -r confirm_in </dev/tty
 if [[ "$confirm_in" =~ ^[Yy]$ ]]; then
-    echo "$EXTRA" | xargs -r sudo yay -Rs --noconfirm
+    echo "$EXTRA" | xargs -r yay -Rs --noconfirm
     echo "$MISSING" | xargs -r yay -S --needed --noconfirm
 fi

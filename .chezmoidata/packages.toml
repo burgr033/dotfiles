@@ -152,8 +152,12 @@ services = ["ly@tty2.service"]
 packages = ["pocket-casts-linux-bin", "pinta"]
 services = []
 
+[packages.linux.arch.work]
+packages = ["opentofu", "glab", "ansible", "openssh", "miniforge"]
+services = []
+
 [packages.linux.arch.docker]
-packages = ["docker", "docker-compose", "lazydocker"]
+packages = ["docker", "docker-compose", "lazydocker", "docker-buildx"]
 services = ["docker"]
 
 [packages.linux.arch.wsl]
