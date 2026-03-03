@@ -199,7 +199,6 @@ packages = [
     "iaito",
     "tcpdump",
     "wireshark-qt",
-
     "wpscan",
     "volatility3",
     "dirbuster",
