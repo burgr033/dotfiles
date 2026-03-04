@@ -294,4 +294,5 @@ packages = ["battlenet", "epic-games-launcher", "prismlauncher", "steam"]
 packages = [
     "github.com/burgr033/autoCommit/cmd/autoCommit@latest",
     "github.com/burgr033/t00lbox/cmd/t00lbox@latest",
+    "github.com/burgr033/chezmoi-pkg@latest",
 ]
