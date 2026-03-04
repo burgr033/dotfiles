@@ -43,12 +43,6 @@ fi
   {{- end }}
 {{- end }}
 
-{{with (index $.packages.linux.arch .chezmoi.hostname)}}
-{{- if .packages }}
-      {{- $combinedPackages = concat $combinedPackages .packages -}}
-{{- end }}
-{{end}}
-
 # Handle special case: pentesting repo setup
 {{- if has "pentesting" .profiles }}
 if ! grep -Fxq "Include = /etc/pacman.d/athena.conf" /etc/pacman.conf; then
