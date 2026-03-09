@@ -1,9 +1,26 @@
 #!/bin/bash
-set -eufo pipefail
+set -euo pipefail
 
-# --- 1. Data Gathering (Go Template) ---
+# --- 1. Resolve Profiles (supports includes) ---
+{{- $resolvedProfiles := list -}}
+
+{{- range .profiles }}
+  {{- $resolvedProfiles = append $resolvedProfiles . }}
+
+  {{- with (index $.packages.linux.arch .).includes }}
+    {{- range . }}
+      {{- $resolvedProfiles = append $resolvedProfiles . }}
+    {{- end }}
+  {{- end }}
+
+{{- end }}
+
+{{- $resolvedProfiles = uniq $resolvedProfiles -}}
+
+# --- 2. Data Gathering (Go Template) ---
 {{- $combinedPackages := list -}}
-{{- range .profiles -}}
+
+{{- range $resolvedProfiles -}}
   {{- $profile := . -}}
   {{- with (index $.packages.linux.arch $profile) -}}
     {{- if .packages -}}
@@ -12,12 +29,14 @@ set -eufo pipefail
   {{- end -}}
 {{- end -}}
 
+# Host specific packages
 {{with (index $.packages.linux.arch .chezmoi.hostname)}}
 {{- if .packages }}
-      {{- $combinedPackages = concat $combinedPackages .packages -}}
+{{- $combinedPackages = concat $combinedPackages .packages -}}
 {{- end }}
 {{end}}
 
+{{- $combinedPackages = uniq $combinedPackages -}}
 
 # --- 3. Normalization ---
 TARGET_LIST=$(cat <<EOF | LC_ALL=C sort -u
@@ -30,7 +49,6 @@ CURRENT_LIST=$(yay -Qeq | LC_ALL=C sort -u)
 # --- 4. Delta Calculation ---
 MISSING=$(LC_ALL=C comm -23 <(echo "$TARGET_LIST") <(echo "$CURRENT_LIST") | sed '/^$/d')
 
-# Initial "Extra" calculation
 RAW_EXTRA=$(LC_ALL=C comm -13 <(echo "$TARGET_LIST") <(echo "$CURRENT_LIST") | sed '/^$/d')
 
 # Filter out whitelisted items from the EXTRA list
@@ -64,6 +82,7 @@ echo -e "------------------------------------------\n"
 # --- 6. Execution ---
 echo -ne "\033[1;32m➜ sync packages? [y/N]: \033[0m"
 read -r confirm_in </dev/tty
+
 if [[ "$confirm_in" =~ ^[Yy]$ ]]; then
     echo "$EXTRA" | xargs -r yay -Rs --noconfirm
     echo "$MISSING" | xargs -r yay -S --needed --noconfirm

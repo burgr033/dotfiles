@@ -36,5 +36,5 @@ AppData
 !.chezmoiscripts/{{ .chezmoi.os }}/**
 {{- else}}
 !.chezmoiscripts/{{ .chezmoi.os }}/*
-!.chezmoiscripts/{{ .chezmoi.os }}/{{.chezmoi.osRelease.id}}/**
+!.chezmoiscripts/{{ .chezmoi.os }}/{{.chezmoi.osRelease.idLike}}/**
 {{- end}}

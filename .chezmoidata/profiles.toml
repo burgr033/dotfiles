@@ -26,8 +26,10 @@ packages = [
 packages = ["zellij", "nvim"]
 
 [packages.linux.arch.common]
+includes = []
 packages = [
     "bat",
+    "cpio",
     "vim",
     "whois",
     "sl",
@@ -90,7 +92,13 @@ packages = [
 ]
 services = []
 
-[packages.linux.arch.desktop]
+[packages.linux.arch.gaming-desktop]
+includes = ["desktop"]
+packages = []
+services = []
+
+[packages.linux.arch.hypr-desktop]
+includes = ["desktop"]
 packages = [
     "brightnessctl",
     "hyprland",
@@ -110,61 +118,71 @@ packages = [
     "rofi",
     "rofi-calc",
     "ly",
-    "firefox",
     "wl-clipboard",
-    "wev",
-    "maplemono-nf",
-    "enpass-bin",
-    "gvfs",
-    "cpio",
-    "gvfs-smb",
-    "gvfs-nfs",
-    "wireshark-qt",
-    "obsidian",
-    "rygel",
-    "swaybg",
-    "waybar",
-    "seahorse",
-    "gnome-keyring",
-    "network-manager-applet",
-    "networkmanager",
+    "wlr-randr",
+    "xdg-desktop-portal-hyprland",
     "xdg-user-dirs-gtk",
     "xdg-utils",
-    "xdg-desktop-portal-hyprland",
     "yt-dlp",
-    "python-hyprpy",
     "zathura",
-    "pcmanfm",
-    "pipewire",
-    "pipewire-alsa",
-    "pipewire-jack",
-    "pipewire-pulse",
-    "libpulse",
-    "wireplumber",
-    "gst-plugin-pipewire",
-    "pavucontrol",
-    "wlr-randr",
     "zathura-pdf-mupdf",
+    "gnome-keyring",
+    "gst-plugin-pipewire",
+    "gvfs",
+    "gvfs-nfs",
+    "gvfs-smb",
+    "libpulse",
+    "pavucontrol",
+    "pcmanfm",
+    "python-hyprpy",
+    "rygel",
+    "seahorse",
+    "network-manager-applet",
+    "networkmanager",
+    "swaybg",
+    "waybar",
+    "wev",
 ]
 services = ["ly@tty2.service"]
 
+
+[packages.linux.arch.desktop]
+includes = []
+packages = [
+    "enpass-bin",
+    "firefox",
+    "pipewire",
+    "pipewire-alsa",
+    "pipewire-pulse",
+    "maplemono-nf",
+    "obsidian",
+    "wireshark-qt",
+    "wireplumber",
+]
+services = []
+
 [packages.linux.arch.media]
+includes = []
 packages = ["pocket-casts-linux-bin", "pinta"]
 services = []
 
 [packages.linux.arch.work]
+includes = []
 packages = ["opentofu", "glab", "ansible", "openssh", "miniforge"]
 services = []
 
 [packages.linux.arch.docker]
+includes = []
 packages = ["docker", "docker-compose", "lazydocker", "docker-buildx"]
 services = ["docker"]
 
 [packages.linux.arch.wsl]
+includes = []
 packages = ["win32yank-bin", "wsl-open"]
 services = []
 
-[packages.linux.arch.studywork]
+[packages.linux.arch.study]
+includes = []
 packages = [
     "texlab",
     "typst",
@@ -180,6 +198,7 @@ packages = [
 services = []
 
 [packages.linux.arch.mobile]
+includes = []
 packages = [
     "tlp",
     "tlpui",
@@ -192,6 +211,7 @@ packages = [
 services = ["tlp"]
 
 [packages.linux.arch.pentesting]
+includes = []
 packages = [
     "gobuster",
     "exploitdb",
@@ -278,7 +298,7 @@ packages = [
     "vlc",
 ]
 
-[packages.windows.scoop.studywork]
+[packages.windows.scoop.study]
 buckets = ["java"]
 packages = ["sumatrapdf", "zotero", "typst", "rustdesk", "xournalpp", "openjdk"]
 

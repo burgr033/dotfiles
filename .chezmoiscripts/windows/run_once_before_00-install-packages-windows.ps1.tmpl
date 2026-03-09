@@ -15,9 +15,9 @@ scoop install {{ .packages.windows.scoop.pre.packages | join " " }}
 {{- $combinedScoopPackages = concat $combinedScoopPackages .packages.windows.scoop.desktop.packages }}
 {{- end }}
 
-{{- if has "studywork" .profiles }}
-{{- $combinedScoopBuckets = concat $combinedScoopBuckets .packages.windows.scoop.studywork.buckets }}
-{{- $combinedScoopPackages = concat $combinedScoopPackages .packages.windows.scoop.studywork.packages }}
+{{- if has "study" .profiles }}
+{{- $combinedScoopBuckets = concat $combinedScoopBuckets .packages.windows.scoop.study.buckets }}
+{{- $combinedScoopPackages = concat $combinedScoopPackages .packages.windows.scoop.study.packages }}
 {{- end }}
 
 {{- if has "office" .profiles }}

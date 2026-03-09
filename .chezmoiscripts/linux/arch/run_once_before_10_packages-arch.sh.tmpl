@@ -1,6 +1,6 @@
 #!/bin/bash
 echo ""
-set -eufo pipefail
+set -euo pipefail
 
 {{- if eq .manualSetup false }}
 
@@ -12,13 +12,13 @@ set -eufo pipefail
 
 # Install common packages first
 {{- if has "common" .profiles }}
-  {{ $sudo }} pacman --needed --noconfirm -Syu {{ .packages.linux.arch.common.packages | join " " }}
+{{ $sudo }} pacman --needed --noconfirm -Syu {{ .packages.linux.arch.common.packages | join " " }}
 {{- end }}
 
 # Install yay if not present
 if ! command -v yay &> /dev/null; then
   echo "Installing yay AUR helper..."
-  {{- if eq .chezmoi.osRelease.id "arch" }}
+  {{- if eq .chezmoi.osRelease.idLike "arch" }}
   pushd .
   git clone https://aur.archlinux.org/yay-bin.git /tmp/yay-bin
   cd /tmp/yay-bin
@@ -28,10 +28,33 @@ if ! command -v yay &> /dev/null; then
   {{- end }}
 fi
 
-# Combine packages and services dynamically
+# -------------------------------------------------
+# Resolve profile includes
+# -------------------------------------------------
+
+{{- $resolvedProfiles := list -}}
+
+{{- range .profiles }}
+  {{- $resolvedProfiles = append $resolvedProfiles . }}
+
+  {{- with (index $.packages.linux.arch .).includes }}
+    {{- range . }}
+      {{- $resolvedProfiles = append $resolvedProfiles . }}
+    {{- end }}
+  {{- end }}
+
+{{- end }}
+
+{{- $resolvedProfiles = uniq $resolvedProfiles -}}
+
+# -------------------------------------------------
+# Combine packages and services
+# -------------------------------------------------
+
 {{- $combinedPackages := list -}}
 {{- $combinedServices := list -}}
-{{- range .profiles }}
+
+{{- range $resolvedProfiles }}
   {{- $profile := . -}}
   {{- with (index $.packages.linux.arch $profile) }}
     {{- if .packages }}
@@ -43,35 +66,57 @@ fi
   {{- end }}
 {{- end }}
 
-# Handle special case: pentesting repo setup
+{{- $combinedPackages = uniq $combinedPackages -}}
+{{- $combinedServices = uniq $combinedServices -}}
+
+# -------------------------------------------------
+# Special case: pentesting repo setup
+# -------------------------------------------------
+
 {{- if has "pentesting" .profiles }}
 if ! grep -Fxq "Include = /etc/pacman.d/athena.conf" /etc/pacman.conf; then
     echo "Setting up Athena repository for pentesting..."
+
     echo "Include = /etc/pacman.d/athena.conf" | {{ $sudo }} tee -a /etc/pacman.conf
+
     echo "[athena]" | {{ $sudo }} tee /etc/pacman.d/athena.conf
     echo "Include = /etc/pacman.d/athena-mirrorlist" | {{ $sudo }} tee -a /etc/pacman.d/athena.conf
     echo "SigLevel = Optional TrustedOnly" | {{ $sudo }} tee -a /etc/pacman.d/athena.conf
+
     {{ $sudo }} curl -sSL https://raw.githubusercontent.com/Athena-OS/athena/refs/heads/main/packages/os-specific/system/athena-mirrorlist/athena-mirrorlist -o /etc/pacman.d/athena-mirrorlist
+
     {{ $sudo }} pacman-key --recv-keys A3F78B994C2171D5 --keyserver keys.openpgp.org
     {{ $sudo }} pacman-key --lsign A3F78B994C2171D5
 fi
 {{- end }}
 
-# Install all combined packages
+# -------------------------------------------------
+# Install packages
+# -------------------------------------------------
+
 if [ {{ len $combinedPackages }} -gt 0 ]; then
+  echo "Installing packages:"
+  echo "{{ $combinedPackages | join " " }}"
   yay -Sy
   yay -S --needed {{ $combinedPackages | join " " }}
 fi
 
-# Enable all combined services
+# -------------------------------------------------
+# Enable services
+# -------------------------------------------------
+
 {{- range $combinedServices }}
 echo "Enabling service: {{ . }}"
 {{ $sudo }} systemctl enable {{ . }}
 {{- end }}
 
+# -------------------------------------------------
+# Install Go packages
+# -------------------------------------------------
+
 {{- range .packages.go.packages}}
+echo "Installing Go package: {{.}}"
 go install {{.}}
 {{- end}}
 
 {{- end }}
-
