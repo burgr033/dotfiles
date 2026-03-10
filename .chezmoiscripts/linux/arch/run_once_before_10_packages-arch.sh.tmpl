@@ -18,7 +18,7 @@ set -euo pipefail
 # Install yay if not present
 if ! command -v yay &> /dev/null; then
   echo "Installing yay AUR helper..."
-  {{- if eq .chezmoi.osRelease.idLike "arch" }}
+  {{- if eq .distro "arch" }}
   pushd .
   git clone https://aur.archlinux.org/yay-bin.git /tmp/yay-bin
   cd /tmp/yay-bin

@@ -3,6 +3,14 @@
 {{- $chassisType := "desktop" }}
 {{- $gpgkeyAnswer := "personal" }}
 {{- $allProfiles := list "common" -}}
+{{- $distro := (.chezmoi.os) -}}
+{{- if eq $distro "linux" -}}
+{{- if get .chezmoi.osRelease "idLike" -}}
+{{- $distro = .chezmoi.osRelease.idLike -}}
+{{- else -}}
+{{- $distro = .chezmoi.osRelease.id -}}
+{{- end -}}
+{{- end -}}
 {{- if eq .chezmoi.os "linux" }}
     {{- $chassisType = (output "hostnamectl" "--json=short" | mustFromJson).Chassis }}
     {{- if eq $chassisType "container" }}
@@ -12,9 +20,9 @@
         {{- $allProfiles = append $allProfiles "work" }}
         {{- end}}
         {{- $allProfiles = append $allProfiles "docker" }}
-    {{- else if eq .chezmoi.osRelease.id "ubuntu" }}
+    {{- else if eq $distro "ubuntu" }}
         {{- $allProfiles = list "common" }}
-    {{- else if eq .chezmoi.osRelease.idLike "arch" }}
+    {{- else if eq $distro "arch" }}
         {{- $allProfiles = append $allProfiles "gaming-desktop" }}
         {{- $allProfiles = append $allProfiles "hypr-desktop" }}
         {{- if or (eq $chassisType "convertible") (eq $chassisType "laptop") }}
@@ -65,6 +73,7 @@ command = {{ $shell | quote }}
 {{- $name := promptStringOnce . "name" "Name" "sb"}}
 {{- $email := promptStringOnce . "email" "Email" "burgr@posteo.de"}}
 name =  {{  $name | quote }}
+distro = {{ $distro | quote}}
 email = {{  $email | quote }}
 shell = {{  $shell | quote }}
 {{-  $profiles := promptMultichoiceOnce . "profiles" "What profiles should be enabled" $allProfiles }}

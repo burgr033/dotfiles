@@ -1,4 +1,5 @@
 [packages.linux.ubuntu.apt]
+includes = []
 packages = [
     "bat",
     "curl",
@@ -23,6 +24,7 @@ packages = [
 ]
 
 [packages.linux.ubuntu.snap]
+includes = []
 packages = ["zellij", "nvim"]
 
 [packages.linux.arch.common]

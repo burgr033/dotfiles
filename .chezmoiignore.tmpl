@@ -3,10 +3,6 @@
 README.md
 .github
 
-{{- if ne .chezmoi.osRelease.id "arch"}}
-.local/bin/chezmoi-sync-packages
-{{end}}
-
 {{- if eq .chezmoi.os "windows"}}
 # if OS is windows ignore...
 .config/*
@@ -36,5 +32,5 @@ AppData
 !.chezmoiscripts/{{ .chezmoi.os }}/**
 {{- else}}
 !.chezmoiscripts/{{ .chezmoi.os }}/*
-!.chezmoiscripts/{{ .chezmoi.os }}/{{.chezmoi.osRelease.idLike}}/**
+!.chezmoiscripts/{{ .chezmoi.os }}/{{.distro}}/**
 {{- end}}
