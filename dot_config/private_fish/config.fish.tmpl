@@ -8,7 +8,7 @@ if status is-interactive
     alias dig="dog"
     alias nslookup="dog"
     alias scratch="nvim -c Scratch"
-    {{- if eq .chezmoi.osRelease.id "ubuntu"}}
+    {{- if eq .distro "ubuntu"}}
     alias cat="batcat --plain"
     {{- else}}
     alias cat="bat --plain"

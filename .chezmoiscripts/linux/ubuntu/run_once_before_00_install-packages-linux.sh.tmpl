@@ -8,7 +8,7 @@ set -eufo pipefail
 {{   $sudo = "" -}}
 {{ end -}}
 
-{{ if eq .chezmoi.osRelease.id "ubuntu" -}}
+{{ if eq .distro "ubuntu" -}}
 #UBUNTU
 
 #lazygit
