@@ -13,14 +13,10 @@ if status is-interactive
     {{- else}}
     alias cat="bat --plain"
     {{- end}}
-    {{- if eq .isHeadless false}}
+    {{- if (has "hypr-desktop" .profiles) }}
     set --export SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/gcr/ssh"
-    {{- end}}
-    {{- if eq .isHeadless true}}
+    {{- else }}
     set --export SSH_AUTH_SOCK $XDG_RUNTIME_DIR/ssh-agent.socket
-    {{- if eq .isWSL false}}
-    set --export NVIM_SLIM "1"
-    {{- end}}
     {{- end}}
     set -gx GPG_TTY $(tty)
     set -gx EDITOR "nvim"

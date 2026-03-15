@@ -90,7 +90,7 @@ packages = [
     "dog",
     "nmap",
     "tailscale",
-    "yay-bin"
+    "yay-bin",
 ]
 services = []
 
