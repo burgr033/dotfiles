@@ -9,6 +9,9 @@ echo $0
 # Install Go packages
 # -------------------------------------------------
 
+go env -w GOPATH=$HOME/.go
+export GOPATH=$HOME/.go
+
 {{- range .packages.go.packages}}
 echo "Installing Go package: {{.}}"
 go install {{.}}
