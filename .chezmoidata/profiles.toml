@@ -90,7 +90,6 @@ packages = [
     "dog",
     "nmap",
     "tailscale",
-    "yay-bin",
 ]
 services = []
 
@@ -153,9 +152,11 @@ includes = []
 packages = [
     "enpass-bin",
     "firefox",
+    "ffmpeg",
     "pipewire",
     "pipewire-alsa",
     "pipewire-pulse",
+    "pipewire-jack",
     "maplemono-nf",
     "obsidian",
     "wireshark-qt",

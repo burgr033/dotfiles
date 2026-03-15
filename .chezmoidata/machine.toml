@@ -33,6 +33,8 @@ packages = [
   'xorg-xinit',
   'xorg-xrandr',
   'zram-generator',
+  'ghostscript',
+  'yay-bin',
 ]
 
 [packages.linux.arch.tealc]
