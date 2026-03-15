@@ -1,6 +1,7 @@
 #!/bin/bash
 echo ""
 set -euo pipefail
+echo $0
 
 {{- if eq .manualSetup false }}
 
@@ -10,24 +11,6 @@ set -euo pipefail
   {{- $sudo = "" }}
 {{- end }}
 
-# Install common packages first
-{{- if has "common" .profiles }}
-{{ $sudo }} pacman --needed --noconfirm -Syu {{ .packages.linux.arch.common.packages | join " " }}
-{{- end }}
-
-# Install yay if not present
-if ! command -v yay &> /dev/null; then
-  echo "Installing yay AUR helper..."
-  {{- if eq .distro "arch" }}
-  pushd .
-  git clone https://aur.archlinux.org/yay-bin.git /tmp/yay-bin
-  cd /tmp/yay-bin
-  makepkg -si --noconfirm
-  popd
-  rm -rf /tmp/yay-bin/
-  {{- end }}
-fi
-
 # -------------------------------------------------
 # Resolve profile includes
 # -------------------------------------------------
@@ -36,7 +19,6 @@ fi
 
 {{- range .profiles }}
   {{- $resolvedProfiles = append $resolvedProfiles . }}
-
   {{- with (index $.packages.linux.arch .).includes }}
     {{- range . }}
       {{- $resolvedProfiles = append $resolvedProfiles . }}
@@ -56,12 +38,14 @@ fi
 
 {{- range $resolvedProfiles }}
   {{- $profile := . -}}
-  {{- with (index $.packages.linux.arch $profile) }}
-    {{- if .packages }}
-      {{- $combinedPackages = concat $combinedPackages .packages -}}
-    {{- end }}
-    {{- if .services }}
-      {{- $combinedServices = concat $combinedServices .services -}}
+  {{- if ne $profile "common" }}
+    {{- with (index $.packages.linux.arch $profile) }}
+      {{- if .packages }}
+        {{- $combinedPackages = concat $combinedPackages .packages -}}
+      {{- end }}
+      {{- if .services }}
+        {{- $combinedServices = concat $combinedServices .services -}}
+      {{- end }}
     {{- end }}
   {{- end }}
 {{- end }}
@@ -109,14 +93,5 @@ fi
 echo "Enabling service: {{ . }}"
 {{ $sudo }} systemctl enable {{ . }}
 {{- end }}
-
-# -------------------------------------------------
-# Install Go packages
-# -------------------------------------------------
-
-{{- range .packages.go.packages}}
-echo "Installing Go package: {{.}}"
-go install {{.}}
-{{- end}}
 
 {{- end }}

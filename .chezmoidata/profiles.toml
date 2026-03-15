@@ -90,12 +90,13 @@ packages = [
     "dog",
     "nmap",
     "tailscale",
+    "yay-bin"
 ]
 services = []
 
 [packages.linux.arch.gaming-desktop]
 includes = ["desktop"]
-packages = []
+packages = ["discord"]
 services = []
 
 [packages.linux.arch.hypr-desktop]

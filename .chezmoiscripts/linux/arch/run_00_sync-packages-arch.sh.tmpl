@@ -1,5 +1,9 @@
 #!/bin/bash
+echo ""
 set -euo pipefail
+echo $0
+
+{{- if eq .manualSetup false }}
 
 # --- 1. Resolve Profiles (supports includes) ---
 {{- $resolvedProfiles := list -}}
@@ -87,3 +91,5 @@ if [[ "$confirm_in" =~ ^[Yy]$ ]]; then
     echo "$EXTRA" | xargs -r yay -Rs --noconfirm
     echo "$MISSING" | xargs -r yay -S --needed --noconfirm
 fi
+
+{{- end }}

@@ -1,0 +1,17 @@
+#!/bin/bash
+echo ""
+set -euo pipefail
+echo $0
+
+{{- if eq .manualSetup false }}
+
+# -------------------------------------------------
+# Install Go packages
+# -------------------------------------------------
+
+{{- range .packages.go.packages}}
+echo "Installing Go package: {{.}}"
+go install {{.}}
+{{- end}}
+
+{{- end }}

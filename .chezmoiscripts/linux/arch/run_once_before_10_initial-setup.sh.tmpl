@@ -1,0 +1,32 @@
+#!/bin/bash
+echo ""
+set -euo pipefail
+echo $0
+
+{{- if eq .manualSetup false }}
+
+# Determine sudo prefix
+{{- $sudo := "sudo " }}
+{{- if eq .chezmoi.username "root" }}
+  {{- $sudo = "" }}
+{{- end }}
+
+# Install common packages first
+{{- if has "common" .profiles }}
+{{ $sudo }} pacman --needed --noconfirm -Syu {{ .packages.linux.arch.common.packages | join " " }}
+{{- end }}
+
+# Install yay if not present
+if ! command -v yay &> /dev/null; then
+  echo "Installing yay AUR helper..."
+  {{- if eq .distro "arch" }}
+  pushd .
+  git clone https://aur.archlinux.org/yay-bin.git /tmp/yay-bin
+  cd /tmp/yay-bin
+  makepkg -si --noconfirm
+  popd
+  rm -rf /tmp/yay-bin/
+  {{- end }}
+fi
+
+{{- end }}
