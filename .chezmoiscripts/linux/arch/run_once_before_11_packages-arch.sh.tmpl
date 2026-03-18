@@ -1,19 +1,12 @@
 #!/bin/bash
-echo ""
 set -euo pipefail
-echo $0
 
 {{- if eq .manualSetup false }}
 
-# Determine sudo prefix
 {{- $sudo := "sudo " }}
 {{- if eq .chezmoi.username "root" }}
   {{- $sudo = "" }}
 {{- end }}
-
-# -------------------------------------------------
-# Resolve profile includes
-# -------------------------------------------------
 
 {{- $resolvedProfiles := list -}}
 
@@ -28,10 +21,6 @@ echo $0
 {{- end }}
 
 {{- $resolvedProfiles = uniq $resolvedProfiles -}}
-
-# -------------------------------------------------
-# Combine packages and services
-# -------------------------------------------------
 
 {{- $combinedPackages := list -}}
 {{- $combinedServices := list -}}
@@ -53,10 +42,6 @@ echo $0
 {{- $combinedPackages = uniq $combinedPackages -}}
 {{- $combinedServices = uniq $combinedServices -}}
 
-# -------------------------------------------------
-# Special case: pentesting repo setup
-# -------------------------------------------------
-
 {{- if has "pentesting" .profiles }}
 if ! grep -Fxq "Include = /etc/pacman.d/athena.conf" /etc/pacman.conf; then
     echo "Setting up Athena repository for pentesting..."
@@ -74,20 +59,12 @@ if ! grep -Fxq "Include = /etc/pacman.d/athena.conf" /etc/pacman.conf; then
 fi
 {{- end }}
 
-# -------------------------------------------------
-# Install packages
-# -------------------------------------------------
-
 if [ {{ len $combinedPackages }} -gt 0 ]; then
   echo "Installing packages:"
   echo "{{ $combinedPackages | join " " }}"
   yay -Sy
   yay -S --needed {{ $combinedPackages | join " " }}
 fi
-
-# -------------------------------------------------
-# Enable services
-# -------------------------------------------------
 
 {{- range $combinedServices }}
 echo "Enabling service: {{ . }}"

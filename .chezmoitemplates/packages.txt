@@ -2,17 +2,14 @@
 
 {{- range .profiles }}
   {{- $resolvedProfiles = append $resolvedProfiles . }}
-
   {{- with (index $.packages.linux.arch .).includes }}
     {{- range . }}
       {{- $resolvedProfiles = append $resolvedProfiles . }}
     {{- end }}
   {{- end }}
-
 {{- end }}
 
 {{- $resolvedProfiles = uniq $resolvedProfiles -}}
-
 {{- $combinedPackages := list -}}
 
 {{- range $resolvedProfiles -}}
@@ -23,13 +20,11 @@
     {{- end -}}
   {{- end -}}
 {{- end -}}
-
-# Host specific packages
-{{with (index $.packages.linux.arch .chezmoi.hostname)}}
-{{- if .packages }}
-{{- $combinedPackages = concat $combinedPackages .packages -}}
-{{- end }}
-{{end}}
+{{- with (index $.packages.linux.arch .chezmoi.hostname)}}
+  {{- if .packages }}
+    {{- $combinedPackages = concat $combinedPackages .packages -}}
+  {{- end }}
+{{- end}}
 
 {{- $combinedPackages = uniq $combinedPackages -}}
 {{- $combinedPackages | join "\n"}}

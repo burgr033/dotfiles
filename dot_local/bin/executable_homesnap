@@ -9,7 +9,6 @@ mkdir -p "$SNAPSHOT_DIR"
 SNAPSHOT_BEFORE="$SNAPSHOT_DIR/${SNAPSHOT_NAME}-before.txt"
 SNAPSHOT_AFTER="$SNAPSHOT_DIR/${SNAPSHOT_NAME}-after.txt"
 
-# 🔥 List of folders or patterns to exclude
 EXCLUDES=(
   ".cache"
   ".homesnap"
@@ -24,7 +23,6 @@ EXCLUDES=(
   ".local/share/Trash"
 )
 
-# Build fd exclusion flags
 EXCLUDE_FLAGS=()
 for ex in "${EXCLUDES[@]}"; do
   EXCLUDE_FLAGS+=(--exclude "$ex")

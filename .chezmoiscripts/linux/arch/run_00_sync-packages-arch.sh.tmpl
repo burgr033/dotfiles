@@ -1,11 +1,8 @@
 #!/bin/bash
-echo ""
 set -euo pipefail
-echo $0
 
 {{- if eq .manualSetup false }}
 
-# --- 1. Resolve Profiles (supports includes) ---
 {{- $resolvedProfiles := list -}}
 
 {{- range .profiles }}
@@ -21,7 +18,6 @@ echo $0
 
 {{- $resolvedProfiles = uniq $resolvedProfiles -}}
 
-# --- 2. Data Gathering (Go Template) ---
 {{- $combinedPackages := list -}}
 
 {{- range $resolvedProfiles -}}
@@ -33,7 +29,6 @@ echo $0
   {{- end -}}
 {{- end -}}
 
-# Host specific packages
 {{with (index $.packages.linux.arch .chezmoi.hostname)}}
 {{- if .packages }}
 {{- $combinedPackages = concat $combinedPackages .packages -}}
@@ -42,7 +37,6 @@ echo $0
 
 {{- $combinedPackages = uniq $combinedPackages -}}
 
-# --- 3. Normalization ---
 TARGET_LIST=$(cat <<EOF | LC_ALL=C sort -u
 {{ $combinedPackages | join "\n" }}
 EOF

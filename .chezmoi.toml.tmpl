@@ -5,43 +5,44 @@
 {{- $allProfiles := list "common" -}}
 {{- $distro := (.chezmoi.os) -}}
 {{- if eq $distro "linux" -}}
-{{- if get .chezmoi.osRelease "idLike" -}}
-{{- $distro = .chezmoi.osRelease.idLike -}}
-{{- else -}}
-{{- $distro = .chezmoi.osRelease.id -}}
+    {{- if get .chezmoi.osRelease "idLike" -}}
+        {{- $distro = .chezmoi.osRelease.idLike -}}
+    {{- else -}}
+        {{- $distro = .chezmoi.osRelease.id -}}
+    {{- end -}}
 {{- end -}}
-{{- end -}}
-{{- if eq .chezmoi.os "linux" }}
-    {{- $chassisType = (output "hostnamectl" "--json=short" | mustFromJson).Chassis }}
-    {{- if eq $chassisType "container" }}
-        {{- $allProfiles = list "common" }}
-	{{- if ( and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft")) }}
-        {{- $allProfiles = append $allProfiles "wsl" }}
-        {{- $allProfiles = append $allProfiles "work" }}
-        {{- end}}
-        {{- $allProfiles = append $allProfiles "docker" }}
-    {{- else if eq $distro "ubuntu" }}
-        {{- $allProfiles = list "common" }}
-    {{- else if eq $distro "arch" }}
-        {{- $allProfiles = append $allProfiles "gaming-desktop" }}
-        {{- $allProfiles = append $allProfiles "hypr-desktop" }}
-        {{- if or (eq $chassisType "convertible") (eq $chassisType "laptop") }}
-            {{- $allProfiles = append $allProfiles "mobile" }}
-        {{- end}}
 
-        {{- $allProfiles = append $allProfiles "study" }}
-        {{- $allProfiles = append $allProfiles "media" }}
-        {{- $allProfiles = append $allProfiles "pentesting" }}
-        {{- $allProfiles = append $allProfiles "docker" }}
-        {{- $allProfiles = append $allProfiles "work" }}
-    {{- end }}
+{{- if eq .chezmoi.os "linux" }}
+{{- $chassisType = (output "hostnamectl" "--json=short" | mustFromJson).Chassis }}
+{{- if eq $chassisType "container" }}
+{{- $allProfiles = list "common" }}
+{{- if ( and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft")) }}
+{{- $allProfiles = append $allProfiles "wsl" }}
+{{- $allProfiles = append $allProfiles "work" }}
+{{- end}}
+{{- $allProfiles = append $allProfiles "docker" }}
+{{- else if eq $distro "ubuntu" }}
+{{- $allProfiles = list "common" }}
+{{- else if eq $distro "arch" }}
+{{- $allProfiles = append $allProfiles "gaming-desktop" }}
+{{- $allProfiles = append $allProfiles "hypr-desktop" }}
+{{- if or (eq $chassisType "convertible") (eq $chassisType "laptop") }}
+{{- $allProfiles = append $allProfiles "mobile" }}
+{{- end}}
+
+{{- $allProfiles = append $allProfiles "study" }}
+{{- $allProfiles = append $allProfiles "media" }}
+{{- $allProfiles = append $allProfiles "pentesting" }}
+{{- $allProfiles = append $allProfiles "docker" }}
+{{- $allProfiles = append $allProfiles "work" }}
+{{- end }}
 {{- else if eq .chezmoi.os "windows" }}
-    {{- $shell = "pwsh" }}
-    {{- $chassisType = (output "powershell.exe" "-NoProfile" "-NonInteractive" "-Command" "if ((Get-CimInstance -Class Win32_Battery | Measure-Object).Count -gt 0) { Write-Output 'laptop' } else { Write-Output 'desktop' }") | trim }}
-    {{- $allProfiles = append $allProfiles "desktop" }}
-    {{- $allProfiles = append $allProfiles "study" }}
-    {{- $allProfiles = append $allProfiles "office" }}
-    {{- $allProfiles = append $allProfiles "gaming" }}
+{{- $shell = "pwsh" }}
+{{- $chassisType = (output "powershell.exe" "-NoProfile" "-NonInteractive" "-Command" "if ((Get-CimInstance -Class Win32_Battery | Measure-Object).Count -gt 0) { Write-Output 'laptop' } else { Write-Output 'desktop' }") | trim }}
+{{- $allProfiles = append $allProfiles "desktop" }}
+{{- $allProfiles = append $allProfiles "study" }}
+{{- $allProfiles = append $allProfiles "office" }}
+{{- $allProfiles = append $allProfiles "gaming" }}
 {{- end }}
 
 # ----------------------------------------------------------------------------------
@@ -49,7 +50,6 @@
 [edit]
 command = "nvim"
 {{- if lookPath "delta" }}
-
 [diff]
 command = "delta"
 pager = "delta"
